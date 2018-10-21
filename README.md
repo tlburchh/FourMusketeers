@@ -1,6 +1,6 @@
 # WineApp
 
-`WineApp` is a generic app that can be used by wineries & breweries to do beer and wine tastings.
+`WineApp` is a app that can be used by wineries & breweries to do beer and wine tastings.
 
 ## Getting Started
 
