@@ -30,6 +30,7 @@ Once you have the NodeJS environment set up, clone the repository to your local 
 * [React.js](https://reactjs.org/) - Front end layout
 * [moment.js](https://momentjs.com/) - Data filtering for the manager portal view
 * [morgan](https://github.com/expressjs/morgan) - Request logger for development
+* [material-ui](https://material-ui.com/) - css framework
 
 
 ## Contributors
