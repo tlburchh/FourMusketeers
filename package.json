@@ -25,6 +25,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "@material-ui/core": "^3.2.2",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.2",
     "bcryptjs": "^2.4.3",
@@ -36,7 +37,6 @@
     "mongoose": "^5.3.4",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "react-google-maps": "^9.4.5"
+    "passport-local": "^1.0.0"
   }
 }
