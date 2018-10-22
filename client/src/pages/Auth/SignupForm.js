@@ -13,7 +13,7 @@ class SignupForm extends Component {
 		this.state = {
       firstName: '',
       lastName: '',
-			username: '',
+			email: '',
 			password: '',
 			confirmPassword: '',
 			redirectTo: null
@@ -32,7 +32,7 @@ class SignupForm extends Component {
 		AUTH.signup({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password
     }).then(response => {
       console.log(response);
@@ -59,25 +59,25 @@ class SignupForm extends Component {
           <Col size="md-6">
             <Card title="Register for React Reading List">
               <form style={{marginTop: 10}}>
-                <label htmlFor="username">First name: </label>
+                <label htmlFor="firstName">First name: </label>
                 <Input
                   type="text"
                   name="firstName"
                   value={this.state.firstName}
                   onChange={this.handleChange}
                 />
-                <label htmlFor="username">Last name: </label>
+                <label htmlFor="lastName">Last name: </label>
                 <Input
                   type="text"
                   name="lastName"
                   value={this.state.lastName}
                   onChange={this.handleChange}
                 />
-                <label htmlFor="username">Username: </label>
+                <label htmlFor="email">Email: </label>
                 <Input
                   type="text"
-                  name="username"
-                  value={this.state.username}
+                  name="email"
+                  value={this.state.email}
                   onChange={this.handleChange}
                 />
                 <label htmlFor="password">Password: </label>

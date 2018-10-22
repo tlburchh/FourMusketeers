@@ -10,7 +10,7 @@ const validation = function(email){
 
 const User = new Schema({
     email: {
-          type: String,
+        type: String,
         trim: true,
         lowercase: true,
         unique: true,
