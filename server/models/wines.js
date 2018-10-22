@@ -1,4 +1,4 @@
-const mongoose =  require('mongooose');
+const mongoose =  require('mongoose');
 const Schema = mongoose.Schema;
 
 function getPrice(number){
@@ -37,4 +37,4 @@ const Wines = new Schema ({
 
 })
 
-modules.exports = mongoose.model('Wines', Wines);
+module.exports = mongoose.model('Wines', Wines);

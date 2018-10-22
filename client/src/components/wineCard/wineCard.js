@@ -24,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-function ComplexGrid(props) {
+function wineCard(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
@@ -60,4 +60,4 @@ ComplexGrid.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ComplexGrid);
+export default withStyles(styles)(wineCard);
