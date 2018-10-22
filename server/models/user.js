@@ -1,22 +1,35 @@
-const mongoose =  require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
 
-const validation = function(email){
+const validation = function (email) {
     var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return regex.test(email)
 }
 
 const User = new Schema({
-    email: {
-          type: String,
+    firstName: {
+        type: String,
+        required: "First name is required",
         trim: true,
-        lowercase: true,
+        // no numbers allowed
+        match: [/^([^0-9]*)$/, "Please enter a valid name"]
+
+    },
+    lastName: {
+        type: String,
+        required: "Last name is required",
+        trim: true,
+        match: [/^([^0-9]*)$/, "Please enter a valid name"]
+    },
+    email: {
+        type: String,
+        trim: true,
         unique: true,
         required: 'Email address is required',
         validate: [validation, 'Please fill a valid email address'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Please fill a valid email address']
     },
 
@@ -27,18 +40,18 @@ const User = new Schema({
     }
 })
 
-User.pre('save', function(next) {
+User.pre('save', function (next) {
     var user = this;
 
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
 
     // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
         if (err) return next(err);
 
         // hash the password using our new salt
-        bcrypt.hash(user.password, salt, function(err, hash) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
 
             // override the cleartext password with the hashed one
@@ -48,8 +61,8 @@ User.pre('save', function(next) {
     });
 });
 
-User.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+User.methods.comparePassword = function (candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
