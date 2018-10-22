@@ -51,8 +51,8 @@ class App extends Component {
 		});
 	}
 
-	login = (username, password) => {
-		AUTH.login(username, password).then(response => {
+	login = (email, password) => {
+		AUTH.login(email, password).then(response => {
       console.log(response);
       if (response.status === 200) {
         // update the state

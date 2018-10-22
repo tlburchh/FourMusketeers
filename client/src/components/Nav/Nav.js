@@ -14,10 +14,10 @@ const Nav = (props) => {
 				Welcome back, <strong>{props.user.firstName}</strong>
 			</Fragment>
 		)
-	} else if (props.user.username) {
+	} else if (props.user.email) {
 		greeting = (
 			<Fragment>
-				Welcome back, <strong>{props.user.username} </strong>
+				Welcome back, <strong>{props.user.email} </strong>
 			</Fragment>
 		)
   }

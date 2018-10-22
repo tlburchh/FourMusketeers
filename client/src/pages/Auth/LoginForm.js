@@ -10,7 +10,7 @@ class LoginForm extends Component {
     super();
     
 		this.state = {
-			username: '',
+			email: '',
 			password: '',
 			redirectTo: null
 		};
@@ -25,7 +25,7 @@ class LoginForm extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		console.log('handleSubmit');
-		this.props.login(this.state.username, this.state.password);
+		this.props.login(this.state.email, this.state.password);
 		this.setState({
 			redirectTo: '/'
 		});
@@ -42,11 +42,11 @@ class LoginForm extends Component {
             <Col size="md-6">
               <Card title="Login to React Reading List">
                 <form style={{marginTop: 10}}>
-                  <label htmlFor="username">Username: </label>
+                  <label htmlFor="email">Email: </label>
                   <Input
                     type="text"
-                    name="username"
-                    value={this.state.username}
+                    name="email"
+                    value={this.state.email}
                     onChange={this.handleChange}
                   />
                   <label htmlFor="password">Password: </label>
