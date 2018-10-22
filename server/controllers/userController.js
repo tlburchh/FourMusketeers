@@ -1,4 +1,5 @@
 const db = require("../models");
+const path = require("path");
 
 // Defining methods for the userController
 module.exports = {
@@ -48,6 +49,7 @@ module.exports = {
   },
   authenticate: (req, res) => {
     console.log('POST to /login');
+    console.log(req.user);
     const user = JSON.parse(JSON.stringify(req.user)); // hack
     const cleanUser = Object.assign({}, user);
     if (cleanUser) {

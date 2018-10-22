@@ -9,7 +9,7 @@ class SignupForm extends Component {
 
 	constructor() {
     super();
-    
+
 		this.state = {
       firstName: '',
       lastName: '',
@@ -19,13 +19,13 @@ class SignupForm extends Component {
 			redirectTo: null
 		};
   }
-  
+
 	handleChange = (event) => {
 		this.setState({
 			[event.target.name]: event.target.value
 		});
   }
-  
+
 	handleSubmit = (event) => {
 		event.preventDefault();
 		// TODO - validate!
@@ -35,23 +35,23 @@ class SignupForm extends Component {
       email: this.state.email,
       password: this.state.password
     }).then(response => {
-      console.log(response);
-      if (!response.data.errmsg) {
+      console.log(response.data);
+      if (!response.data.error) {
         console.log('youre good');
         this.setState({
           redirectTo: '/'
         });
       } else {
-        console.log('duplicate');
+        alert("A user with this email already exists");
       }
     });
   }
-  
+
 	render() {
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
     }
-    
+
 		return (
       <Container>
         <Row>

@@ -5,10 +5,10 @@ import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
 
 class LoginForm extends Component {
-  
+
   constructor() {
     super();
-    
+
 		this.state = {
 			email: '',
 			password: '',
@@ -44,7 +44,7 @@ class LoginForm extends Component {
                 <form style={{marginTop: 10}}>
                   <label htmlFor="email">Email: </label>
                   <Input
-                    type="text"
+                    type="email"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
