@@ -1,4 +1,5 @@
 module.exports = {
-  Trail: require("./trail"),
-  User: require("./user")
+  Rating: require('./rating.js'),
+  User: require('./user.js'),
+  Wines: require('./wines.js')
 };
