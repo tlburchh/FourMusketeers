@@ -3,9 +3,13 @@ const Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
 
-const validation = function (email) {
-    var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return regex.test(email)
+const validateEmail = email => {
+    const emailRegex = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+    return emailRegex.test(email);
+}
+const validateNoNumbers = str => {
+    const numRegex = RegExp(/^([^0-9]*)$/);
+    return numRegex.test(str);
 }
 
 const User = new Schema({
@@ -14,23 +18,22 @@ const User = new Schema({
         required: "First name is required",
         trim: true,
         // no numbers allowed
-        match: [/^([^0-9]*)$/, "Please enter a valid name"]
+        validate: [validateNoNumbers, "Please enter a valid name"]
 
     },
     lastName: {
         type: String,
         required: "Last name is required",
         trim: true,
-        match: [/^([^0-9]*)$/, "Please enter a valid name"]
+        // No numbers allowed
+        validate: [validateNoNumbers, "Please enter a valid name"]
     },
     email: {
         type: String,
         trim: true,
         unique: true,
         required: 'Email address is required',
-        validate: [validation, 'Please fill a valid email address'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-            'Please fill a valid email address']
+        validate: [validateEmail, 'Please fill a valid email address'],
     },
 
     password: {
