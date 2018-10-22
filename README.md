@@ -25,6 +25,7 @@ Once you have the NodeJS environment set up, clone the repository to your local 
 
 * [node.js](https://nodejs.org/en/) - The runtime environment used
 * [NPM](https://www.npmjs.com/) - Dependency Management
+* [yarn](https://yarnpkg.com) - Package management
 * [Express.js](https://expressjs.com/) - The Server
 * [Mongoose.js](https://mongoosejs.com/) - Database management
 * [React.js](https://reactjs.org/) - Front end layout
