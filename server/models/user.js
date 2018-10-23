@@ -4,12 +4,17 @@ const Schema = mongoose.Schema,
     SALT_WORK_FACTOR = 10;
 
 const validateEmail = email => {
-    const emailRegex = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+    const emailRegex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
     return emailRegex.test(email);
 }
 const validateNoNumbers = str => {
-    const numRegex = RegExp(/^([^0-9]*)$/);
+    const numRegex = new RegExp(/^([^0-9]*)$/);
     return numRegex.test(str);
+}
+
+const validatePassword = str => {
+    const passRegex = new RegExp('\^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+    return passRegex.test(str);
 }
 
 const User = new Schema({
@@ -18,7 +23,7 @@ const User = new Schema({
         required: "First name is required",
         trim: true,
         // no numbers allowed
-        validate: [validateNoNumbers, "Please enter a valid name"]
+        validate: [validateNoNumbers, "Please enter a valid first name"]
 
     },
     lastName: {
@@ -26,7 +31,7 @@ const User = new Schema({
         required: "Last name is required",
         trim: true,
         // No numbers allowed
-        validate: [validateNoNumbers, "Please enter a valid name"]
+        validate: [validateNoNumbers, "Please enter a valid last name"]
     },
     email: {
         type: String,
@@ -39,7 +44,8 @@ const User = new Schema({
     password: {
         type: String,
         trim: true,
-        required: "Password is required"
+        required: "Password is required",
+        validate: [validatePassword, "Password must contain one upper and one lower case letter, one special character, and be at least 8 long"]
     }
 })
 

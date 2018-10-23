@@ -7,58 +7,64 @@ import AUTH from '../../utils/AUTH';
 
 class SignupForm extends Component {
 
-	constructor() {
+  constructor() {
     super();
 
-		this.state = {
+    this.state = {
       firstName: '',
       lastName: '',
-			email: '',
-			password: '',
-			confirmPassword: '',
-			redirectTo: null
-		};
+      email: '',
+      password: '',
+      confirmPassword: '',
+      redirectTo: null
+    };
   }
 
-	handleChange = (event) => {
-		this.setState({
-			[event.target.name]: event.target.value
-		});
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
-	handleSubmit = (event) => {
-		event.preventDefault();
-		// TODO - validate!
-		AUTH.signup({
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.password !== this.state.confirmPassword) {
+      alert("Passwords don't match!");
+      return;
+    }
+    AUTH.signup({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
       password: this.state.password
     }).then(response => {
-      console.log(response.data);
-      if (!response.data.error) {
-        console.log('youre good');
+      if (response.data.errors) {
+        alert(`Error: ${response.data.message}`);
+      }
+      else if (!response.data.error) {
+        alert("Account created successfully");
         this.setState({
           redirectTo: '/'
         });
-      } else {
-        alert("A user with this email already exists");
+      }
+      else {
+        console.log("Something unforeseen is happnin'...");
       }
     });
   }
 
-	render() {
-		if (this.state.redirectTo) {
-			return <Redirect to={{ pathname: this.state.redirectTo }} />
+  render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
     }
 
-		return (
+    return (
       <Container>
         <Row>
           <Col size="md-3"></Col>
           <Col size="md-6">
             <Card title="Register for React Reading List">
-              <form style={{marginTop: 10}}>
+              <form style={{ marginTop: 10 }}>
                 <label htmlFor="firstName">First name: </label>
                 <Input
                   type="text"
@@ -102,8 +108,8 @@ class SignupForm extends Component {
           <Col size="md-3"></Col>
         </Row>
       </Container>
-		)
-	}
+    )
+  }
 }
 
 export default SignupForm;
