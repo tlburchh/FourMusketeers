@@ -43,12 +43,16 @@ class SignupForm extends Component {
       }
       else if (!response.data.error) {
         alert("Account created successfully");
+        console.log(response);
         this.setState({
           redirectTo: '/'
         });
       }
+      else if (response.data.error) {
+        alert(response.data.error);
+      }
       else {
-        console.log("Something unforeseen is happnin'...");
+        console.log("Something is wrong...");
       }
     });
   }
