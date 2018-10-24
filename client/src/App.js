@@ -52,7 +52,6 @@ class App extends Component {
 	}
 
 	login = (email, password) => {
-		console.log(`login called in App.js`);
 		AUTH.login(email, password).then(response => {
 			console.log(response);
 			if (response.status === 200) {

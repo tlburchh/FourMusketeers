@@ -2,39 +2,23 @@ const db = require('../models');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
+verifyPassword = (password1, password2) => {
+	bcrypt.compare(password1, password2, (err, res) => {
+		if (err) return err;
+		return res;
+	});
+}
+
 const strategy = new LocalStrategy(
 	{
-		usernameField: 'email' // not necessary, DEFAULT
+		usernameField: 'email' // tell passport to look for email instead of username
 	},
 	function (username, password, done) {
-		console.log(`strategy hit: ${username}, ${password}`);
-		db.User.findOne({ 'email': username }, (err, userMatch) => {
-			if (err) {
-				console.log(err);
-				throw err;
-				return done(err);
-			}
-			if (!userMatch) {
-				console.log("No user match");
-				return done(null, false, { message: 'Incorrect email' });
-			}
-			if (userMatch.password) {
-				console.log("Trying to verify...");
-				bcrypt.compare(password, userMatch.password, function (err, res) {
-					if (err) {
-						console.log(err);
-						return done(null, false, { message: 'Incorrect password' });
-					}
-					else {
-						console.log(res);
-						return done(null, userMatch);
-					}
-				});
-			}
-			else {
-				console.log("No password!!");
-				return done(null, false, { message: "No password. Something is wrogn" });
-			}
+		db.User.findOne({ 'email': username }, (err, user) => {
+			if (err) { return done(err); }
+			if (!user) { return done(null, false); }
+			if (!verifyPassword(password, user.password)) { return done(null, false); }
+			return done(null, user);
 		});
 	}
 );
