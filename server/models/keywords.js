@@ -13,4 +13,4 @@ const keywordSchema = new Schema ({
     }]
 })
 
-module.exports = mongoos.model('Keyword',keywordSchema);
+module.exports = mongoose.model('Keyword',keywordSchema);
