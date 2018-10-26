@@ -17,7 +17,7 @@ const validatePassword = str => {
     return passRegex.test(str);
 }
 
-const User = new Schema({
+const userSchema = new Schema({
     firstName: {
         type: String,
         required: "First name is required",
@@ -46,7 +46,17 @@ const User = new Schema({
         trim: true,
         required: "Password is required",
         validate: [validatePassword, "Password must contain one upper and one lower case letter, one special character, and be at least 8 long"]
-    }
+    },
+
+    ratings: [{
+        type: Schema.Types.ObjectId,
+        ref: 'ratings'
+    }],
+
+    tasted: [{
+        type: Schema.Type.ObjectId,
+        ref: 'tasted'
+    }]
 })
 
 User.pre('save', function (next) {
@@ -77,4 +87,4 @@ User.methods.comparePassword = function (candidatePassword, cb) {
     });
 };
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('User', userSchema);
