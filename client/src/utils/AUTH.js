@@ -11,7 +11,6 @@ export default {
   },
   // Log the user in
   login: function (email, password) {
-    console.log(`login called in AUTH.js`);
     return axios.post('/auth/login', { email, password });
   },
   // New user registration
