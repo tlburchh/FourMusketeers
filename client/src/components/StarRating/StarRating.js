@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
 import './StarRating.css';
 class StarRating extends React.Component {
@@ -32,8 +31,5 @@ class StarRating extends React.Component {
   }
 }
  
-// ReactDOM.render(
-//   <StarRating />, 
-//   document.getElementById('app')
-// );
+
 export default StarRating;

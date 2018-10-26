@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
+import CommentModal from '../CommentModal/CommentModal';
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
 const styles = theme => ({
@@ -34,27 +35,32 @@ class WineCard extends Component {
     };
   }
 
+  handleWineSelection = () => {
+    console.log('Clicked div');
+  }
+
     render() {
       const { classes } = this.props;
   return (
     // <ButtonBase>
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} onClick={this.handleWineSelection}>
     <Grid container spacing={16}>                  
-        <Grid item xs={12} lg container>
-        <Grid item xs={1} container style= {{ backgroundColor : 'yellow' }}>
+        <Grid item xs={12} lg container style= {{ paddingBottom: '0px',
+    paddingTop: '0px'}}>
+        <Grid item xs={1} container style= {{ backgroundColor : 'yellow', borderRadius: "5px"}}>
             <Paper >
             </Paper>
           </Grid>
           <Grid item xs container direction="column" spacing={24}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
-                Standard license
+                Wine Name
                      </Typography>
-                     <Typography gutterBottom>Full resolution 1920x1080 • JPEG</Typography>
+                     <Typography gutterBottom>Full Wine Description</Typography>
                 </Grid>
-                <Grid item>
+                <Grid item style= {{ display: 'flex', justifyContent: 'space-between'}}>
                     <StarRating />
-                  <Typography style={{ cursor: 'pointer' }}>Remove</Typography>
+                  <CommentModal />
                </Grid>
               </Grid>
             <Grid item>
