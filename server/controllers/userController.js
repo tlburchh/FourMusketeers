@@ -43,7 +43,6 @@ module.exports = {
     }
   },
   auth: function (req, res, next) {
-    console.log(`userController.auth fired: ${req.body.email}, ${req.body.password}`);
     console.log('================');
     next();
   },
