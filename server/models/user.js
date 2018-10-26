@@ -51,11 +51,6 @@ const User = new Schema({
     ratings: [{
         type: Schema.Types.ObjectId,
         ref: 'ratings'
-    }],
-
-    tasted: [{
-        type: Schema.Types.ObjectId,
-        ref: 'tasted'
     }]
 })
 

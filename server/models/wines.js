@@ -9,7 +9,7 @@ function setPrice(number){
     return number * 100;
 };
 
-const winesSchema = new Schema ({
+const wineSchema = new Schema ({
     name: {
         type: String,
         trim: true,
@@ -42,15 +42,14 @@ const winesSchema = new Schema ({
 
     keywords: [{
         type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'keywords'
+        ref: 'Keyword'
     }],
 
     ratings: [{
         type: Schema.Types.ObjectId,
-        ref: 'ratings'
+        ref: 'Rating'
     }]
 
 })
 
-module.exports = mongoose.model('Wines', winesSchema);
+module.exports = mongoose.model('Wine', wineSchema);

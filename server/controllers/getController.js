@@ -11,12 +11,22 @@ module.exports = {
     },
     allWines: (req, res) => {
         console.log("Gettings all wines");
-        db.Wines.find().then(wines => {
-            res.json(wines);
-        }).catch(err => {
-            console.log(`Error: ${err}`);
-            res.json({ message: "Error getting all the wines..." });
-        });
+        db.Wines.find()
+            // Include the keywords associated with it, excluding their IDs
+            .populate({
+                path: "keywords",
+                select: "keyword -_id"
+            })
+            .populate({
+                path: "ratings",
+                select: "numericalRating -_id"
+            })
+            .then(wines => {
+                res.json(wines);
+            }).catch(err => {
+                console.log(`Error: ${err}`);
+                res.json({ message: "Error getting all the wines..." });
+            });
     },
     currentWines: (req, res) => {
         console.log("Getting currently available wines");
