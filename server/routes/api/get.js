@@ -1,12 +1,19 @@
 const router = require("express").Router();
 const getController = require("../../controllers/getController");
 
+// User stuff
 router.get("/users", getController.users);
 
-router.get("/wines", getController.wines);
+// Wine stuff
+router.get("/allWines", getController.allWines);
+router.get("/currentWines", getController.currentWines);
+router.get("/wine/:id", getController.wineById);
 
-router.get("/reviews", getController.reviews);
 
+// Review stuff
+router.get("/ratings", getController.ratings);
+
+// Keyword stuff
 router.get("/keywords", getController.keywords);
 
 

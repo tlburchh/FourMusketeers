@@ -15,7 +15,7 @@ const winesSchema = new Schema ({
         trim: true,
         required: "Name is required"
     },
- 
+
     color: [{
         type: String,
         trim: true,
@@ -35,7 +35,7 @@ const winesSchema = new Schema ({
     },
 
     isAvailable: {
-        type: boolean,
+        type: Boolean,
         required: true,
         default: true
     },

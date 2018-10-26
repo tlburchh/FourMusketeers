@@ -9,16 +9,38 @@ module.exports = {
             res.json(users);
         });
     },
-    ratings: (req, res) => {
-        console.log("Getting all reviews");
-        db.Ratings.find({}).then(ratings => {
-            res.json(ratings);
+    allWines: (req, res) => {
+        console.log("Gettings all wines");
+        db.Wines.find().then(wines => {
+            res.json(wines);
+        }).catch(err => {
+            console.log(`Error: ${err}`);
+            res.json({ message: "Error getting all the wines..." });
         });
     },
-    wines: (req, res) => {
-        console.log("Gettings all wines");
-        db.Wines.find({}).then(wines => {
+    currentWines: (req, res) => {
+        console.log("Getting currently available wines");
+        db.Wines.find().where('isAvailable').then(wines => {
             res.json(wines);
+        }).catch(err => {
+            console.log(`Error: ${err}`);
+            res.json({ message: "Error getting current wines..." });
+        });
+    },
+    wineById: (req, res) => {
+        console.log(`Getting wine with id: ${req.params.id}`);
+        const id = req.params.id;
+        db.Wines.findById(id).then(wine => {
+            res.json(wine);
+        }).catch(err => {
+            console.log(`Error: ${err}`);
+            res.json({ message: "Error getting wine..." });
+        });
+    },
+    ratings: (req, res) => {
+        console.log("Getting all ratings");
+        db.Ratings.find({}).then(ratings => {
+            res.json(ratings);
         });
     },
     currentWines: (req, res) => {
@@ -36,4 +58,4 @@ module.exports = {
         });
     }
 
-}
+};
