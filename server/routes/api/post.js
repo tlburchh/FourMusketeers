@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const postController = require("../../controllers/postController");
 
-router.get("/", postController.getRoot);
+// Post a review
+router.post("/review", postController.review);
 
 // etc...
 

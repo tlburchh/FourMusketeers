@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const deleteController = require("../../controllers/deleteController");
 
-router.get("/", deleteController.getRoot);
+// Delete a wine by ID
+router.delete("/wine/:id", deleteController.wineById);
 
 // etc...
 
