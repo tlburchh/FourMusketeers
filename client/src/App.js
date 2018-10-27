@@ -64,6 +64,17 @@ class App extends Component {
 		});
 	}
 
+	setGuest = () => {
+		this.setState({
+			loggedIn: true,
+			user: {
+				firstName: "Guest",
+				lastName: "Guest",
+				email: "Guest"
+			}
+		});
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -83,7 +94,7 @@ class App extends Component {
 				)}
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
-						<Route exact path="/" component={() => <LoginForm login={this.login} />} />
+						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 						<Route exact path="/tasting" component={() => <LoginForm user={this.login} />} />
 						{/* <Route exact path="/weather" component={() => <LoginForm user={this.login}/>} /> */}
 						<Route exact path="/signup" component={SignupForm} />
