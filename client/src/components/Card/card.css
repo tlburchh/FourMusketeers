@@ -1,0 +1,11 @@
+.card {
+    background-color: rgb(178, 193, 201);
+    opacity: .97;
+    display: flex;
+    top: 102px;
+}
+
+h5 {
+    font-size: 30px;
+    text-align: center;
+}

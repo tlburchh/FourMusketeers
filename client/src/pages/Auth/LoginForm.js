@@ -3,8 +3,16 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
+import { StarrlightBanner } from '../../components/Images/StarrlightBanner.png';
+import './login.css';
+
+
+
+
 
 class LoginForm extends Component {
+	
+
 
 	constructor() {
 		super();
@@ -13,6 +21,7 @@ class LoginForm extends Component {
 			email: '',
 			password: '',
 			redirectTo: null
+	
 		};
 	}
 
@@ -37,27 +46,28 @@ class LoginForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
+				<body>
 				<Container>
 					<Row>
 						<Col size="md-3"></Col>
 						<Col size="md-6">
-							<Card title="Login to React Reading List">
-								<form style={{ marginTop: 10 }}>
-									<label htmlFor="email">Email: </label>
+							<Card title="Login">
+								<form>
+									<label htmlFor="email"><strong>Email: </strong></label>
 									<Input
 										type="email"
 										name="email"
 										value={this.state.email}
 										onChange={this.handleChange}
 									/>
-									<label htmlFor="password">Password: </label>
+									<label htmlFor="password"><strong>Password: </strong></label>
 									<Input
 										type="password"
 										name="password"
 										value={this.state.password}
 										onChange={this.handleChange}
 									/>
-									<Link to="/signup">Register</Link>
+									<Link style= {{color: 'brown'}} to="/signup">Register</Link>
 									<FormBtn onClick={this.handleSubmit}>Login</FormBtn>
 								</form>
 							</Card>
@@ -65,6 +75,7 @@ class LoginForm extends Component {
 						<Col size="md-3"></Col>
 					</Row>
 				</Container>
+				</body>
 			)
 		}
 	}

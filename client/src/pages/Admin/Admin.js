@@ -16,7 +16,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 // import wineCard from '../../components/wineCard/wineCard';
+import PersistentDrawerLeft from '../../components/PersistentDrawer/PersistentDrawer';
+
 
 const styles = theme => ({
   appBar: {
@@ -64,6 +68,9 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 6,
   },
+  grow: {
+    flexGrow: 1,
+  },
   root: {
     flexGrow: 1,
     maxWidth: 600,
@@ -79,26 +86,35 @@ const styles = theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
 });
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-function Album(props) {
+
+function AdminPage(props) {
   const { classes } = props;
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <CameraIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Album layout
+      <PersistentDrawerLeft />
+
+      {/* <AppBar position="static" className={classes.appBar}>
+      <Toolbar>
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" className={classes.grow}>
+            Menu
           </Typography>
+          <Button color="inherit">Save</Button>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <main>
-        {/* Hero unit */}
 
       </main>
       {/* Footer */}
@@ -115,8 +131,8 @@ function Album(props) {
   );
 }
 
-Album.propTypes = {
+AdminPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Album);
+export default withStyles(styles)(AdminPage);
