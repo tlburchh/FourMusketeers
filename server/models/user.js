@@ -45,7 +45,7 @@ const User = new Schema({
         type: String,
         trim: true,
         required: "Password is required",
-        validate: [validatePassword, "Password must contain one upper and one lower case letter, one special character, and be at least 8 long"]
+        validate: [validatePassword, "Password must contain one upper and one lower case letter, one special character, one number, and be at least 8 long"]
     },
 
     ratings: [{
