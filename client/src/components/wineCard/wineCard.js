@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import StarRating from '../StarRating/StarRating';
+import CommentModal from '../CommentModal/CommentModal';
+// import ButtonBase from '@material-ui/core/ButtonBase';
 
 const styles = theme => ({
   root: {
@@ -24,40 +26,56 @@ const styles = theme => ({
   },
 });
 
-function wineCard(props) {
-  const { classes } = props;
+class WineCard extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+
+    };
+  }
+
+  handleWineSelection = () => {
+    console.log('Clicked div');
+  }
+
+    render() {
+      const { classes } = this.props;
   return (
-    <Paper className={classes.root}>
-      <Grid container spacing={16}>
-        <Grid item>
-          <ButtonBase className={classes.image}>
-            <img className={classes.img} alt="complex" src="/static/images/grid/complex.jpg" />
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={16}>
+    // <ButtonBase>
+    <Paper className={classes.paper} onClick={this.handleWineSelection}>
+    <Grid container spacing={16}>                  
+        <Grid item xs={12} lg container style= {{ paddingBottom: '0px',
+    paddingTop: '0px'}}>
+        <Grid item xs={1} container style= {{ backgroundColor : 'yellow', borderRadius: "5px"}}>
+            <Paper >
+            </Paper>
+          </Grid>
+          <Grid item xs container direction="column" spacing={24}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
-                Standard license
-              </Typography>
-              <Typography gutterBottom>Full resolution 1920x1080 • JPEG</Typography>
-              <Typography color="textSecondary">ID: 1030114</Typography>
-            </Grid>
+                Wine Name
+                     </Typography>
+                     <Typography gutterBottom>Full Wine Description</Typography>
+                </Grid>
+                <Grid item style= {{ display: 'flex', justifyContent: 'space-between'}}>
+                    <StarRating />
+                  <CommentModal />
+               </Grid>
+              </Grid>
             <Grid item>
-              <Typography style={{ cursor: 'pointer' }}>Remove</Typography>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1">$19.00</Typography>
+            <Typography variant="subtitle1">$18.00</Typography>
           </Grid>
         </Grid>
       </Grid>
     </Paper>
+    // </ButtonBase>
   );
+  }
 }
 
-ComplexGrid.propTypes = {
+WineCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(wineCard);
+export default withStyles(styles)(WineCard);
