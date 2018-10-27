@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import WineCard from '../../components/WineCard/WineCard';
+import WineCard from '../../components/WineCard';
 
 const styles = theme => ({
   icon: {
@@ -66,49 +66,49 @@ const styles = theme => ({
 
 
 class Tasting extends Component {
-constructor(props){
-  super(props);
-  
-  this.state = {
-    cards : [1, 2, 3, 4, 5, 6, 7, 8],
-  };
-}
-  
-  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cards: [1, 2, 3, 4, 5, 6, 7, 8],
+    };
+  }
+
+
   render() {
     const { classes } = this.props;
     const { cards } = this.state;
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <main>
-        <div className={classNames(classes.layout, classes.cardGrid)}>
-          {/* End hero unit */}
-          <Grid container spacing={40}>
-            {cards.map(card => (
-              <div key={card.id} className={classes.root}>
-                <Grid container spacing={24}>
-                  <Grid item xs={12}>
-                   <WineCard />
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <main>
+          <div className={classNames(classes.layout, classes.cardGrid)}>
+            {/* End hero unit */}
+            <Grid container spacing={40}>
+              {cards.map(card => (
+                <div key={card.id} className={classes.root}>
+                  <Grid container spacing={24}>
+                    <Grid item xs={12}>
+                      <WineCard />
+                    </Grid>
                   </Grid>
-                </Grid>
-              </div>
-            ))}
-          </Grid>
-        </div>
-      </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
+                </div>
+              ))}
+            </Grid>
+          </div>
+        </main>
+        {/* Footer */}
+        <footer className={classes.footer}>
+          <Typography variant="h6" align="center" gutterBottom>
+            Footer
         </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
+          <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+            Something here to give the footer a purpose!
         </Typography>
-      </footer>
-      {/* End footer */}
-    </React.Fragment>
-  );
+        </footer>
+        {/* End footer */}
+      </React.Fragment>
+    );
   }
 }
 
