@@ -17,7 +17,7 @@ const validatePassword = str => {
     return passRegex.test(str);
 }
 
-const userSchema = new Schema({
+const User = new Schema({
     firstName: {
         type: String,
         required: "First name is required",
@@ -51,11 +51,6 @@ const userSchema = new Schema({
     ratings: [{
         type: Schema.Types.ObjectId,
         ref: 'ratings'
-    }],
-
-    tasted: [{
-        type: Schema.Type.ObjectId,
-        ref: 'tasted'
     }]
 })
 
@@ -80,11 +75,4 @@ User.pre('save', function (next) {
     });
 });
 
-User.methods.comparePassword = function (candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
-
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', User);

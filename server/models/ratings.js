@@ -1,28 +1,28 @@
 const mongoose =  require('mongoose');
 const Schema = mongoose.Schema;
 
-const ratingsSchema = new Schema ({
+const ratingSchema = new Schema ({
+
     numericalRating: {
         type: Number,
         trim: true,
         required: false
     },
 
-    keyRating:{
-        type: Number,
-        trim: true,
-        required: false
-    },
+    keyRating:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Keyword'
+    }],
 
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'user' 
+        ref: 'User'
     },
 
-    wines: [{
+    wine: {
         type: Schema.Types.ObjectId,
-        ref: 'wines'
-    }]
+        ref: 'Wine'
+    }
 })
 
-module.exports = mongoose.model('Ratings',ratingsSchema);
+module.exports = mongoose.model('Rating', ratingSchema);

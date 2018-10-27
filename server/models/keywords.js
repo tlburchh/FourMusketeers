@@ -8,9 +8,9 @@ const keywordSchema = new Schema ({
     },
 
     wines:[{
-        type: String,
-        ref: 'keywords'
+        type: Schema.Types.ObjectId,
+        ref: 'Wine'
     }]
 })
 
-module.exports = mongoose.model('Keyword',keywordSchema);
+module.exports = mongoose.model('Keyword', keywordSchema);

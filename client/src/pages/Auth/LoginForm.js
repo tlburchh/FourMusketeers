@@ -25,7 +25,6 @@ class LoginForm extends Component {
 	handleSubmit = (event) => {
 
 		event.preventDefault();
-		console.log(`Loggin in with: ${this.state.email} and ${this.state.password}`);
 		this.props.login(this.state.email, this.state.password);
 		this.setState({
 			redirectTo: '/'
