@@ -1,1 +1,1 @@
-export { default } from "./Tasting.js";
+export { default } from "./Tasting";

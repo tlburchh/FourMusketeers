@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import WineCard from '../../components/WineCard/WineCard';
+import WineCard from '../../components/wineCard';
 
 const styles = theme => ({
   icon: {
@@ -68,13 +68,13 @@ const styles = theme => ({
 class Tasting extends Component {
 constructor(props){
   super(props);
-  
+
   this.state = {
     cards : [1, 2, 3, 4, 5, 6, 7, 8],
   };
 }
-  
-  
+
+
   render() {
     const { classes } = this.props;
     const { cards } = this.state;
