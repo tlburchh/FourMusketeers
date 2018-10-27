@@ -74,6 +74,15 @@ class Tasting extends Component {
     };
   }
 
+  handleCardClick = (cardId) => {
+    if (cardId === this.state.activeCard) {
+      this.setState({ activeCard: null })
+    } else {
+      this.setState({ activeCard: cardId })
+
+    }
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -85,11 +94,12 @@ class Tasting extends Component {
           <div className={classNames(classes.layout, classes.cardGrid)}>
             {/* End hero unit */}
             <Grid container spacing={40}>
-              {cards.map(card => (
+              {cards.map((card, index) => (
                 <div key={card.id} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-                      <WineCard />
+                      <WineCard id={index} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === index}/>  
+                      {/* change index to card.id */}
                     </Grid>
                   </Grid>
                 </div>

@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
 import CommentModal from '../CommentModal/CommentModal';
+import './WineCard.css'
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
 const styles = theme => ({
@@ -18,12 +19,7 @@ const styles = theme => ({
     width: 128,
     height: 128,
   },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
+
 });
 
 class WineCard extends Component {
@@ -37,19 +33,20 @@ class WineCard extends Component {
 
   handleWineSelection = () => {
     console.log('Clicked div');
+    this.setState({ })
   }
 
     render() {
       const { classes } = this.props;
   return (
     // <ButtonBase>
-    <Paper className={classes.paper} onClick={this.handleWineSelection}>
+    <Paper className={`${classes.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
     <Grid container spacing={16}>                  
         <Grid item xs={12} lg container style= {{ paddingBottom: '0px',
     paddingTop: '0px'}}>
         <Grid item xs={1} container style= {{ backgroundColor : 'yellow', borderRadius: "5px"}}>
-            <Paper >
-            </Paper>
+            {/* <Paper >
+            </Paper> */}
           </Grid>
           <Grid item xs container direction="column" spacing={24}>
             <Grid item xs>
