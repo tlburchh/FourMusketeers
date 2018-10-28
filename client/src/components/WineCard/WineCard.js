@@ -16,10 +16,6 @@ const styles = theme => ({
     maxWidth: 600,
     padding: theme.spacing.unit * 2,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
 
 });
 
@@ -28,7 +24,6 @@ class WineCard extends Component {
     super(props);
 
     this.state = {
-      _id: "",
       name: "",
       description: "",
       price: "",
@@ -39,20 +34,20 @@ class WineCard extends Component {
   componentDidMount() {
     this.loadWines();
   }
-
+  
   loadWines = () => {
-    API.getCurrentMeads()
-      .then(res =>
-        this.setState({ name: res.name, description: res.description, price: res.price, color: res.color })
+    API.getCurrentWines()
+    .then(res =>
+      this.setState({ name: res.name, description: res.description, price: res.price, color: res.color })
       )
       .catch(err => console.log(err));
-  };
-
-  handleWineSelection = () => {
-    console.log('Clicked div');
-    this.setState({ })
-  }
-
+    };
+    
+    handleWineSelection = () => {
+      console.log('Clicked div');
+      this.setState({ })
+    }
+    
     render() {
       console.log("state" + this.state)
       const { classes } = this.props;

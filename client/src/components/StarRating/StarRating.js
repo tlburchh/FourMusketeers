@@ -6,13 +6,12 @@ class StarRating extends React.Component {
     super();
 
     this.state = {
-      rating: []
+      rating: [],
     };
   }
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({ rating: nextValue });
-  
   }
 
   render() {
