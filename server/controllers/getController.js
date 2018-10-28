@@ -66,9 +66,14 @@ module.exports = {
     },
     keywords: (req, res) => {
         console.log("Getting all keywords");
-        db.Keywords.find({}).then(keywords => {
-            res.json(keywords);
-        });
+        db.Keywords.find({})
+            .populate({
+                path: "wines",
+                select: "name -_id"
+            })
+            .then(keywords => {
+                res.json(keywords);
+            });
     }
 
 };

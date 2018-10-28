@@ -23,7 +23,7 @@ class App extends Component {
 	componentDidMount() {
 		AUTH.getUser().then(response => {
 			console.log(response.data);
-			if (!!response.data.user) {
+			if (response.data.user) {
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
@@ -40,15 +40,24 @@ class App extends Component {
 	logout = (event) => {
 		event.preventDefault();
 
-		AUTH.logout().then(response => {
-			console.log(response.data);
-			if (response.status === 200) {
-				this.setState({
-					loggedIn: false,
-					user: null
-				});
-			}
-		});
+		if (this.state.user.email === "Guest") {
+			this.setState({
+				user: null,
+				loggedIn: false
+			});
+		}
+		else {
+			AUTH.logout().then(response => {
+				console.log(response.data);
+				if (response.status === 200) {
+					this.setState({
+						loggedIn: false,
+						user: null
+					});
+				}
+			});
+		}
+
 	}
 
 	login = (email, password) => {
@@ -60,6 +69,17 @@ class App extends Component {
 					loggedIn: true,
 					user: response.data.user
 				});
+			}
+		});
+	}
+
+	setGuest = () => {
+		this.setState({
+			loggedIn: true,
+			user: {
+				firstName: "Guest",
+				lastName: "Guest",
+				email: "Guest"
 			}
 		});
 	}
@@ -83,7 +103,7 @@ class App extends Component {
 				)}
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
-						<Route exact path="/" component={() => <LoginForm login={this.login} />} />
+						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 						<Route exact path="/tasting" component={() => <LoginForm user={this.login} />} />
 						{/* <Route exact path="/weather" component={() => <LoginForm user={this.login}/>} /> */}
 						<Route exact path="/signup" component={SignupForm} />
