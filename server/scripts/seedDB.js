@@ -68,6 +68,9 @@ const ratingsSeed = [
 ];
 
 // Seed initial data
+db.Keywords.remove({});
+db.Rating.remove({});
+db.Wines.remove({});
 
 db.Keywords.insertMany(keywordsSeed).then(resp => {
   console.log("Added keywords");
