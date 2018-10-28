@@ -55,11 +55,14 @@ module.exports = {
     },
     currentWines: (req, res) => {
         console.log("Getting available wines");
-        db.Wines.find(
-            {
-                where
-            }
-        )
+        db.Wines.find({
+            isAvailable: true
+        }).then(results => {
+            res.json(results);
+        }).catch(err => {
+            console.log(err);
+            res.json({ message: `Error occurred: ${err}` });
+        });
     },
     keywords: (req, res) => {
         console.log("Getting all keywords");
