@@ -23,7 +23,7 @@ class App extends Component {
 	componentDidMount() {
 		AUTH.getUser().then(response => {
 			console.log(response.data);
-			if (!!response.data.user) {
+			if (response.data.user) {
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
@@ -40,15 +40,24 @@ class App extends Component {
 	logout = (event) => {
 		event.preventDefault();
 
-		AUTH.logout().then(response => {
-			console.log(response.data);
-			if (response.status === 200) {
-				this.setState({
-					loggedIn: false,
-					user: null
-				});
-			}
-		});
+		if (this.state.user.email === "Guest") {
+			this.setState({
+				user: null,
+				loggedIn: false
+			});
+		}
+		else {
+			AUTH.logout().then(response => {
+				console.log(response.data);
+				if (response.status === 200) {
+					this.setState({
+						loggedIn: false,
+						user: null
+					});
+				}
+			});
+		}
+
 	}
 
 	login = (email, password) => {
@@ -78,7 +87,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				{!this.state.loggedIn && (
+				{this.state.loggedIn && (
 					<div>
 						<Nav user={this.state.user} logout={this.logout} />
 						<div className="main-view">
@@ -92,7 +101,7 @@ class App extends Component {
 						</div>
 					</div>
 				)}
-				{this.state.loggedIn && (
+				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
 						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 						<Route exact path="/tasting" component={() => <LoginForm user={this.login} />} />
