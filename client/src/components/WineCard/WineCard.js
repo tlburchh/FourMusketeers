@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
 import CommentModal from '../CommentModal/CommentModal';
+import API from "../../utils/API";
 import './WineCard.css'
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
@@ -27,9 +28,25 @@ class WineCard extends Component {
     super(props);
 
     this.state = {
+      _id: "",
+      name: "",
+      description: "",
+      price: "",
+      color: "",
 
     };
   }
+  componentDidMount() {
+    this.loadWines();
+  }
+
+  loadWines = () => {
+    API.getCurrentMeads()
+      .then(res =>
+        this.setState({ name: res.name, description: res.description, price: res.price, color: res.color })
+      )
+      .catch(err => console.log(err));
+  };
 
   handleWineSelection = () => {
     console.log('Clicked div');
@@ -37,6 +54,7 @@ class WineCard extends Component {
   }
 
     render() {
+      console.log("state" + this.state)
       const { classes } = this.props;
   return (
     // <ButtonBase>
@@ -44,16 +62,16 @@ class WineCard extends Component {
     <Grid container spacing={16}>                  
         <Grid item xs={12} lg container style= {{ paddingBottom: '0px',
     paddingTop: '0px'}}>
-        <Grid item xs={1} container style= {{ backgroundColor : 'yellow', borderRadius: "5px"}}>
+        <Grid item xs={1} container style= {{ backgroundColor : 'this.state.color', borderRadius: "5px"}}>
             {/* <Paper >
             </Paper> */}
           </Grid>
           <Grid item xs container direction="column" spacing={24}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
-                Wine Name
+                {this.state.name}
                      </Typography>
-                     <Typography gutterBottom>Full Wine Description</Typography>
+                     <Typography gutterBottom>{this.state.description}</Typography>
                 </Grid>
                 <Grid item style= {{ display: 'flex', justifyContent: 'space-between'}}>
                     <StarRating />
@@ -61,7 +79,7 @@ class WineCard extends Component {
                </Grid>
               </Grid>
             <Grid item>
-            <Typography variant="subtitle1">$18.00</Typography>
+            <Typography variant="subtitle1">{this.state.price}</Typography>
           </Grid>
         </Grid>
       </Grid>
