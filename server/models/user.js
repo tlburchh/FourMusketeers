@@ -40,6 +40,10 @@ const User = new Schema({
         required: 'Email address is required',
         validate: [validateEmail, 'Please fill a valid email address'],
     },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
 
     password: {
         type: String,
