@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
 import CommentModal from '../CommentModal/CommentModal';
+// import API from "../../utils/API";
 import './WineCard.css'
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
@@ -15,10 +16,6 @@ const styles = theme => ({
     maxWidth: 600,
     padding: theme.spacing.unit * 2,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
 
 });
 
@@ -26,34 +23,48 @@ class WineCard extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
+    this.state = { 
+      // wines: ""
+      // description: "",
+      // price: "",
+      // color: "",
 
     };
   }
+  // populateWines = () => {
+  //   for (let i = 0; i <= this.props.wineData.data.length; i++){
+  //     return({wines: this.props.wineData.data[i]})
+  //     };
+  //   }   
+  //     componentDidMount() {
+  //       this.populateWines();
+  //     };
 
-  handleWineSelection = () => {
-    console.log('Clicked div');
-    this.setState({ })
-  }
 
+    
     render() {
+      // console.log(this.state)
       const { classes } = this.props;
+      // console.log("props");
+      // console.log(this.props.wineData.data[this.props.i].name)
+      // let {wines} = this.props.wineData.data[this.props.i]
+      
   return (
     // <ButtonBase>
     <Paper className={`${classes.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
     <Grid container spacing={16}>                  
         <Grid item xs={12} lg container style= {{ paddingBottom: '0px',
     paddingTop: '0px'}}>
-        <Grid item xs={1} container style= {{ backgroundColor : 'yellow', borderRadius: "5px"}}>
+        <Grid item xs={1} container style= {{ backgroundColor : `${this.props.wineData.data[this.props.i].color[1]}`, borderRadius: "5px"}}>
             {/* <Paper >
             </Paper> */}
           </Grid>
           <Grid item xs container direction="column" spacing={24}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
-                Wine Name
+                {`${this.props.wineData.data[this.props.i].name}`}
                      </Typography>
-                     <Typography gutterBottom>Full Wine Description</Typography>
+                     <Typography gutterBottom>{`${this.props.wineData.data[this.props.i].description}`}</Typography>
                 </Grid>
                 <Grid item style= {{ display: 'flex', justifyContent: 'space-between'}}>
                     <StarRating />
@@ -61,7 +72,7 @@ class WineCard extends Component {
                </Grid>
               </Grid>
             <Grid item>
-            <Typography variant="subtitle1">$18.00</Typography>
+            <Typography variant="subtitle1">{`${this.props.wineData.data[this.props.i].price}`}}</Typography>
           </Grid>
         </Grid>
       </Grid>
