@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import WineCard from '../../components/WineCard';
+import API from "../../utils/API";
 
 const styles = theme => ({
   icon: {
@@ -70,7 +71,8 @@ class Tasting extends Component {
     super(props);
 
     this.state = {
-      cards: [1,2,3],
+      // cards: [],
+      data: [],
     };
   }
 
@@ -82,11 +84,30 @@ class Tasting extends Component {
 
     }
   }
+  componentDidMount() {
+    this.loadWines();
+  }
+  
+  loadWines = () => {
+    API.getCurrentWines()
+    .then(res =>{
+      console.log("response data");
+      console.log(res.data);
+      this.setState({data: res.data})
+     } )
+      .catch(err => console.log(err));
+    };
 
+    handleWineSelection = () => {
+      console.log('Clicked div');
+      this.setState({ })
+    }
 
   render() {
     const { classes } = this.props;
-    const { cards } = this.state;
+    // const { cards } = this.state;
+    const { data } = this.state;
+    console.log(this.state);
     return (
       <React.Fragment>
         <CssBaseline />
@@ -94,11 +115,11 @@ class Tasting extends Component {
           <div className={classNames(classes.layout, classes.cardGrid)}>
             {/* End hero unit */}
             <Grid container spacing={40}>
-              {cards.map((card, index) => (
-                <div key={card.id} className={classes.root}>
+              {data.map((wineData, i) => (
+                <div key={wineData.id} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-                      <WineCard id={index} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === index}/>  
+                      <WineCard  wineData={this.state} i={i} id={wineData.id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData.id}/>  
                       {/* change index to card.id */}
                     </Grid>
                   </Grid>
