@@ -1,3 +1,10 @@
 #clickedPaperButton {
   box-shadow: 8px 8px 16px 0 rgba(230, 255, 3, 0.959), 0 6px 20px 0 rgba(230, 255, 3, 0.959);
 }
+.truncate {
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* height: 10px; */
+}
