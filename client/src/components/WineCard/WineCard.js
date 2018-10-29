@@ -45,8 +45,8 @@ class WineCard extends Component {
     render() {
       // console.log(this.state)
       const { classes } = this.props;
-      console.log("props");
-      console.log(this.props.wineData.data[this.props.i].name)
+      // console.log("props");
+      // console.log(this.props.wineData.data[this.props.i].name)
       // let {wines} = this.props.wineData.data[this.props.i]
       
   return (
