@@ -29,7 +29,7 @@ const wineSchema = new Schema ({
     },
 
     price: {
-        type: Number,
+        type: String,
         get: getPrice,
         set: setPrice
     },
