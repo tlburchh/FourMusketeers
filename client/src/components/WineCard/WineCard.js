@@ -64,7 +64,7 @@ class WineCard extends Component {
               <Typography gutterBottom variant="subtitle1">
                 {`${this.props.wineData.data[this.props.i].name}`}
                      </Typography>
-                     <Typography gutterBottom>{`${this.props.wineData.data[this.props.i].description}`}</Typography>
+                     <Typography gutterBottom className="truncate">{`${this.props.wineData.data[this.props.i].description}`}</Typography>
                 </Grid>
                 <Grid item style= {{ display: 'flex', justifyContent: 'space-between'}}>
                     <StarRating />
