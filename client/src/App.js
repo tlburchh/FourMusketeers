@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
+import Admin from './pages/Admin/Admin';
 import Nav from "./components/Nav";
 import Tasting from './pages/Tasting';
 // import Detail from "./pages/Detail";
@@ -101,6 +102,22 @@ class App extends Component {
 						</div>
 					</div>
 				)}
+				
+				{this.state.loggedIn && (
+					<div>
+						<Nav user={this.state.user} logout={this.logout} />
+						<div className="main-view">
+							<Switch>
+								<Route exact path="/" component={() => <Admin user={this.state.user} />} />
+								<Route exact path="/admin" component={() => <Admin user={this.state.user} />} />
+								{/* <Route exact path="/trails/" component={(Detail)} />
+								<Route exact path="/trails/:id" component={Detail} /> */}
+								<Route component={NoMatch} />
+							</Switch>
+						</div>
+					</div>
+				)}
+
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
 						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
