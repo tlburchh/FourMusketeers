@@ -95,34 +95,18 @@ class App extends Component {
 							<Switch>
 								<Route exact path="/" component={() => <Tasting user={this.state.user} />} />
 								<Route exact path="/tasting" component={() => <Tasting user={this.state.user} />} />
-								{/* <Route exact path="/trails/" component={(Detail)} />
-								<Route exact path="/trails/:id" component={Detail} /> */}
+								<Route exact path="/admin" component={() => <Admin user={this.state.user} />} />
 								<Route component={NoMatch} />
 							</Switch>
 						</div>
 					</div>
 				)}
 				
-				{this.state.loggedIn && (
-					<div>
-						<Nav user={this.state.user} logout={this.logout} />
-						<div className="main-view">
-							<Switch>
-								<Route exact path="/" component={() => <Admin user={this.state.user} />} />
-								<Route exact path="/admin" component={() => <Admin user={this.state.user} />} />
-								{/* <Route exact path="/trails/" component={(Detail)} />
-								<Route exact path="/trails/:id" component={Detail} /> */}
-								<Route component={NoMatch} />
-							</Switch>
-						</div>
-					</div>
-				)}
-
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
 						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 						<Route exact path="/tasting" component={() => <LoginForm user={this.login} />} />
-						{/* <Route exact path="/weather" component={() => <LoginForm user={this.login}/>} /> */}
+						<Route exact path="/admin" component={() => <LoginForm user={this.login}/>} />
 						<Route exact path="/signup" component={SignupForm} />
 					</div>
 				)}
