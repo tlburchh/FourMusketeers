@@ -1,6 +1,8 @@
-body {
+ body {
     background-image: url('../../components/Images/StarrlightBanner.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
+    background-size: cover;
+
  }

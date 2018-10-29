@@ -67,7 +67,7 @@ class SignupForm extends Component {
         <Row>
           <Col size="md-3"></Col>
           <Col size="md-6">
-            <Card title="Register for React Reading List">
+            <Card title="Register for Starrlight's List">
               <form style={{ marginTop: 10 }}>
                 <label htmlFor="firstName">First name: </label>
                 <Input

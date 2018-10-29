@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
-import { StarrlightBanner } from '../../components/Images/StarrlightBanner.png';
+// import { StarrlightBanner } from '../../components/Images/StarrlightBanner.png';
 import './login.css';
 
 
@@ -12,8 +12,6 @@ import './login.css';
 
 class LoginForm extends Component {
 	
-
-
 	constructor() {
 		super();
 
