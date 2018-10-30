@@ -1,0 +1,7 @@
+.MuiListItemText-root-151 {
+    color: white;
+};
+
+#root > div > div > div > div > div > div > ul:nth-child(3) > div:nth-child(1) > div.MuiListItemText-root-151 {
+    color: white;
+};
