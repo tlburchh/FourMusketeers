@@ -28,7 +28,13 @@ const wineSchema = new Schema ({
         required: true
     },
 
-    price: {
+    priceRegular: {
+        type: String,
+        get: getPrice,
+        set: setPrice
+    },
+    
+    priceMember: {
         type: String,
         get: getPrice,
         set: setPrice
@@ -44,6 +50,11 @@ const wineSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'Keyword'
     }],
+
+    orderNumber: {
+        type: Number,
+        required: true      
+    },
 
     ratings: [{
         type: Schema.Types.ObjectId,
