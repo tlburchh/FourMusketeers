@@ -72,7 +72,7 @@ class WineCard extends Component {
                </Grid>
               </Grid>
             <Grid item>
-            <Typography variant="subtitle1">{`${this.props.wineData.data[this.props.i].price}`}}</Typography>
+            <Typography variant="subtitle1">{`$ ${this.props.wineData.data[this.props.i].price}`}</Typography>
           </Grid>
         </Grid>
       </Grid>
