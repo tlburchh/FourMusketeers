@@ -9,7 +9,7 @@ const ratingSchema = new Schema ({
         required: false
     },
 
-    keyRating:[{
+    keyWordRating:[{
         type: Schema.Types.ObjectId,
         ref: 'Keyword'
     }],
