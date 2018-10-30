@@ -87,7 +87,7 @@ class Tasting extends Component {
   componentDidMount() {
     this.loadWines();
   }
-  
+
   loadWines = () => {
     API.getCurrentWines()
     .then(res =>{
@@ -119,7 +119,11 @@ class Tasting extends Component {
                 <div key={i} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
+<<<<<<< HEAD
                       <WineCard  wineData={this.state} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id}/>  
+=======
+                      <WineCard  wineData={this.state} i={i} id={wineData.id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData.id}/>
+>>>>>>> 1c7016ed58a353244d49f78b3850c49f078f3a2a
                       {/* change index to card.id */}
                     </Grid>
                   </Grid>
@@ -130,7 +134,7 @@ class Tasting extends Component {
         </main>
         {/* Footer */}
         <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
+          <Typography variant="h6" align="center" gutterBottom >
             Footer
         </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
