@@ -17,7 +17,7 @@ module.exports = {
     testRating: (req, res) => {
         const rating = {
             numericalRating: 3,
-            keyRating: ["5bd29883900ee5754ffa2d8e", "5bd29883900ee5754ffa2d8e"],
+            keyWordRating: ["5bd29883900ee5754ffa2d8e", "5bd29883900ee5754ffa2d8e"],
             user: "5bd29883900ee5754ffa2d8e",
             wine: "5bd29883900ee5754ffa2d8e"
         };
