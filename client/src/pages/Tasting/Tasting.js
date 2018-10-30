@@ -71,7 +71,7 @@ class Tasting extends Component {
     super(props);
 
     this.state = {
-      // cards: [],
+      activeCard: [],
       data: [],
     };
   }
@@ -119,7 +119,7 @@ class Tasting extends Component {
                 <div key={i} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-                      <WineCard  wineData={this.state} i={i} id={wineData.id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData.id}/>
+                      <WineCard  wineData={this.state} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id}/>  
                       {/* change index to card.id */}
                     </Grid>
                   </Grid>
