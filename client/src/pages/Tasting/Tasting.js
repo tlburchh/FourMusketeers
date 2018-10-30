@@ -119,11 +119,7 @@ class Tasting extends Component {
                 <div key={i} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-<<<<<<< HEAD
                       <WineCard  wineData={this.state} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id}/>  
-=======
-                      <WineCard  wineData={this.state} i={i} id={wineData.id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData.id}/>
->>>>>>> 1c7016ed58a353244d49f78b3850c49f078f3a2a
                       {/* change index to card.id */}
                     </Grid>
                   </Grid>
