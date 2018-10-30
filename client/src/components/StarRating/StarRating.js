@@ -6,7 +6,7 @@ class StarRating extends React.Component {
     super();
 
     this.state = {
-      rating: [],
+      rating: 0,
     };
   }
 
@@ -16,6 +16,7 @@ class StarRating extends React.Component {
 
   render() {
     const { rating } = this.state;
+    console.log(this.state.rating);
 
     return (
       <div>

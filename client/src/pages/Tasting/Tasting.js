@@ -71,7 +71,7 @@ class Tasting extends Component {
     super(props);
 
     this.state = {
-      // cards: [],
+      activeCard: [],
       data: [],
     };
   }
@@ -87,7 +87,7 @@ class Tasting extends Component {
   componentDidMount() {
     this.loadWines();
   }
-  
+
   loadWines = () => {
     API.getCurrentWines()
     .then(res =>{
@@ -116,10 +116,10 @@ class Tasting extends Component {
             {/* End hero unit */}
             <Grid container spacing={40}>
               {data.map((wineData, i) => (
-                <div key={wineData.id} className={classes.root}>
+                <div key={i} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-                      <WineCard  wineData={this.state} i={i} id={wineData.id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData.id}/>  
+                      <WineCard  wineData={this.state} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id}/>  
                       {/* change index to card.id */}
                     </Grid>
                   </Grid>
@@ -130,7 +130,7 @@ class Tasting extends Component {
         </main>
         {/* Footer */}
         <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
+          <Typography variant="h6" align="center" gutterBottom >
             Footer
         </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">

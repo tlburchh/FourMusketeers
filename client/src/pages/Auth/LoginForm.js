@@ -11,7 +11,7 @@ import './login.css';
 
 
 class LoginForm extends Component {
-	
+
 	constructor() {
 		super();
 
@@ -19,7 +19,7 @@ class LoginForm extends Component {
 			email: '',
 			password: '',
 			redirectTo: null
-	
+
 		};
 	}
 
@@ -51,7 +51,6 @@ class LoginForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
-				<body>
 				<Container>
 					<Row>
 						<Col size="md-3"></Col>
@@ -84,7 +83,6 @@ class LoginForm extends Component {
 						<Col size="md-3"></Col>
 					</Row>
 				</Container>
-				</body>
 			)
 		}
 	}
