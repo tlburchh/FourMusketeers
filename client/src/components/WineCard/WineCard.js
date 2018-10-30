@@ -20,10 +20,10 @@ const styles = theme => ({
 });
 
 class WineCard extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       // wines: ""
       // description: "",
       // price: "",
@@ -35,50 +35,56 @@ class WineCard extends Component {
   //   for (let i = 0; i <= this.props.wineData.data.length; i++){
   //     return({wines: this.props.wineData.data[i]})
   //     };
-  //   }   
+  //   }
   //     componentDidMount() {
   //       this.populateWines();
   //     };
 
+  formatPrice = price => {
+    const dotPos = price.length - 2;
+    return price.substring(0, dotPos) + "." + price.substring(dotPos, price.length);
+  }
 
-    
-    render() {
-      // console.log(this.state)
-      const { classes } = this.props;
-      // console.log("props");
-      // console.log(this.props.wineData.data[this.props.i].name)
-      // let {wines} = this.props.wineData.data[this.props.i]
-      
-  return (
-    // <ButtonBase>
-    <Paper className={`${classes.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
-    <Grid container spacing={16}>                  
-        <Grid item xs={12} lg container style= {{ paddingBottom: '0px',
-    paddingTop: '0px'}}>
-        <Grid item xs={1} container style= {{ backgroundColor : `${this.props.wineData.data[this.props.i].color[1]}`, borderRadius: "5px"}}>
-            {/* <Paper >
+
+  render() {
+    // console.log(this.state)
+    const { classes } = this.props;
+    // console.log("props");
+    // console.log(this.props.wineData.data[this.props.i].name)
+    // let {wines} = this.props.wineData.data[this.props.i]
+
+    return (
+      // <ButtonBase>
+      <Paper className={`${classes.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
+        <Grid container spacing={16}>
+          <Grid item xs={12} lg container style={{
+            paddingBottom: '0px',
+            paddingTop: '0px'
+          }}>
+            <Grid item xs={1} container style={{ backgroundColor: `${this.props.wineData.data[this.props.i].color[1]}`, borderRadius: "5px" }}>
+              {/* <Paper >
             </Paper> */}
-          </Grid>
-          <Grid item xs container direction="column" spacing={24}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1">
-                {`${this.props.wineData.data[this.props.i].name}`}
-                     </Typography>
-                     <Typography gutterBottom className="truncate">{`${this.props.wineData.data[this.props.i].description}`}</Typography>
-                </Grid>
-                <Grid item style= {{ display: 'flex', justifyContent: 'space-between'}}>
-                    <StarRating />
-                  <CommentModal />
-               </Grid>
+            </Grid>
+            <Grid item xs container direction="column" spacing={24}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                  {`${this.props.wineData.data[this.props.i].name}`}
+                </Typography>
+                <Typography gutterBottom className="truncate">{`${this.props.wineData.data[this.props.i].description}`}</Typography>
               </Grid>
+              <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <StarRating />
+                <CommentModal />
+              </Grid>
+            </Grid>
             <Grid item>
-            <Typography variant="subtitle1">{`${this.props.wineData.data[this.props.i].price}`}}</Typography>
+              <Typography variant="subtitle1">{this.formatPrice(this.props.wineData.data[this.props.i].price)}</Typography>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Paper>
-    // </ButtonBase>
-  );
+      </Paper>
+      // </ButtonBase>
+    );
   }
 }
 
