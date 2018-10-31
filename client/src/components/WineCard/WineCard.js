@@ -68,6 +68,7 @@ class WineCard extends Component {
 
 
   render() {
+
     // console.log("PROPS ->");
     // console.log(this.props);
     // console.log(this.state)
@@ -83,6 +84,7 @@ class WineCard extends Component {
         this.props.handleCardClick(this.props.id);
         this.toggleActive(this.props.numClicked);
       }}>
+
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
             paddingBottom: '0px',

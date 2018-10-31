@@ -46,15 +46,16 @@ const wineSchema = new Schema ({
         default: true
     },
 
+    timesTasted: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+
     keywords: [{
         type: Schema.Types.ObjectId,
         ref: 'Keyword'
     }],
-
-    orderNumber: {
-        type: Number,
-        required: true      
-    },
 
     ratings: [{
         type: Schema.Types.ObjectId,
