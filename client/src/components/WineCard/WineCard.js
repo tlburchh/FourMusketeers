@@ -47,6 +47,7 @@ class WineCard extends Component {
 
 
   render() {
+
     // console.log("PROPS ->");
     // console.log(this.props);
     // console.log(this.state)
@@ -58,6 +59,7 @@ class WineCard extends Component {
 
     return (
       // <ButtonBase>
+
       <Paper className={`${this.props.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{

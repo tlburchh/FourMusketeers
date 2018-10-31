@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import PollIcon from '@material-ui/icons/Poll';
+import MoodIcon from '@material-ui/icons/Mood';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -54,10 +57,10 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: 'grey',
+    // backgroundColor: 'grey',
   },
-  MuiListItemText: {
-    color: 'white',
+  ListItemText: {
+    fontColor: 'white',
   },
   drawerHeader: {
     display: 'flex',
@@ -96,6 +99,21 @@ class PersistentDrawerLeft extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
+  WineEdit = () => {
+
+  }
+  statsPage = () => {
+    
+  }
+  emailPage = () => {
+    
+  }
+  smilePage = () => {
+    
+  }
+  
+
 
   render() {
     const { classes, theme } = this.props;
@@ -140,22 +158,53 @@ class PersistentDrawerLeft extends React.Component {
           </div>
           <Divider />
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            {['Wine'].map((text, index) => (
+              <ListItem button key={text}
+              onClick={this.WineEdit}>
+                <ListItemIcon> <AddToPhotosIcon /> </ListItemIcon>
                 <ListItemText primary={text}/>
               </ListItem>
             ))}
           </List>
           <Divider />
           <List>
+            {['Stats'].map((text, index) => (
+              <ListItem button key={text}
+              onClick={this.statsPage}>
+                <ListItemIcon> <PollIcon /> </ListItemIcon>
+                <ListItemText primary={text}/>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['Emails'].map((text, index) => (
+              <ListItem button key={text}
+              onClick={this.emailPage}>
+                <ListItemIcon> <MailIcon /> </ListItemIcon>
+                <ListItemText primary={text}/>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {[':)'].map((text, index) => (
+              <ListItem button key={text}
+              onClick={this.smilePage}>
+                <ListItemIcon> <MoodIcon /> </ListItemIcon>
+                <ListItemText primary={text}/>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          {/* <List>
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
-          </List>
+          </List> */}
         </Drawer>
         <main>
         </main>
