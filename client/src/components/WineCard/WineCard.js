@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
 import CommentModal from '../CommentModal/CommentModal';
 // import API from "../../utils/API";
-import './WineCard.css'
+import './WineCard.css';
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
 const styles = theme => ({
@@ -24,11 +24,7 @@ class WineCard extends Component {
     super(props);
 
     this.state = {
-      // wines: ""
-      // description: "",
-      // price: "",
-      // color: "",
-
+      isActive: "inactive"
     };
   }
   // populateWines = () => {
@@ -45,6 +41,19 @@ class WineCard extends Component {
     return price.substring(0, dotPos) + "." + price.substring(dotPos, price.length);
   }
 
+  toggleActive = () => {
+    if (this.state.isActive === "inactive") {
+      this.setState({
+        isActive: "active"
+      });
+    }
+    else {
+      this.setState({
+        isActive: 'inactive'
+      });
+    }
+  }
+
 
   render() {
     // console.log("PROPS ->");
@@ -58,7 +67,10 @@ class WineCard extends Component {
 
     return (
       // <ButtonBase>
-      <Paper className={`${this.props.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
+      <Paper className={this.state.isActive} onClick={() => {
+        this.props.handleCardClick(this.props.id);
+        this.toggleActive();
+      }}>
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
             paddingBottom: '0px',
