@@ -81,21 +81,21 @@ class Tasting extends Component {
     // console.log(cardId);
     // Check the selected array for the card's id
     if (this.searchSelected(cardId) === -1) {
-      // Not found, add it
-      this.addIdToSelected(cardId);
+      // Check if we're at 8 already...
+      if (this.state.selected === 8) {
+        // Yes, so cancel adding more
+        return false;
+      }
+      else {
+        // No, push it in
+        this.addIdToSelected(cardId);
+      }
     }
     else {
       // Found, remove it
       this.removeIdFromSelected(cardId);
     }
 
-
-    // if (cardId === this.state.activeCard) {
-    //   this.setState({ activeCard: null })
-    // } else {
-    //   this.setState({ activeCard: cardId })
-
-    // }
   }
 
   // Search the selected array for an instance of the input id
@@ -114,9 +114,14 @@ class Tasting extends Component {
 
   // Add a cards id to the selected array
   addIdToSelected = id => {
-    this.setState({
-      selected: [...this.state.selected, id]
-    });
+    if (this.state.selected.length === 8) {
+      return false;
+    }
+    else {
+      this.setState({
+        selected: [...this.state.selected, id]
+      });
+    }
   }
 
   componentDidMount() {
@@ -146,25 +151,31 @@ class Tasting extends Component {
     const { classes } = this.props;
     // const { cards } = this.state;
     // const { data } = this.state;
-    // console.log(`Selected: ${this.state.selected}`);
+    // console.log(`Selected: ${this.state.selected.length}`);
     return (
       <React.Fragment>
         <CssBaseline />
         <main>
           <div className={classNames(classes.layout, classes.cardGrid)}>
-          {
-            this.state.selected.length < 8 &&  <div id="num-selected" className="not-done">Meads selected: {this.state.selected.length}</div>
-          }
-          {
-            this.state.selected.length > 7 && <div id="num-selected" className="done">Done!</div>
-          }
+            {
+              this.state.selected.length < 8 && <div id="num-selected" className="not-done">Meads selected: {this.state.selected.length}</div>
+            }
+            {
+              this.state.selected.length > 7 && <div id="num-selected" className="done">Done!</div>
+            }
             {/* End hero unit */}
             <Grid container spacing={40}>
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-                      <WineCard wine={wineData} i={i} id={wineData._id} handleCardClick={this.handleCardClick} />
+                      <WineCard
+                        wine={wineData}
+                        key={i}
+                        id={wineData._id}
+                        handleCardClick={this.handleCardClick}
+                        numClicked={this.state.selected.length}
+                      />
                       {/* change index to card.id */}
                     </Grid>
                   </Grid>

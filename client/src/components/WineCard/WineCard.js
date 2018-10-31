@@ -41,17 +41,29 @@ class WineCard extends Component {
     return price.substring(0, dotPos) + "." + price.substring(dotPos, price.length);
   }
 
-  toggleActive = () => {
+  toggleActive = numClicked => {
+    console.log(numClicked);
     if (this.state.isActive === "inactive") {
-      this.setState({
-        isActive: "active"
-      });
+      if (numClicked === 8) {
+        return;
+      }
+      else {
+        this.setState({
+          isActive: "active"
+        });
+      }
     }
     else {
       this.setState({
         isActive: 'inactive'
       });
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      numClicked: this.props.numClicked
+    });
   }
 
 
@@ -69,7 +81,7 @@ class WineCard extends Component {
       // <ButtonBase>
       <Paper className={this.state.isActive} onClick={() => {
         this.props.handleCardClick(this.props.id);
-        this.toggleActive();
+        this.toggleActive(this.props.numClicked);
       }}>
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
