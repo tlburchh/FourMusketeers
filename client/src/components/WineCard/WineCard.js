@@ -47,30 +47,33 @@ class WineCard extends Component {
 
 
   render() {
+    // console.log("PROPS ->");
+    // console.log(this.props);
     // console.log(this.state)
-    const { classes } = this.props;
+    const wine = this.props.wine;
+    // console.log(wine);
     // console.log("props");
     // console.log(this.props.wineData.data[this.props.i].name)
     // let {wines} = this.props.wineData.data[this.props.i]
 
     return (
       // <ButtonBase>
-      <Paper className={`${classes.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
+      <Paper className={`${this.props.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
             paddingBottom: '0px',
             paddingTop: '0px'
           }}>
-            <Grid item xs={1} container style={{ backgroundColor: `${this.props.wineData.data[this.props.i].color[1]}`, borderRadius: "5px" }}>
+            <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "5px" }}>
               {/* <Paper >
             </Paper> */}
             </Grid>
             <Grid item xs container direction="column" spacing={24}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  {`${this.props.wineData.data[this.props.i].name}`}
+                  {`${wine.name}`}
                 </Typography>
-                <Typography gutterBottom className="truncate">{`${this.props.wineData.data[this.props.i].description}`}</Typography>
+                <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <StarRating />
@@ -78,7 +81,7 @@ class WineCard extends Component {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">{`$ ${this.formatPrice(this.props.wineData.data[this.props.i].price)}`}</Typography>
+              <Typography variant="subtitle1">{`$ ${this.formatPrice(wine.priceRegular)}`}</Typography>
             </Grid>
           </Grid>
         </Grid>

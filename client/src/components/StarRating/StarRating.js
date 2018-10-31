@@ -16,7 +16,7 @@ class StarRating extends React.Component {
 
   render() {
     const { rating } = this.state;
-    console.log(this.state.rating);
+    // console.log(this.state.rating);
 
     return (
       <div>
