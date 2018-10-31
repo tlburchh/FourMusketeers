@@ -90,23 +90,25 @@ class Tasting extends Component {
 
   loadWines = () => {
     API.getCurrentWines()
-    .then(res =>{
-      console.log("response data");
-      console.log(res.data);
-      this.setState({data: res.data})
-     } )
+      .then(res => {
+        console.log("response data");
+        console.log(res.data);
+        this.setState({
+          data: res.data
+        })
+      })
       .catch(err => console.log(err));
-    };
+  };
 
-    handleWineSelection = () => {
-      console.log('Clicked div');
-      this.setState({ })
-    }
+  handleWineSelection = () => {
+    console.log('Clicked div');
+    this.setState({})
+  }
 
   render() {
     const { classes } = this.props;
     // const { cards } = this.state;
-    const { data } = this.state;
+    // const { data } = this.state;
     console.log(this.state);
     return (
       <React.Fragment>
@@ -115,11 +117,11 @@ class Tasting extends Component {
           <div className={classNames(classes.layout, classes.cardGrid)}>
             {/* End hero unit */}
             <Grid container spacing={40}>
-              {data.map((wineData, i) => (
+              {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-                      <WineCard  wineData={this.state} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id}/>  
+                      <WineCard wine={wineData} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id} />
                       {/* change index to card.id */}
                     </Grid>
                   </Grid>
