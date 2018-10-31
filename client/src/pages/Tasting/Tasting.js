@@ -134,7 +134,7 @@ class Tasting extends Component {
             Footer
         </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            Something here to give the footer a purpose!
+            <a href = "https://www.starrlightmead.com">Check Us Out!</a>
         </Typography>
         </footer>
         {/* End footer */}
