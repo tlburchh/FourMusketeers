@@ -6,7 +6,8 @@ const ratingSchema = new Schema ({
     numericalRating: {
         type: Number,
         trim: true,
-        required: false
+        required: true,
+        default: null
     },
 
     keyWordRating:[{
