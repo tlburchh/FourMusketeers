@@ -81,7 +81,7 @@ const winesSeed = [
   },
   {
     name: "Peach Mead",
-    color: ["yellow", "#ffff00"],
+    color: ["purple", "#650a11"],
     description: "Sweet Peach Mead reminds us of ripe, juicy summer peaces, bursting with flavor. Serve this sweet wine chilled at a picnic or use it to brighten up your favorite pork or spicy chicken dish! Or use it to make a great Summer sangria or Mead-mosa!",
     priceRegular: '18.00',
     isAvailable: true,
