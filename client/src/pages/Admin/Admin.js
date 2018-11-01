@@ -20,7 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import MenuIcon from '@material-ui/icons/Menu';
 // import wineCard from '../../components/wineCard/wineCard';
 import PersistentDrawerLeft from '../../components/PersistentDrawer/PersistentDrawer';
-
+import AdminWineEdit from '../../components/AdminWineEdit/AdminWineEdit';
 
 const styles = theme => ({
   appBar: {
@@ -95,7 +95,7 @@ const styles = theme => ({
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 
-function AdminPage(props) {
+const AdminPage = (props) => {
   const { classes } = props;
 
   return (
@@ -115,7 +115,7 @@ function AdminPage(props) {
         </Toolbar>
       </AppBar> */}
       <main>
-
+<AdminWineEdit />
       </main>
       {/* Footer */}
       {/* <footer className={classes.footer}>

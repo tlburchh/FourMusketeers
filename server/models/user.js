@@ -52,6 +52,12 @@ const User = new Schema({
         validate: [validatePassword, "Password must contain one upper and one lower case letter, one special character, one number, and be at least 8 long"]
     },
 
+    isMember: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+
     ratings: [{
         type: Schema.Types.ObjectId,
         ref: 'ratings'

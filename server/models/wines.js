@@ -28,7 +28,13 @@ const wineSchema = new Schema ({
         required: true
     },
 
-    price: {
+    priceRegular: {
+        type: String,
+        get: getPrice,
+        set: setPrice
+    },
+    
+    priceMember: {
         type: String,
         get: getPrice,
         set: setPrice
@@ -38,6 +44,12 @@ const wineSchema = new Schema ({
         type: Boolean,
         required: true,
         default: true
+    },
+
+    timesTasted: {
+        type: Number,
+        required: true,
+        default: 0
     },
 
     keywords: [{
