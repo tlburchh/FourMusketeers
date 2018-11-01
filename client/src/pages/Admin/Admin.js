@@ -20,7 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import MenuIcon from '@material-ui/icons/Menu';
 // import wineCard from '../../components/wineCard/wineCard';
 import PersistentDrawerLeft from '../../components/PersistentDrawer/PersistentDrawer';
-
+import AdminWineEdit from '../../components/AdminWineEdit/AdminWineEdit';
 
 const styles = theme => ({
   appBar: {
@@ -115,7 +115,7 @@ const AdminPage = (props) => {
         </Toolbar>
       </AppBar> */}
       <main>
-
+<AdminWineEdit />
       </main>
       {/* Footer */}
       {/* <footer className={classes.footer}>
