@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
-import CommentModal from '../CommentModal/CommentModal';
+import CommentPopover from '../CommentPopover/CommentPopover';
 // import API from "../../utils/API";
 import './WineCard.css'
 // import ButtonBase from '@material-ui/core/ButtonBase';
@@ -79,7 +79,7 @@ class WineCard extends Component {
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <StarRating />
-                <CommentModal />
+                <CommentPopover />
               </Grid>
             </Grid>
             <Grid item>
