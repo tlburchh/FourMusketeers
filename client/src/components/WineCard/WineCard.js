@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
-import CommentModal from '../CommentModal/CommentModal';
+import CommentPopover from '../CommentPopover/CommentPopover';
 // import API from "../../utils/API";
 import './WineCard.css';
 // import ButtonBase from '@material-ui/core/ButtonBase';
@@ -80,7 +80,7 @@ class WineCard extends Component {
               {/* <Paper >
             </Paper> */}
             </Grid>
-            <Grid item xs container direction="column" spacing={24}>
+            <Grid item xs container style={{maxWidth: '85%'}} direction="column" spacing={24}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
                   {`${wine.name}`}
@@ -88,10 +88,15 @@ class WineCard extends Component {
                 <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
+<<<<<<< HEAD
+                <StarRating />
+                <CommentPopover />
+=======
                 <StarRating
                   id={wine.name}
                 />
                 <CommentModal />
+>>>>>>> 25c2834aa15f7d7634ef573cd1b8c7d347d76240
               </Grid>
             </Grid>
             <Grid item>
