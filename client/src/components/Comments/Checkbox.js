@@ -8,10 +8,20 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import PropTypes from "prop-types";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+// import green from "@material-ui/core/colors/green";
+import cyan from "@material-ui/core/colors/cyan";
+
 
 const styles = {
-
+    root: {
+    //   color: cyan[600],
+      "&$checked": {
+        color: cyan[600],
+      }
+    },
+    checked: {}
   };
+
 
 
 class CheckboxLabels extends React.Component {
@@ -51,6 +61,10 @@ class CheckboxLabels extends React.Component {
               checked={this.state.checkedU}
               onChange={this.handleChange("checkedU")}
               value="checkedU"
+              classes={{
+                root: classes.root,
+                checked: classes.checked
+              }}
             />
           }
           label="Skål!"
@@ -64,6 +78,10 @@ class CheckboxLabels extends React.Component {
               checked={this.state.checkedD}
               onChange={this.handleChange("checkedD")}
               value="checkedD"
+              classes={{
+                root: classes.root,
+                checked: classes.checked
+              }}
             />
           }
           label="Not my glass of Mead"
