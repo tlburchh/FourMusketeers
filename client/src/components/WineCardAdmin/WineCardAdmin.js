@@ -4,41 +4,29 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import StarRating from '../StarRating/StarRating';
-import CommentPopover from '../CommentPopover/CommentPopover';
+import EditButton from '../EditButton/EditButton';
 // import API from "../../utils/API";
-import './WineCard.css'
+import './WineCardAdmin.css'
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    maxWidth: 600,
+    maxWidth: 500,
     padding: theme.spacing.unit * 2,
   },
 
 });
 
-class WineCard extends Component {
+class WineCardAdmin extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // wines: ""
-      // description: "",
-      // price: "",
-      // color: "",
-
+     
     };
   }
-  // populateWines = () => {
-  //   for (let i = 0; i <= this.props.wineData.data.length; i++){
-  //     return({wines: this.props.wineData.data[i]})
-  //     };
-  //   }
-  //     componentDidMount() {
-  //       this.populateWines();
-  //     };
+
 
   formatPrice = price => {
     const dotPos = price.length - 2;
@@ -48,23 +36,18 @@ class WineCard extends Component {
 
   render() {
 
-    // console.log("PROPS ->");
-    // console.log(this.props);
-    // console.log(this.state)
+  
     const wine = this.props.wine;
-    // console.log(wine);
-    // console.log("props");
-    // console.log(this.props.wineData.data[this.props.i].name)
-    // let {wines} = this.props.wineData.data[this.props.i]
-
+    
     return (
-      // <ButtonBase>
+      
 
-      <Paper className={`${this.props.paper}`} id={this.props.isActive ? 'clickedPaperButton' : ''} onClick={() => this.props.handleCardClick(this.props.id)}>
+      <Paper className={`${this.props.paper}`}>
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
             paddingBottom: '0px',
-            paddingTop: '0px'
+            paddingTop: '0px',
+            // maxWidth: '85%'
           }}>
             <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "5px" }}>
               {/* <Paper >
@@ -77,9 +60,8 @@ class WineCard extends Component {
                 </Typography>
                 <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
               </Grid>
-              <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <StarRating />
-                <CommentPopover />
+              <Grid item style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <EditButton />
               </Grid>
             </Grid>
             <Grid item>
@@ -88,13 +70,13 @@ class WineCard extends Component {
           </Grid>
         </Grid>
       </Paper>
-      // </ButtonBase>
+      
     );
   }
 }
 
-WineCard.propTypes = {
+WineCardAdmin.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(WineCard);
+export default withStyles(styles)(WineCardAdmin);
