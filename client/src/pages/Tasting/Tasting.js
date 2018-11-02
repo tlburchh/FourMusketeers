@@ -77,10 +77,13 @@ class Tasting extends Component {
     };
   }
 
-  handleCardClick = cardId => {
-    // console.log(cardId);
+  handleCardClick = (cardId, event) => {
+    // If you click a star, abort
+    if (event.target.type === "radio") {
+      return;
+    }
     // Check the selected array for the card's id
-    if (this.searchSelected(cardId) === -1) {
+    else if (this.searchSelected(cardId) === -1) {
       // Check if we're at 8 already...
       if (this.state.selected === 8) {
         // Yes, so cancel adding more
