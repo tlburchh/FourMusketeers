@@ -88,15 +88,8 @@ class WineCard extends Component {
                 <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
-<<<<<<< HEAD
-                <StarRating />
+                <StarRating id={wine.name} />
                 <CommentPopover />
-=======
-                <StarRating
-                  id={wine.name}
-                />
-                <CommentModal />
->>>>>>> 25c2834aa15f7d7634ef573cd1b8c7d347d76240
               </Grid>
             </Grid>
             <Grid item>
