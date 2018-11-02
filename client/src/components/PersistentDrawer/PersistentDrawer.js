@@ -23,6 +23,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { generateKeyPairSync } from 'crypto';
 import './pDrawer.css';
+import CheckboxLabels from '../../components/Comments/Checkbox';
+
 
 const drawerWidth = 240;
 
@@ -112,6 +114,7 @@ class PersistentDrawerLeft extends React.Component {
   smilePage = () => {
     
   }
+
   
 
 
@@ -139,6 +142,7 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               Admin Page
+              <CheckboxLabels />
             </Typography>
           </Toolbar>
         </AppBar>
