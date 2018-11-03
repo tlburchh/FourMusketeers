@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
 import WineCardAdmin from '../../components/WineCardAdmin/WineCardAdmin';
-import { Draggable, Droppable } from 'react-drag-and-drop';
+//import { Draggable, Droppable } from 'react-drag-and-drop';
 
 
 const styles = theme => ({
@@ -18,6 +18,8 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+
+  
 });
 
 class AdminWineEdit extends Component {

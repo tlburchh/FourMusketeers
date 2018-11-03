@@ -12,7 +12,8 @@ module.exports = {
         };
 
         const newKeyword = {
-            keyword: req.body.keyword
+            keyword: req.body.keyword,
+            isGood: req.body.isGood
         };
 
         db.Wines.insertMany(newWine).then(winesResp => {

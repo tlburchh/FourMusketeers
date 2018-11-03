@@ -58,11 +58,17 @@ const User = new Schema({
         default: false
     },
 
+    newsLetter: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+
     ratings: [{
         type: Schema.Types.ObjectId,
         ref: 'ratings'
     }]
-})
+});
 
 User.pre('save', function (next) {
     var user = this;
