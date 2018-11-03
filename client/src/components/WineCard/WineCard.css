@@ -19,3 +19,7 @@
 .desc-text {
   padding: 5px;
 }
+
+.hidden {
+  display: none;
+}
