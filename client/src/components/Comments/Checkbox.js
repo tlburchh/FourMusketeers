@@ -16,7 +16,7 @@ const styles = {
     root: {
     //   color: cyan[600],
       "&$checked": {
-        color: cyan[600],
+        color: cyan[300],
       }
     },
     checked: {}

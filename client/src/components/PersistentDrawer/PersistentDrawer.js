@@ -59,7 +59,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    // backgroundColor: 'grey',
+    // backgroundColor: 'rgb(146, 146, 146)',
   },
   ListItemText: {
     fontColor: 'white',
@@ -143,11 +143,13 @@ class PersistentDrawerLeft extends React.Component {
             <Typography variant="h6" color="inherit" noWrap>
               Admin Page
               <CheckboxLabels />
+              {/* testing checklabels */}
             </Typography>
           </Toolbar>
         </AppBar>
         <Drawer
           className={classes.drawer}
+          id= "drawerrr"
           variant="persistent"
           anchor="left"
           open={open}
