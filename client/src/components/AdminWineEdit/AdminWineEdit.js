@@ -5,7 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
-import WineCard from '../../components/WineCard/WineCard';
+import WineCardAdmin from '../../components/WineCardAdmin/WineCardAdmin';
+import { Draggable, Droppable } from 'react-drag-and-drop';
+
 
 const styles = theme => ({
   root: {
@@ -22,13 +24,13 @@ class AdminWineEdit extends Component {
   constructor(props) {
     super(props);
 
-    this.state={
+    this.state = {
       data: [],
     };
   }
 
 
-  
+
   handleCardClick = (cardId) => {
     if (cardId === this.state.activeCard) {
       this.setState({ activeCard: null })
@@ -57,38 +59,39 @@ class AdminWineEdit extends Component {
     console.log('Clicked div');
     this.setState({})
   }
-  render(){
+  render() {
 
 
     const { classes } = this.props;
 
-      return (
-        <div className={classes.root}>
-          <Grid container spacing={24}>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>Wine Data Input</Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>Wine Card
+    return (
+      <div className={classes.root}>
+        <Grid container spacing={24}>
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>Wine Data Input</Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>Wine Card
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid container spacing={24}>
                     <Grid item xs={12}>
-                      <WineCard wine={wineData} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id} />
+
+                      <WineCardAdmin wine={wineData} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id} />
                     </Grid>
                   </Grid>
                 </div>
               ))}
-              </Paper>
-            </Grid>
+            </Paper>
           </Grid>
-        </div>
-      );
-    }
-    
-  };
+        </Grid>
+      </div>
+    );
+  }
 
-      AdminWineEdit.propTypes = {
-        classes: PropTypes.object.isRequired,
+};
+
+AdminWineEdit.propTypes = {
+  classes: PropTypes.object.isRequired,
 }
 export default withStyles(styles)(AdminWineEdit);

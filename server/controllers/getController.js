@@ -15,7 +15,7 @@ module.exports = {
             // Include the keywords associated with it, excluding their IDs
             .populate({
                 path: "keywords",
-                select: "keyword -_id"
+                select: "keyword -_id"//getting the keyword without the id.
             })
             .populate({
                 path: "ratings",

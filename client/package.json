@@ -9,6 +9,7 @@
     "axios": "^0.18.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-drag-and-drop": "^2.4.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.14",
     "react-star-rating-component": "^1.4.1"

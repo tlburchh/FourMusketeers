@@ -7,19 +7,67 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/wino", { useNew
 
 const keywordsSeed = [
   {
-    keyword: "gtart"
+    keyword: "tart"
   },
   {
-    keyword: "btart"
+    keyword: "flamboyant"
   },
   {
-    keyword: "bsmokey"
+    keyword: "zesty"
   },
   {
-    keyword: "gsour"
+    keyword: "austere"
   },
   {
-    keyword: "gchocolate"
+    keyword: "barnyard"
+  },
+  {
+    keyword: "big"
+  },
+  {
+    keyword: "bright"
+  },
+  {
+    keyword: "buttery"
+  },
+  {
+    keyword: "chewy tannins"
+  },
+  {
+    keyword: "crisp"
+  },
+  {
+    keyword: "dense"
+  },
+  {
+    keyword: "earthy"
+  },
+  {
+    keyword: "elegant"
+  },
+  {
+    keyword: "fat"
+  },
+  {
+    keyword: "flabby"
+  },
+  {
+    keyword: "fleshy"
+  },
+  {
+    keyword: "jammy"
+  },
+  {
+    keyword: "juicy"
+  },
+  {
+    keyword: "oaked"
+  },
+  {
+    keyword: "silky"
+  },
+  {
+    keyword: "unctuous"
   }
 ];
 const winesSeed = [
@@ -33,7 +81,7 @@ const winesSeed = [
   },
   {
     name: "Off-dry Blackberry Mead",
-    color: ["purple", "#1e2352"],
+    color: ["purple", "#46053B"],
     description: "Our Blackberry Off-dry Mead is our honey homage to red wine. With a full berry nose, and a taste that is tart blackberry balanced with the warm flavors of oak and vanilla. Serve at cellar temerature with beef or pork, or chill slightly, if you prefer.",
     priceRegular: '26.00',
     isAvailable: true,
@@ -57,7 +105,7 @@ const winesSeed = [
   },
   {
     name: "Semi-sweet Blackberry Mead",
-    color: ["purple", "#1e2352"],
+    color: ["purple", "#46053B"],
     description: "Our Blackberry Mead is sweet, tangy and bursting with flavor! Serve chilled with beef or pork. Try it with a lemon flavored dessert or as a reduction over ice cream! If you're looking for something lighter, try mixing with lemonade for a porch-sipper!",
     priceRegular: '24.00',
     isAvailable: true,
@@ -81,7 +129,7 @@ const winesSeed = [
   },
   {
     name: "Peach Mead",
-    color: ["purple", "#650a11"],
+    color: ["peach", "#ffe5b4"],
     description: "Sweet Peach Mead reminds us of ripe, juicy summer peaces, bursting with flavor. Serve this sweet wine chilled at a picnic or use it to brighten up your favorite pork or spicy chicken dish! Or use it to make a great Summer sangria or Mead-mosa!",
     priceRegular: '18.00',
     isAvailable: true,
@@ -89,7 +137,7 @@ const winesSeed = [
   },
   {
     name: "Spiced Apple Mead",
-    color: ["maroon", "#5b1514"],
+    color: ["apple green", "#5caf4c"],
     description: "Apple pie in a glass! Wonderful apple flavor enhanced with spices of cinnamon, clove and nutmeg. Tasty chilled, room temperature, or warmed gently in the Crockpot! Great with turkey dinner, carrot cake, or spice cake! Silver Medal - American Wine Society",
     priceRegular: '20.00',
     isAvailable: true,
@@ -97,7 +145,7 @@ const winesSeed = [
   },
   {
     name: "Pomegranate Pink Peppercorn",
-    color: ["purple", "#650a11"],
+    color: ["pink", "#CB4C78"],
     description: "Pomegranate Pink Peppercorn Mead has the lively zing of pomegranate and the fruity spice of pink peppercorns. Like all of the women fighting and surviving breast cancer, this mead is something special. We're donating $5 from each bottle to local cahrity.",
     priceRegular: '25.00',
     isAvailable: true,
@@ -105,7 +153,7 @@ const winesSeed = [
   },
   {
     name: "Cranberry Orange Fall Seasonal",
-    color: ["maroon", "#5b1514"],
+    color: ["pink", "#CB4C78"],
     description: "A tart and tangy holiday mead, yet lightly honey sweetened! A perfect complement to all of your holiday meals, from turkey dinner to baked ham.",
     priceRegular: '19.00',
     isAvailable: true,
@@ -121,7 +169,7 @@ const winesSeed = [
   },
   {
     name: "Lavender",
-    color: ["olive", "#1b301b"],
+    color: ["olive", "#bab86c"],
     description: "Lavender is known for its floral nose and relaxing benefits. Heady floral with a slight rose flavor.",
     priceRegular: '18.00',
     isAvailable: true,
@@ -129,7 +177,7 @@ const winesSeed = [
   },
   {
     name: "Nordic Blend",
-    color: ["olive", "#1b301b"],
+    color: ["olive", "#bab86c"],
     description: "Reminiscent of a well known Scandinavian drink, Aquavit. Infused with caraway, fennel and anise seed. Flavors of fennel and rye bread. Bronze medal - Finger Lakes",
     priceRegular: '18.00',
     isAvailable: true,
@@ -137,7 +185,7 @@ const winesSeed = [
   },
   {
     name: "Sage Mead Fall Seasonal",
-    color: ["olive", "#1b301b"],
+    color: ["olive", "#bab86c"],
     description: "Sage is best known as a culinary herb, but also boasts restorative properties. Earthy, savory flavorys with a light woodsy quality. Lightly sweetened.",
     priceRegular: '18.00',
     isAvailable: true,
@@ -145,7 +193,7 @@ const winesSeed = [
   },
   {
     name: "Ginger",
-    color: ["olive", "#1b301b"],
+    color: ["olive", "#bab86c"],
     description: "Ginger's warming properties have been recognized for years, especially in Asia. Light floral nose with intense ginger flavor, a slight burn sweetened with honey.",
     priceRegular: '18.00',
     isAvailable: true,
@@ -153,7 +201,7 @@ const winesSeed = [
   },
   {
     name: "Ben's Special Ginger",
-    color: ["olive", "#1b301b"],
+    color: ["olive", "#bab86c"],
     description: "Our regular Ginger with MORE ginger! Tangy and spicy for ginger lovers. Great on its own but also phenomenal as a mixer for a bloody Mary or mule!",
     priceRegular: '18.00',
     isAvailable: true,
@@ -161,7 +209,7 @@ const winesSeed = [
   },
   {
     name: "Chai Tea",
-    color: ["olive", "#1b301b"],
+    color: ["olive", "#bab86c"],
     description: "Chai tea spices of cardamom, ginger, and cinnamon have enchanted the senses for centuries. Reminiscent of a cup of exotic spiced tea with honey.",
     priceRegular: '18.00',
     isAvailable: true,
@@ -169,7 +217,7 @@ const winesSeed = [
   },
   {
     name: "Kickin' Cranberry Orange Fall Seasonal",
-    color: ["maroon", "#5b1514"],
+    color: ["cranberry", "#CB4C78"],
     description: "Our mead with Peppers! This wine has the juicy flavors of Cranberry and Orange, kicked up a notch with local, hand smoked and dried jalapeno peppers. Serve slightly chilled with everything from chicken, to a BLT, to shrimp and grits.",
     priceRegular: '19.00',
     isAvailable: true,

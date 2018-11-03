@@ -30,16 +30,9 @@ const wineSchema = new Schema ({
 
     priceRegular: {
         type: String,
-        get: getPrice,
-        set: setPrice
+        trim: true,
     },
     
-    priceMember: {
-        type: String,
-        get: getPrice,
-        set: setPrice
-    },
-
     isAvailable: {
         type: Boolean,
         required: true,

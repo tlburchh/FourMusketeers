@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating/StarRating';
-import CommentModal from '../CommentModal/CommentModal';
+import CommentPopover from '../CommentPopover/CommentPopover';
 // import API from "../../utils/API";
 import './WineCard.css';
 // import ButtonBase from '@material-ui/core/ButtonBase';
@@ -15,8 +15,7 @@ const styles = theme => ({
     flexGrow: 1,
     maxWidth: 600,
     padding: theme.spacing.unit * 2,
-  },
-
+  }
 });
 
 class WineCard extends Component {
@@ -27,23 +26,18 @@ class WineCard extends Component {
       isActive: "inactive"
     };
   }
-  // populateWines = () => {
-  //   for (let i = 0; i <= this.props.wineData.data.length; i++){
-  //     return({wines: this.props.wineData.data[i]})
-  //     };
-  //   }
-  //     componentDidMount() {
-  //       this.populateWines();
-  //     };
 
   formatPrice = price => {
     const dotPos = price.length - 2;
     return price.substring(0, dotPos) + "." + price.substring(dotPos, price.length);
   }
 
-  toggleActive = numClicked => {
-    console.log(numClicked);
-    if (this.state.isActive === "inactive") {
+  toggleActive = (numClicked, event) => {
+    // If you click a star, abort
+    if (event.target.type === "radio") {
+      return;
+    }
+    else if (this.state.isActive === "inactive") {
       if (numClicked === 8) {
         return;
       }
@@ -69,20 +63,12 @@ class WineCard extends Component {
 
   render() {
 
-    // console.log("PROPS ->");
-    // console.log(this.props);
-    // console.log(this.state)
     const wine = this.props.wine;
-    // console.log(wine);
-    // console.log("props");
-    // console.log(this.props.wineData.data[this.props.i].name)
-    // let {wines} = this.props.wineData.data[this.props.i]
 
     return (
-      // <ButtonBase>
-      <Paper className={this.state.isActive} onClick={() => {
-        this.props.handleCardClick(this.props.id);
-        this.toggleActive(this.props.numClicked);
+      <Paper className={this.state.isActive} onClick={event => {
+        this.props.handleCardClick(this.props.id, event);
+        this.toggleActive(this.props.numClicked, event);
       }}>
 
         <Grid container spacing={16}>
@@ -94,7 +80,7 @@ class WineCard extends Component {
               {/* <Paper >
             </Paper> */}
             </Grid>
-            <Grid item xs container direction="column" spacing={24}>
+            <Grid item xs container style={{maxWidth: '85%'}} direction="column" spacing={24}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
                   {`${wine.name}`}
@@ -102,8 +88,8 @@ class WineCard extends Component {
                 <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <StarRating />
-                <CommentModal />
+                <StarRating id={wine.name} />
+                <CommentPopover />
               </Grid>
             </Grid>
             <Grid item>

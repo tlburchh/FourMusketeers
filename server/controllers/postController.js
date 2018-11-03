@@ -3,6 +3,34 @@ const db = require("../models");
 // Define methods for GETTING various data from the Users, Wines, etc collections
 module.exports = {
 
+    insert: (req, res) => {
+        const newWine = {
+            name: req.body.name,
+            color: req.body.color,
+            description: req.body.description,
+            priceRegular: req.body.priceRegular
+        };
+
+        const newKeyword = {
+            keyword: req.body.keyword
+        };
+
+        db.Wines.insertMany(newWine).then(winesResp => {
+            console.log(`Inserted new wine: ${winesResp}`);
+            db.Keywords.insertMany(newKeyword).then(keywordResp => {
+                console.log(`Inserted new keyword : ${keywordResp}.`)
+                res.json({message: `New wine and keyword added.`});
+            }).catch(keyWordErr => {
+                console.log(`Error adding keyword: ${keyWordErr}`);
+            });
+            
+        }).catch(err => {
+            console.log(`Error adding new wine: ${err}`);
+            res.json({message: `Error adding new wine`});
+        });
+    },
+
+
     rating: (req, res) => {
         const rating = req.body;
         db.Rating.insert(rating).then(resp => {
