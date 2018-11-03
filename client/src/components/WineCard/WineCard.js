@@ -80,16 +80,25 @@ class WineCard extends Component {
               {/* <Paper >
             </Paper> */}
             </Grid>
-            <Grid item xs container style={{maxWidth: '85%'}} direction="column" spacing={24}>
+            <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
                   {`${wine.name}`}
                 </Typography>
-                <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
+                <Typography
+                  gutterBottom
+                  // if the description is longer than 180, add the truncate class
+                  className={wine.description.length > 180 ? 'truncate desc-text' : 'desc-text'}
+                >
+                  {wine.description}
+                </Typography>
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <StarRating id={wine.name} />
-                <CommentPopover keys={wine.keywords} />
+                {
+                  // Only display the stars and comments button when the user has clicked their 8 choices
+                  this.props.numClicked > 7 && <React.Fragment><StarRating id={wine.name} />
+                    <CommentPopover keys={wine.keywords} /></React.Fragment>
+                }
               </Grid>
             </Grid>
             <Grid item>

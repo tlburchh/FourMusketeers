@@ -3,9 +3,19 @@
 }
 
 .truncate {
-  width: 450px;
-  white-space: nowrap;
+  max-width: 450px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  /* height: 10px; */
+  position: relative;
+  max-height: 4.8em;
+}
+
+.truncate::after {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.desc-text {
+  padding: 5px;
 }
