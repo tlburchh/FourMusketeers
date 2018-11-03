@@ -6,8 +6,7 @@ import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
 import WineCardAdmin from '../../components/WineCardAdmin/WineCardAdmin';
-import { Draggable, Droppable } from 'react-drag-and-drop';
-
+import AdminDataInput from '../../components/TextBoxes/AdminDataInput';
 
 const styles = theme => ({
   root: {
@@ -68,7 +67,9 @@ class AdminWineEdit extends Component {
       <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <Paper className={classes.paper}>Wine Data Input</Paper>
+            <Paper className={classes.paper}>Wine Data Input
+            <AdminDataInput />
+            </Paper>
           </Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper}>Wine Card
