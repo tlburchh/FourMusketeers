@@ -33,8 +33,8 @@ class WineCard extends Component {
   }
 
   toggleActive = (numClicked, event) => {
-    // If you click a star, abort
-    if (event.target.type === "radio") {
+    // If the tasting has started, abort
+    if (this.props.finished) {
       return;
     }
     else if (this.state.isActive === "inactive") {
@@ -66,7 +66,8 @@ class WineCard extends Component {
     const wine = this.props.wine;
 
     return (
-      <Paper className={this.state.isActive} onClick={event => {
+      // If the finished prop comes down from Tasting and this card is inactive, hide it.
+      <Paper className={`${this.state.isActive} ${this.props.finished && this.state.isActive === 'inactive' ? 'hidden' : ''}`} onClick={event => {
         this.props.handleCardClick(this.props.id, event);
         this.toggleActive(this.props.numClicked, event);
       }}>
@@ -77,19 +78,26 @@ class WineCard extends Component {
             paddingTop: '0px'
           }}>
             <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "5px" }}>
-              {/* <Paper >
-            </Paper> */}
             </Grid>
-            <Grid item xs container style={{maxWidth: '85%'}} direction="column" spacing={24}>
+            <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
                   {`${wine.name}`}
                 </Typography>
-                <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
+                <Typography
+                  gutterBottom
+                  // if the description is longer than 180, add the truncate class
+                  className={wine.description.length > 180 ? 'truncate desc-text' : 'desc-text'}
+                >
+                  {wine.description}
+                </Typography>
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <StarRating id={wine.name} />
-                <CommentPopover keys={wine.keywords} />
+                {
+                  // Only display the stars and comments button when the user has finalized their 8 choices and clicked start
+                  this.props.finished && <React.Fragment><StarRating id={wine.name} />
+                    <CommentPopover keys={wine.keywords} /></React.Fragment>
+                }
               </Grid>
             </Grid>
             <Grid item>
@@ -98,7 +106,6 @@ class WineCard extends Component {
           </Grid>
         </Grid>
       </Paper>
-      // </ButtonBase>
     );
   }
 }
