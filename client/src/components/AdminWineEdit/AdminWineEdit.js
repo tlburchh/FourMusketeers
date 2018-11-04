@@ -59,12 +59,6 @@ const getListStyle = isDraggingOver => ({
 });
 
 
-
-
-
-
-
-
 class AdminWineEdit extends Component {
   constructor(props) {
     super(props);
@@ -85,7 +79,10 @@ class AdminWineEdit extends Component {
       this.state.data,
       result.source.i,
       result.destination.i
-    );
+      );
+      console.log(this.state.data);
+      console.log(result.source.i);
+      console.log(result.destination.i);
 
     this.setState({
       data,
@@ -113,8 +110,8 @@ class AdminWineEdit extends Component {
   loadWines = () => {
     API.getCurrentWines()
       .then(res => {
-        console.log("response data");
-        console.log(res.data);
+        // console.log("response data");
+        // console.log(res.data);
         this.setState({
           data: res.data
         })
