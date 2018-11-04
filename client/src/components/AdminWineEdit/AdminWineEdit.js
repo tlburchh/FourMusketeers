@@ -74,7 +74,7 @@ class AdminWineEdit extends Component {
     this.state = {
       data: [],
       result: [],
-      dataSets: []
+      dataSets: [],
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -95,7 +95,7 @@ class AdminWineEdit extends Component {
       console.log(result.destination.index);
 
     this.setState({
-      dataSets,
+      dataSets
     });
   }
 /////////////////////////////////////////////////////////
