@@ -15,7 +15,7 @@ const styles = theme => ({
   },
 });
 
-class WineComments extends Component {
+class WineKeywords extends Component {
   constructor(props) {
     super(props);
 
@@ -43,8 +43,8 @@ render() {
   }
 }
 
-WineComments.propTypes = {
+WineKeywords.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(WineComments);
+export default withStyles(styles)(WineKeywords);
