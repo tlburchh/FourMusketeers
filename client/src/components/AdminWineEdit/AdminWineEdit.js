@@ -6,11 +6,16 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
+<<<<<<< HEAD
+import WineCardAdmin from '../../components/WineCardAdmin/WineCardAdmin';
+import AdminDataInput from '../../components/TextBoxes/AdminDataInput';
+=======
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import EditButton from "../EditButton/EditButton";
 // import '../../components/WineCardAdmin/WIneDarcAdmin.css'
 
 
+>>>>>>> 8d00f42ea67e74c36aac0430aa4400ac93e87e63
 
 const styles = theme => ({
   root: {
@@ -142,7 +147,9 @@ class AdminWineEdit extends Component {
       <div>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <Paper className={classes.paper}>Wine Data Input</Paper>
+            <Paper className={classes.paper}>Wine Data Input
+            <AdminDataInput />
+            </Paper>
           </Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper}>Wine Card
