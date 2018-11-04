@@ -1,11 +1,10 @@
-
-
 #num-selected {
     position: fixed;
     width: 150px;
     top: -2px;
     left: 50%;
-    margin-left: -75px; /* Half of the width */
+    margin-left: -75px;
+    /* Half of the width */
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border: 2px solid #0000FF;
@@ -19,4 +18,8 @@
 
 #num-selected.done {
     background-color: lightgreen;
+}
+
+#num-selected.done:hover {
+    cursor: pointer;
 }

@@ -73,13 +73,14 @@ class Tasting extends Component {
 
     this.state = {
       data: [],
-      selected: []
+      selected: [],
+      finished: false
     };
   }
 
   handleCardClick = (cardId, event) => {
-    // If you click a star, abort
-    if (event.target.type === "radio") {
+    // If tasting has started, abort
+    if (this.state.finished) {
       return;
     }
     // Check the selected array for the card's id
@@ -143,7 +144,12 @@ class Tasting extends Component {
       .catch(err => console.log(err));
   };
 
-
+  startTasting = () => {
+    console.log("Begin tasting");
+    this.setState({
+      finished: true
+    });
+  }
 
   handleWineSelection = () => {
     console.log('Clicked div');
@@ -152,19 +158,18 @@ class Tasting extends Component {
 
   render() {
     const { classes } = this.props;
-    // const { cards } = this.state;
-    // const { data } = this.state;
-    // console.log(`Selected: ${this.state.selected.length}`);
+
     return (
       <React.Fragment>
         <CssBaseline />
         <main>
           <div className={classNames(classes.layout, classes.cardGrid)}>
+            {/* Only display the wine selected number box before the tasting has started */}
             {
-              this.state.selected.length < 8 && <div id="num-selected" className="not-done">Meads selected: {this.state.selected.length}</div>
+              this.state.selected.length < 8 && !this.state.finished && <div id="num-selected" className="not-done">Meads selected: {this.state.selected.length}</div>
             }
             {
-              this.state.selected.length > 7 && <div id="num-selected" className="done">Done!</div>
+              this.state.selected.length > 7 && !this.state.finished && <div id="num-selected" className="done" onClick={this.startTasting}>Start Tasting!</div>
             }
             {/* End hero unit */}
             <Grid container spacing={40}>
@@ -178,8 +183,8 @@ class Tasting extends Component {
                         id={wineData._id}
                         handleCardClick={this.handleCardClick}
                         numClicked={this.state.selected.length}
+                        finished={this.state.finished}
                       />
-                      {/* change index to card.id */}
                     </Grid>
                   </Grid>
                 </div>
@@ -193,8 +198,8 @@ class Tasting extends Component {
             Footer
         </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            <a href = "https://www.starrlightmead.com">Check Us Out!</a>
-        </Typography>
+            <a href="https://www.starrlightmead.com">Check Us Out!</a>
+          </Typography>
         </footer>
         {/* End footer */}
       </React.Fragment>
