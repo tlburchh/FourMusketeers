@@ -27,6 +27,14 @@ const styles = theme => ({
   
 });
 ////////////////////DRAG AND DROP/////////////////////////
+
+// fake data generator
+// const getItems = count =>
+//   Array.from({ length: count }, (v, k) => k).map(k => ({
+//     id: `item-${k}`,
+//     content: `item ${k}`,
+//   }));
+// console.log('k')
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -65,6 +73,8 @@ class AdminWineEdit extends Component {
 
     this.state = {
       data: [],
+      result: [],
+      dataSets: []
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -75,17 +85,17 @@ class AdminWineEdit extends Component {
       return;
     }
 
-    const data = reorder(
-      this.state.data,
-      result.source.i,
-      result.destination.i
+    const dataSets = reorder(
+      this.state.dataSets,
+      result.source.index,
+      result.destination.index
       );
-      console.log(this.state.data);
-      console.log(result.source.i);
-      console.log(result.destination.i);
+      console.log(this.state.dataSets);
+      console.log(result.source.index);
+      console.log(result.destination.index);
 
     this.setState({
-      data,
+      dataSets,
     });
   }
 /////////////////////////////////////////////////////////
@@ -145,9 +155,9 @@ class AdminWineEdit extends Component {
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}
                           >
-                              {this.state.data.map((wine, i) => (
-                                <div key={i} className={classes.root}>
-                                <Draggable key={wine._id} draggableId={wine._id} index={i}>
+                              {this.state.data.map((wine, index) => (
+                                <div className={classes.root}>
+                                <Draggable key={index} draggableId={wine._id} index={index}>
                                   {(provided, snapshot) => (
                                     <div
                                       ref={provided.innerRef}
