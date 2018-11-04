@@ -6,16 +6,12 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
-<<<<<<< HEAD
-import WineCardAdmin from '../../components/WineCardAdmin/WineCardAdmin';
-import AdminDataInput from '../../components/TextBoxes/AdminDataInput';
-=======
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import EditButton from "../EditButton/EditButton";
+import AdminDataInput from "../TextBoxes/AdminDataInput"
 // import '../../components/WineCardAdmin/WIneDarcAdmin.css'
 
 
->>>>>>> 8d00f42ea67e74c36aac0430aa4400ac93e87e63
 
 const styles = theme => ({
   root: {
