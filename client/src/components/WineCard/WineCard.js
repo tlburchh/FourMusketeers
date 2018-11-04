@@ -89,7 +89,7 @@ class WineCard extends Component {
               </Grid>
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <StarRating id={wine.name} />
-                <CommentPopover />
+                <CommentPopover keys={wine.keywords} />
               </Grid>
             </Grid>
             <Grid item>

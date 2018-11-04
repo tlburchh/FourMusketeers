@@ -28,15 +28,22 @@ module.exports = {
                 res.json({ message: "Error getting all the wines..." });
             });
     },
-    currentWines: (req, res) => {
-        console.log("Getting currently available wines");
-        db.Wines.find().where('isAvailable').then(wines => {
-            res.json(wines);
-        }).catch(err => {
-            console.log(`Error: ${err}`);
-            res.json({ message: "Error getting current wines..." });
-        });
-    },
+    // currentWines: (req, res) => {
+    //     console.log("Getting currently available wines");
+    //     db.Wines.find()
+    //         .where('isAvailable')
+    //         // Include the keywords associated with it, excluding their IDs
+    //         .populate({
+    //             path: "keywords",
+    //             select: "keyword -_id"
+    //         })
+    //         .then(wines => {
+    //             res.json(wines);
+    //         }).catch(err => {
+    //             console.log(`Error: ${err}`);
+    //             res.json({ message: "Error getting current wines..." });
+    //         });
+    // },
     wineById: (req, res) => {
         console.log(`Getting wine with id: ${req.params.id}`);
         const id = req.params.id;
@@ -57,12 +64,18 @@ module.exports = {
         console.log("Getting available wines");
         db.Wines.find({
             isAvailable: true
-        }).then(results => {
-            res.json(results);
-        }).catch(err => {
-            console.log(err);
-            res.json({ message: `Error occurred: ${err}` });
-        });
+        })
+            // Include the keywords associated with it, excluding their IDs
+            .populate({
+                path: "keywords",
+                select: "keyword -_id"
+            })
+            .then(results => {
+                res.json(results);
+            }).catch(err => {
+                console.log(err);
+                res.json({ message: `Error occurred: ${err}` });
+            });
     },
     keywords: (req, res) => {
         console.log("Getting all keywords");
