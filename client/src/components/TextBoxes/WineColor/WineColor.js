@@ -27,13 +27,14 @@ const styles = theme => ({
 
 class WineColor extends React.Component {
   state = {
-    age: '',
-    name: 'hai',
-    labelWidth: 0,
+    
+    color: '',
+    
   };
 
   componentDidMount() {
     this.setState({
+      color: 'color',
     });
   }
 
@@ -52,7 +53,7 @@ class WineColor extends React.Component {
             value={this.state.age}
             onChange={this.handleChange}
             inputProps={{
-              name: 'color',
+              color: 'color',
               id: 'color-simple',
             }}
           >
