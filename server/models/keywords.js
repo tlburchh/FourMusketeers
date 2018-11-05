@@ -7,6 +7,10 @@ const keywordSchema = new Schema ({
         required: true
     },
 
+    isGood: {
+        type: Boolean
+    },
+
     wines:[{
         type: Schema.Types.ObjectId,
         ref: 'Wine'

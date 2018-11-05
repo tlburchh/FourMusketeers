@@ -115,7 +115,8 @@ const AdminPage = (props) => {
         </Toolbar>
       </AppBar> */}
       <main>
-<AdminWineEdit />
+    
+      <AdminWineEdit />
       </main>
       {/* Footer */}
       {/* <footer className={classes.footer}>

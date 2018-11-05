@@ -1,14 +1,6 @@
 const mongoose =  require('mongoose');
 const Schema = mongoose.Schema;
 
-function getPrice(number){
-    return (number/100).toFixed(2);
-};
-
-function setPrice(number){
-    return number * 100;
-};
-
 const wineSchema = new Schema ({
     name: {
         type: String,
@@ -25,12 +17,13 @@ const wineSchema = new Schema ({
     description: {
         type:  String,
         trim: true,
-        required: true
+        required: "Description is required"
     },
 
     priceRegular: {
         type: String,
         trim: true,
+        required: "Price is required"
     },
     
     isAvailable: {
