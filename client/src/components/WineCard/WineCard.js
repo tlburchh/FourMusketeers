@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -10,11 +10,11 @@ import CommentPopover from '../CommentPopover/CommentPopover';
 import './WineCard.css';
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
-const styles = theme => ({
+const styles = createMuiTheme ({
   root: {
     flexGrow: 1,
     maxWidth: 600,
-    padding: theme.spacing.unit * 2,
+    padding: "2rem",
   }
 });
 
@@ -101,7 +101,7 @@ class WineCard extends Component {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">{`$ ${this.formatPrice(wine.priceRegular)}`}</Typography>
+              <Typography variant="subtitle1">{`$ ${wine.priceRegular}`}</Typography>
             </Grid>
           </Grid>
         </Grid>
