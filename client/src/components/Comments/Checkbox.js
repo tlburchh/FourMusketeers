@@ -10,6 +10,7 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 // import green from "@material-ui/core/colors/green";
 import cyan from "@material-ui/core/colors/cyan";
+// you can import color via this import
 
 
 const styles = {

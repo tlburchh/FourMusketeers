@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import toRenderProps from 'recompose/toRenderProps';
 import withState from 'recompose/withState';
+import CheckboxLabels from '../../components/Comments/Checkbox';
 
 const WithState = toRenderProps(withState('anchorEl', 'updateAnchorEl', null));
 
@@ -50,7 +51,7 @@ function CommentPopover(props) {
                 horizontal: 'right',
               }}
             >
-              <Typography className={classes.typography}>The content of the Popover.</Typography>
+              <Typography className={classes.typography}>The content of the Popover.  <CheckboxLabels /> </Typography>
             </Popover>
           </React.Fragment>
         );

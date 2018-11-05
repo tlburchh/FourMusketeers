@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import API from "../../utils/API";
 import WineCardAdmin from '../../components/WineCardAdmin/WineCardAdmin';
 import { Draggable, Droppable } from 'react-drag-and-drop';
+import './AdminWine.css';
 
 
 const styles = theme => ({
@@ -66,18 +67,19 @@ class AdminWineEdit extends Component {
 
     return (
       <div className={classes.root}>
+      <br></br>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <Paper className={classes.paper}>Wine Data Input</Paper>
+            <Paper className={classes.paper} id="wineBG"><h2 id="cardTitle">Wine Data Input</h2><hr></hr></Paper>
           </Grid>
           <Grid item xs={6}>
-            <Paper className={classes.paper}>Wine Card
+            <Paper className={classes.paper} id="wineBG"><h2 id="cardTitle">Wine Card</h2><hr></hr>
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
-                  <Grid container spacing={24}>
+                  <Grid container spacing={16}>
                     <Grid item xs={12}>
-
                       <WineCardAdmin wine={wineData} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id} />
+                      <br></br>
                     </Grid>
                   </Grid>
                 </div>

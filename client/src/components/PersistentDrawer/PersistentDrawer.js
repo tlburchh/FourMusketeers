@@ -61,9 +61,6 @@ const styles = theme => ({
     width: drawerWidth,
     // backgroundColor: 'rgb(146, 146, 146)',
   },
-  ListItemText: {
-    fontColor: 'white',
-  },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -163,7 +160,7 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
+          <List id="list">
             {['Wine'].map((text, index) => (
               <ListItem button key={text}
               onClick={this.WineEdit}>
