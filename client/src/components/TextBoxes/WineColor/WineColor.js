@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 // import Input from '@material-ui/core/Input';
@@ -27,9 +27,9 @@ const styles = theme => ({
 
 class WineColor extends React.Component {
   state = {
-    
+
     color: '',
-    
+
   };
 
   componentDidMount() {
