@@ -56,10 +56,12 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    backgroundColor:'rgba(119, 158, 209, 0.85)'
+
   },
   drawerPaper: {
     width: drawerWidth,
-    // backgroundColor: 'rgb(146, 146, 146)',
+    backgroundColor: 'rgba(119, 158, 209, 0.85)',
   },
   drawerHeader: {
     display: 'flex',

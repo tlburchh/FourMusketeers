@@ -180,7 +180,7 @@ class AdminWineEdit extends Component {
                                       paddingTop: '0px',
                                       // maxWidth: '85%'
                                     }}>
-                                      <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "5px" }}>
+                                      <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "4px" }}>
                                         {/* <Paper >
                                       </Paper> */}
                                       </Grid>
