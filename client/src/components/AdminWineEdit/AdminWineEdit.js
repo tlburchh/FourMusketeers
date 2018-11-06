@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -73,8 +73,7 @@ class AdminWineEdit extends Component {
 
     this.state = {
       data: [],
-      result: [],
-      data: [],
+      result: []
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
