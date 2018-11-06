@@ -9,7 +9,7 @@ import API from "../../utils/API";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import EditButton from "../EditButton/EditButton";
 import AdminDataInput from "../TextBoxes/AdminDataInput"
-// import '../../components/WineCardAdmin/WIneDarcAdmin.css'
+import './AdminWine.css';
 
 
 
@@ -23,6 +23,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 4,
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    // backgroundColor: 'rgba(119, 158, 209, 0)'
   },
 
   
@@ -54,13 +55,13 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   // margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'white',
+  background: isDragging ? 'lightgreen' : 'rgba(119, 158, 209, 0)',
 
   // styles we need to apply on draggables
   ...draggableStyle,
 });
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'white',
+  background: isDraggingOver ? 'lightblue' : 'rgba(119, 158, 209, 0)',
   // padding: ,
   flexGrow: 1,
   maxWidth: 500,
@@ -143,14 +144,17 @@ class AdminWineEdit extends Component {
       <div>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <Paper className={classes.paper}>Wine Data Input
+          <br></br>
+            <Paper id='wineBG' className={classes.paper}><h3>Wine Data Input</h3><hr></hr>
             <AdminDataInput />
             </Paper>
           </Grid>
           <Grid item xs={6}>
-            <Paper className={classes.paper}>Wine Card
+          <br></br>
+            <Paper id='wineBG' className={classes.paper}><h3>Wine Card</h3>
+            <hr></hr>
               <Grid container spacing={24}>
-                <Grid item xs={12}>
+                <Grid id='wineBGO'item xs={12}>
                     <DragDropContext onDragEnd={this.onDragEnd}>
                       <Droppable droppableId="droppable">
                         {(provided, snapshot) => (

@@ -4,8 +4,10 @@
     
 }
 
+#wineBGO {
+    background-color:rgba(119, 158, 209, 0);
+}
+
 #wineCard{
     border: 1px solid black;
-
-    
 }
