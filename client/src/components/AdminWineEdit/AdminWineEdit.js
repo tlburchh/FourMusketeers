@@ -29,19 +29,11 @@ const styles = theme => ({
 });
 ////////////////////DRAG AND DROP/////////////////////////
 
-// fake data generator
-// const getItems = count =>
-//   Array.from({ length: count }, (v, k) => k).map(k => ({
-//     id: `item-${k}`,
-//     content: `item ${k}`,
-//   }));
-// console.log('k')
-// a little function to help us with reordering the result
+
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-
   return result;
 };
 
@@ -75,7 +67,7 @@ class AdminWineEdit extends Component {
     this.state = {
       data: [],
       result: [],
-      dataSets: [],
+      data: []
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -86,17 +78,15 @@ class AdminWineEdit extends Component {
       return;
     }
 
-    const dataSets = reorder(
-      this.state.dataSets,
+    const data = reorder( //line 40 is reorder function.
+      this.state.data,
       result.source.index,
       result.destination.index
       );
-      console.log(this.state.dataSets);
-      console.log(result.source.index);
-      console.log(result.destination.index);
+      
 
     this.setState({
-      dataSets
+      data 
     });
   }
 /////////////////////////////////////////////////////////

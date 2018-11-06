@@ -37,12 +37,12 @@ class AdminDataInput extends Component {
     super(props);
 
     this.state = {
-      name:this.props.name,
-      price: this.props.price,
-      color:this.props.color,
-      description:this.props.description,
-      keywords: this.props.keywords,
-      wineswitch: this.props.switch,
+      // name:this.props.name,
+      // price: this.props.price,
+      // color:this.props.color,
+      // description:this.props.description,
+      // keywords: this.props.keywords,
+      // wineswitch: this.props.switch,
 
     };
     console.log(this.state)
