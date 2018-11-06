@@ -13,7 +13,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 // import Grid from '@material-ui/core/Grid';
 // import Paper from '@material-ui/core/Paper';
 // import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 // import ButtonBase from '@material-ui/core/ButtonBase';
 // import IconButton from '@material-ui/core/IconButton';
@@ -96,7 +96,7 @@ const styles = theme => ({
 
 
 const AdminPage = (props) => {
-  const { classes } = props;
+  // const { classes } = props;
 
   return (
     <React.Fragment>
