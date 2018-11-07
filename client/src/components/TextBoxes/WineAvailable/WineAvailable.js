@@ -20,9 +20,9 @@ const styles = theme => ({
   },
 });
 
-class WineColor extends React.Component {
+class WineAvailable extends React.Component {
     state = {
-      color: '',
+      available: '',
     };
   
   
@@ -36,29 +36,28 @@ class WineColor extends React.Component {
       return (
         <form className={classes.root} autoComplete="off">
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="color-simple">Color</InputLabel>
+            <InputLabel htmlFor="color-simple">Availability</InputLabel>
             <Select
-              value={this.state.color}
+              value={this.state.available}
               onChange={this.handleChange}
               inputProps={{
-                name: 'color',
-                id: 'color-simple',
+                name: 'available',
+                id: 'available-simple',
               }}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={'green'}>Green</MenuItem>
-              <MenuItem value={'red'}>Red</MenuItem>
-              <MenuItem value={'blue'}>Blue</MenuItem>
+              <MenuItem value={false}>Not Available</MenuItem>
+              <MenuItem value={true}>Available</MenuItem>
             </Select>
           </FormControl>
       </form>
       );
     }
   }
-WineColor.propTypes = {
+WineAvailable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(WineColor);
+export default withStyles(styles)(WineAvailable);

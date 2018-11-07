@@ -6,12 +6,14 @@ import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import Switch from '@material-ui/core/Switch';
+import WineColor from './WineColor/WineColor'
+import WineAvailable from './WineAvailable/WineAvailable'
 
 
 const styles = theme => ({
@@ -127,26 +129,7 @@ class AdminDataInput extends Component {
         />
       </form>
       {/* Color    WORK IN PRORESS   */}
-      <form className={classes.root} autoComplete="off">
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="color-simple">Color</InputLabel>
-          <Select
-            value={this.state.color}
-            onChange={this.handleChange()}
-            inputProps={{
-              color: 'color',
-              id: 'color-simple',
-            }}
-          >
-            <MenuItem value="Color">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Red</MenuItem>
-            <MenuItem value={20}>Green</MenuItem>
-            <MenuItem value={30}>Blue</MenuItem>
-          </Select>
-        </FormControl>
-      </form>
+    <WineColor />
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="standard-textarea"
@@ -172,16 +155,9 @@ class AdminDataInput extends Component {
       </div>
       
       <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
-     {/* Wine Switch */}
+     {/* Wine Available */}
 
-      <div>
-        <Switch
-          // checked={this.state.available}
-          onChange={this.handleChange('available')}
-          value= {this.state.available}
-          color="primary"
-        />
-      </div>
+      <WineAvailable />
 
        {/* Save Button  */}
       <div>
