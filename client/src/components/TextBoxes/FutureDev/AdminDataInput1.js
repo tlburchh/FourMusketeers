@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import WineName from './WineName';
 import WinePrice from './WinePrice';
-import WineColor from './WineColor';
+import WineColor from '../WineColor';
 import WineDescription from './WineDescription';
 import WineKeywords from './WineKeywords';
 import WineAddRemoveSwitch from './WineAddRemoveSwitch';
