@@ -91,21 +91,22 @@ class App extends Component {
 			<div className="App">
 				{/* MUST be an admin for this route block */}
 				{this.state.loggedIn && this.state.user.isAdmin && (
-					<div>
-						<div className="main-view">
-							<Switch>
-								<Route exact path="/" component={() => <Admin user={this.state.user} logout={this.logout} />} />
-								<Route exact path="/tasting" component={() => <Tasting
-									user={this.state.user}
-								/>} />
-								<Route component={NoMatch} />
-							</Switch>
-						</div>
-					</div>
+					<Switch>
+						<Route exact path="/" component={() => <Admin user={this.state.user} logout={this.logout} />} />
+						<Route path="/tasting" component={() => (
+							<div>
+								<Nav user={this.state.user} logout={this.logout} />
+								<div className="main-view">
+									<Tasting user={this.state.user} />
+								</div>
+							</div>
+						)} />
+						<Route component={NoMatch} />
+					</Switch>
 				)}
 
 				{/* MUST be logged in and NOT an admin for this route block */}
-				{this.state.loggedIn && (
+				{this.state.loggedIn && !this.state.user.isAdmin &&  (
 					<div>
 						<Nav user={this.state.user} logout={this.logout} />
 						<div className="main-view">
