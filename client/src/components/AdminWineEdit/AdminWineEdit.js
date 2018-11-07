@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -26,7 +26,7 @@ const styles = theme => ({
     // backgroundColor: 'rgba(119, 158, 209, 0)'
   },
 
-  
+
 });
 ////////////////////DRAG AND DROP/////////////////////////
 
@@ -42,7 +42,6 @@ const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-
   return result;
 };
 
@@ -65,7 +64,7 @@ const getListStyle = isDraggingOver => ({
   // padding: ,
   flexGrow: 1,
   maxWidth: 500,
-  
+
 });
 
 
@@ -75,32 +74,31 @@ class AdminWineEdit extends Component {
 
     this.state = {
       data: [],
-      result: [],
-      dataSets: [],
+      result: []
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
-//////////////////DRAG AND DROP/////////////////////////
+  //////////////////DRAG AND DROP/////////////////////////
   onDragEnd(result) {
     // dropped outside the list
     if (!result.destination) {
       return;
     }
 
-    const dataSets = reorder(
-      this.state.dataSets,
+    const data = reorder(
+      this.state.data,
       result.source.index,
       result.destination.index
-      );
-      console.log(this.state.dataSets);
-      console.log(result.source.index);
-      console.log(result.destination.index);
+    );
+    console.log(this.state.data);
+    console.log(result.source.index);
+    console.log(result.destination.index);
 
     this.setState({
-      dataSets
+      data,
     });
   }
-/////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
   formatPrice = price => {
     const dotPos = price.length - 2;
     return price.substring(0, dotPos) + "." + price.substring(dotPos, price.length);
@@ -187,46 +185,46 @@ class AdminWineEdit extends Component {
                                       <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "4px" }}>
                                         {/* <Paper >
                                       </Paper> */}
-                                      </Grid>
-                                      <Grid item xs container style={{maxWidth: '85%'}} direction="column" spacing={24}>
-                                        <Grid item xs>
-                                          <Typography gutterBottom variant="subtitle1">
-                                            {`${wine.name}`}
-                                          </Typography>
-                                          <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
+                                          </Grid>
+                                          <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
+                                            <Grid item xs>
+                                              <Typography gutterBottom variant="subtitle1">
+                                                {`${wine.name}`}
+                                              </Typography>
+                                              <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
+                                            </Grid>
+                                            <Grid item style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                              <EditButton />
+                                            </Grid>
+                                          </Grid>
+                                          <Grid item>
+                                            <Typography variant="subtitle1">{`$ ${this.formatPrice(wine.priceRegular)}`}</Typography>
+                                          </Grid>
                                         </Grid>
-                                        <Grid item style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                          <EditButton />
-                                        </Grid>
                                       </Grid>
-                                      <Grid item>
-                                        <Typography variant="subtitle1">{`$ ${this.formatPrice(wine.priceRegular)}`}</Typography>
-                                      </Grid>
-                                    </Grid>
-                                  </Grid>
-                                </Paper>
+                                    </Paper>
 
 
-                                      </div>
-                                  )}
-                                </Draggable>
-                              
+                                  </div>
+                                )}
+                              </Draggable>
+
                               {provided.placeholder}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </Droppable>
-                    </DragDropContext>
-                                {/* <WineCardAdmin wine={wineData} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id} /> */}
-                
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </Droppable>
+                  </DragDropContext>
+                  {/* <WineCardAdmin wine={wineData} i={i} id={wineData._id} handleCardClick={this.handleCardClick} isActive={this.state.activeCard === wineData._id} /> */}
+
                 </Grid>
               </Grid>
             </Paper>
           </Grid>
         </Grid>
       </div>
-    
+
     );
   }
 
