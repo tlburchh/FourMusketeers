@@ -23,6 +23,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 // import { generateKeyPairSync } from 'crypto';
 import './pDrawer.css';
+import CheckboxLabels from '../../components/Checkbox/Checkbox';
+
 
 const drawerWidth = 240;
 
@@ -54,13 +56,12 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    backgroundColor:'rgba(119, 158, 209, 0.85)'
+
   },
   drawerPaper: {
     width: drawerWidth,
-    // backgroundColor: 'grey',
-  },
-  ListItemText: {
-    fontColor: 'white',
+    backgroundColor: 'rgba(119, 158, 209, 0.85)',
   },
   drawerHeader: {
     display: 'flex',
@@ -112,6 +113,7 @@ class PersistentDrawerLeft extends React.Component {
   smilePage = () => {
     
   }
+
   
 
 
@@ -139,11 +141,14 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               Admin Page
+              <CheckboxLabels />
+              {/* testing checklabels */}
             </Typography>
           </Toolbar>
         </AppBar>
         <Drawer
           className={classes.drawer}
+          id= "drawerrr"
           variant="persistent"
           anchor="left"
           open={open}
@@ -157,7 +162,7 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
+          <List id="list">
             {['Wine'].map((text, index) => (
               <ListItem button key={text}
               onClick={this.WineEdit}>
