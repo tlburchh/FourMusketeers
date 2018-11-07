@@ -50,7 +50,7 @@ class WineCardAdmin extends Component {
               paddingTop: '0px',
               // maxWidth: '85%'
             }}>
-              <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "5px" }}>
+              <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "4px" }}>
                 {/* <Paper >
               </Paper> */}
               </Grid>
@@ -66,7 +66,7 @@ class WineCardAdmin extends Component {
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography variant="subtitle1">{`$ ${this.formatPrice(wine.priceRegular)}`}</Typography>
+                <Typography variant="subtitle1" id="winePrice">{`$ ${this.formatPrice(wine.priceRegular)}`}</Typography>
               </Grid>
             </Grid>
           </Grid>

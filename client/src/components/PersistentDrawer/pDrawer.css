@@ -1,7 +1,11 @@
-.MuiListItemText-root-151 {
+/* .MuiListItemText-root-151 {
     color: white;
 };
 
 #root > div > div > div > div > div > div > ul:nth-child(3) > div:nth-child(1) > div.MuiListItemText-root-151 {
     color: white;
+}; */
+
+#drawerrr {
+    background-color:rgba(119, 158, 209, 0.85);
 };

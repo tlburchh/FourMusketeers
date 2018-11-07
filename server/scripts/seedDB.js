@@ -82,7 +82,7 @@ const winesSeed = [
   {
     name: "Off-dry Blackberry Mead",
     color: ["purple", "#46053B"],
-    description: "Our Blackberry Off-dry Mead is our honey homage to red wine. With a full berry nose, and a taste that is tart blackberry balanced with the warm flavors of oak and vanilla. Serve at cellar temerature with beef or pork, or chill slightly, if you prefer.",
+    description: "Our Blackberry Off-dry Mead is our honey homage to red wine. With a full berry nose, and a taste that is tart blackberry balanced with the warm flavors of oak and vanilla. Serve at cellar temperature with beef or pork, or chill slightly, if you prefer.",
     priceRegular: '26.00',
     isAvailable: true,
     orderNumber: 2
