@@ -40,6 +40,7 @@ class App extends Component {
 
 	logout = (event) => {
 		event.preventDefault();
+		console.log("Logout firing");
 
 		if (this.state.user.email === "Guest") {
 			this.setState({
@@ -91,10 +92,9 @@ class App extends Component {
 				{/* MUST be an admin for this route block */}
 				{this.state.loggedIn && this.state.user.isAdmin && (
 					<div>
-						<Nav user={this.state.user} logout={this.logout} />
 						<div className="main-view">
 							<Switch>
-								<Route exact path="/" component={() => <Admin user={this.state.user} logout={this.state.logout} />} />
+								<Route exact path="/" component={() => <Admin user={this.state.user} logout={this.logout} />} />
 								<Route exact path="/tasting" component={() => <Tasting
 									user={this.state.user}
 								/>} />
@@ -122,8 +122,8 @@ class App extends Component {
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
 						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/tasting" component={() => <LoginForm user={this.login} />} />
-						<Route exact path="/admin" component={() => <LoginForm user={this.login} />} />
+						<Route exact path="/tasting" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
+						<Route exact path="/admin" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 						<Route exact path="/signup" component={SignupForm} />
 					</div>
 				)}

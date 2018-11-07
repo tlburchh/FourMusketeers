@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 // import AppBar from '@material-ui/core/AppBar';
@@ -96,12 +96,18 @@ const styles = theme => ({
 
 
 const AdminPage = (props) => {
+  const greeting = (
+    <Fragment>
+      Hello, <strong>{props.user.firstName}</strong>
+    </Fragment>
+  );
+
   // const { classes } = props;
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <PersistentDrawerLeft />
+      <PersistentDrawerLeft greeting={greeting} logout={props.logout} />
 
       {/* <AppBar position="static" className={classes.appBar}>
       <Toolbar>
@@ -115,8 +121,8 @@ const AdminPage = (props) => {
         </Toolbar>
       </AppBar> */}
       <main>
-    
-      <AdminWineEdit />
+
+        <AdminWineEdit />
       </main>
       {/* Footer */}
       {/* <footer className={classes.footer}>
