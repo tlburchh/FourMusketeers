@@ -18,8 +18,6 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-
-  
 });
 
 class AdminWineEdit extends Component {

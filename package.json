@@ -1,7 +1,7 @@
 {
-  "name": "reactreadinglist-auth-server",
+  "name": "starrlightwineapp",
   "version": "1.0.0",
-  "description": "Full Stack React App with Authentication",
+  "description": "An app for wine / mead tastings",
   "main": "server/server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",

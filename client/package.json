@@ -1,5 +1,5 @@
 {
-  "name": "reactreadinglist-auth-client",
+  "name": "starrlightwineapp",
   "version": "1.0.0",
   "private": true,
   "proxy": "http://localhost:3001/",
