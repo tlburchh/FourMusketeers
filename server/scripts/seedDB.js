@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const associator = require('./seedAssociations');
 
 // This file seeds our database
 
@@ -258,26 +259,31 @@ const ratingsSeed = [
 // Seed initial data
 
 
-db.Keywords.remove({}).then(
-  db.Keywords.insertMany(keywordsSeed).then(resp => {
-    console.log("Added keywords");
-    db.Wines.remove({}).then((res, err) => {
-      db.Wines.insertMany(winesSeed).then(resp => {
-        console.log("Added wines");
-        db.Rating.remove({}).then(
-          db.Rating.insertMany(ratingsSeed).then(resp => {
-            console.log("Added ratings");
-            process.exit(0);
-          }).catch(err => {
-            console.log(`Error inserting ratings ${err}`);
-          })
-        );
-      }).catch(err => {
-        console.log(`Error inserting wines ${err}`);
+
+module.exports = function seed(respObj) {
+  db.Keywords.remove({}).then(
+    db.Keywords.insertMany(keywordsSeed).then(resp => {
+      console.log("Added keywords");
+      db.Wines.remove({}).then((res, err) => {
+        db.Wines.insertMany(winesSeed).then(resp => {
+          console.log("Added wines");
+          db.Rating.remove({}).then(
+            db.Rating.insertMany(ratingsSeed).then(resp => {
+              console.log("Added ratings");
+              associator.doItAll();
+              respObj.json({ message: "seeding succeeded" });
+            }).catch(err => {
+              console.log(`Error inserting ratings ${err}`);
+            })
+          );
+        }).catch(err => {
+          console.log(`Error inserting wines ${err}`);
+        });
       });
-    });
-  }).catch(err => {
-    console.log(`Error inserting keywords ${err}`);
-  })
-);
+    }).catch(err => {
+      console.log(`Error inserting keywords ${err}`);
+    })
+  );
+}
+
 

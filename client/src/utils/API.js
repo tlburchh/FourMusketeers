@@ -6,4 +6,8 @@ export default {
     console.log("getCurrentMeads");
     return axios.get("/api/get/currentWines");
   },
+  seedDB: function() {
+    console.log("Seed function hit in API");
+    return axios.get("/api/get/seed");
+  }
 }

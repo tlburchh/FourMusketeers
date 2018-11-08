@@ -1,4 +1,5 @@
 const db = require("../models");
+// const seedStuff = require("../scripts/seedDB");
 
 // Define methods for GETTING various data from the Users, Wines, etc collections
 module.exports = {
@@ -87,6 +88,11 @@ module.exports = {
             .then(keywords => {
                 res.json(keywords);
             });
+    },
+    seed: (req, res) => {
+        console.log("Seeding DB");
+        require("../scripts/seedDB")(res);
+
     }
 
 };

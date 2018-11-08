@@ -16,6 +16,8 @@ router.get("/ratings", getController.ratings);
 // Keyword stuff
 router.get("/keywords", getController.keywords);
 
+router.get("/seed", getController.seed);
+
 
 // etc...
 
