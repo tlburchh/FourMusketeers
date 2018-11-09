@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import WineCard from '../../components/WineCard';
 import API from "../../utils/API";
 import './Tasting.css';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   icon: {
@@ -72,10 +73,35 @@ class Tasting extends Component {
     super(props);
 
     this.state = {
+      user: this.props.user,
       data: [],
       selected: [],
-      finished: false
+      finished: false,
+      starRatings: Array(8).fill(0),
+      keywordRatings: Array(8).fill([]),
+      winesRated: []
     };
+  }
+
+  // User clicks submit rating button
+  submitRatedWines = () => {
+    // We have an array of 8 ratings (one per wine)
+    let ratingArr = [];
+    // for each one, push the corresponding index in an object into the array
+    for (let i = 0; i < 8; i++) {
+      const wineRating = {
+        numericalRating: this.state.starRatings[i],
+        keyWordRating: this.state.keywordRatings[i],
+        user: this.state.user,
+        wine: this.state.winesRated[i]
+      };
+      ratingArr.push(wineRating);
+    }
+    API.submitRating(ratingArr).then(resp => {
+      console.log(`Submitted wine ratings: ${resp}`, resp);
+    }).catch(err => {
+      console.log("Error submitting wine rating...");
+    });
   }
 
   handleCardClick = (cardId, event) => {
@@ -195,6 +221,11 @@ class Tasting extends Component {
                   </Grid>
                 </div>
               ))}
+              {this.state.finished && (
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitRatedWines}>
+                  Submit Ratings!
+                </Button>
+              )}
             </Grid>
           </div>
         </main>
