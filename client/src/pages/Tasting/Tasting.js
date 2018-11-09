@@ -178,7 +178,7 @@ class Tasting extends Component {
                   direction="column"
                   justify="center"
                   alignItems="center"
->>
+                >
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid >
