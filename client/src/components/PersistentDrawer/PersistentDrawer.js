@@ -56,7 +56,7 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    // backgroundColor:'rgba(119, 158, 209, 0.85)'
+    backgroundColor: 'rgba(119, 158, 209, 0.85)'
 
   },
   drawerPaper: {
@@ -89,9 +89,12 @@ const styles = theme => ({
 });
 
 class PersistentDrawerLeft extends React.Component {
-  state = {
-    open: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -105,16 +108,16 @@ class PersistentDrawerLeft extends React.Component {
 
   }
   statsPage = () => {
-    
+
   }
   emailPage = () => {
-    
+
   }
   smilePage = () => {
-    
+
   }
 
-  
+
 
 
   render() {
@@ -145,10 +148,18 @@ class PersistentDrawerLeft extends React.Component {
               {/* testing checklabels */}
             </Typography>
           </Toolbar>
+          {/* Added by Karsten, greeting and logout to replace NAV */}
+          <div>
+            {this.props.greeting}&nbsp;
+            <a className="logout" href="/" onClick={this.props.logout}>
+              Logout
+          </a>&nbsp;
+          <a href="/tasting">Tasting page</a>
+          </div>
         </AppBar>
         <Drawer
           className={classes.drawer}
-          id= "drawerrr"
+          id="drawerrr"
           variant="persistent"
           anchor="left"
           open={open}
@@ -165,9 +176,9 @@ class PersistentDrawerLeft extends React.Component {
           <List id="list">
             {['Wine'].map((text, index) => (
               <ListItem button key={text}
-              onClick={this.WineEdit}>
+                onClick={this.WineEdit}>
                 <ListItemIcon> <AddToPhotosIcon /> </ListItemIcon>
-                <ListItemText primary={text}/>
+                <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
@@ -175,9 +186,9 @@ class PersistentDrawerLeft extends React.Component {
           <List>
             {['Stats'].map((text, index) => (
               <ListItem button key={text}
-              onClick={this.statsPage}>
+                onClick={this.statsPage}>
                 <ListItemIcon> <PollIcon /> </ListItemIcon>
-                <ListItemText primary={text}/>
+                <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
@@ -185,9 +196,9 @@ class PersistentDrawerLeft extends React.Component {
           <List>
             {['Emails'].map((text, index) => (
               <ListItem button key={text}
-              onClick={this.emailPage}>
+                onClick={this.emailPage}>
                 <ListItemIcon> <MailIcon /> </ListItemIcon>
-                <ListItemText primary={text}/>
+                <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
@@ -195,9 +206,9 @@ class PersistentDrawerLeft extends React.Component {
           <List>
             {[':)'].map((text, index) => (
               <ListItem button key={text}
-              onClick={this.smilePage}>
+                onClick={this.smilePage}>
                 <ListItemIcon> <MoodIcon /> </ListItemIcon>
-                <ListItemText primary={text}/>
+                <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>

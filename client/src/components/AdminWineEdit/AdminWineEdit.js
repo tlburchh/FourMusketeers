@@ -191,7 +191,7 @@ class AdminWineEdit extends Component {
                                               <Typography gutterBottom variant="subtitle1">
                                                 {`${wine.name}`}
                                               </Typography>
-                                              <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography>
+                                              {/* <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography> */}
                                             </Grid>
                                             <Grid item style={{ display: 'flex', justifyContent: 'flex-end' }}>
                                               <EditButton />

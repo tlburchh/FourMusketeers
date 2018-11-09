@@ -7,7 +7,7 @@
   overflow: hidden;
   position: relative;
   max-height: 4.8em;
-}
+} */
 
 .truncate::after {
   content: '...';
