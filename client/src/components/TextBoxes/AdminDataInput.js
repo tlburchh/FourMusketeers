@@ -111,53 +111,58 @@ class AdminDataInput extends Component {
     return (
 
       <div>
-        {/* Wine Name */}
-        <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="standard-name"
-            label="Wine Name"
-            className={classes.textField}
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            margin="normal"
-          />
-        </form>
-        {/* Price */}
-        <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="standard-name"
-            label="Wine Price"
-            className={classes.textField}
-            value={this.state.price}
-            onChange={this.handleChange('price')}
-            margin="normal"
-          />
-        </form>
-        {/* Color    WORK IN PRORESS   */}
-        <WineColor color={this.state.color} handleColorChange={this.handleColorChange} />
-        <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="standard-textarea"
-            label="Description"
-            placeholder="Placeholder"
-            multiline
-            onChange={this.handleChange('description')}
-            className={classes.textField}
-            margin="normal"
-          />
-        </form>
-        {/* Keywords */}
-        <div className={classes.root}>
-          <Grid container spacing={24}>
-            <Grid item xs>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>Keywords populate here for selection</Paper>
-            </Grid>
-            <Grid item xs>
-            </Grid>
+      
+      {/* Wine Name */}
+      <form className={classes.container} noValidate autoComplete="off">
+        <TextField
+          id="standard-name"
+          label="Wine Name"
+          className={classes.textField}
+          value={this.state.name}
+          onChange={this.handleChange('name')}
+          margin="normal"
+        />
+      </form>
+      {/* Price */}
+      <form className={classes.container} noValidate autoComplete="off">
+        <TextField
+          id="standard-name"
+          label="Wine Price"
+          className={classes.textField}
+          value={this.state.price}
+          onChange={this.handleChange('price')}
+          margin="normal"
+        />
+      </form>
+      {/* Color    WORK IN PRORESS   */}
+    <WineColor />
+      <form className={classes.container} noValidate autoComplete="off">
+        <TextField
+          id="standard-textarea"
+          label="Description"
+          placeholder="Placeholder"
+          multiline
+          onChange={this.handleChange('description')}
+          className={classes.textField}
+          margin="normal"
+        />
+      </form>
+      {/* Keywords */}
+      {/* <div className={classes.root}>
+        <Grid container spacing={24}>
+          <Grid item xs>         
           </Grid>
-        </div>
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>Keywords populate here for selection</Paper>
+          </Grid>
+          <Grid item xs>          
+          </Grid>
+        </Grid>
+      </div> */}
+      
+      <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
+     {/* Wine Available */}
+
 
         <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
           {/* Wine Available */}
