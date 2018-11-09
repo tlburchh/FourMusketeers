@@ -182,6 +182,49 @@ class Tasting extends Component {
     this.setState({})
   }
 
+  // This gets passed all the way down to <StarRating />
+  // It fires when a star is clicked and sets the appropriate state here
+  starStateGetter = (rating, wineId) => {
+    console.log(rating, wineId);
+    // We need to find if this wineId has been set in state before
+    if (this.findWineIdInState(wineId) === -1) {
+      // If not, put it and the rating at next available index
+      this.putWineIdInState(wineId);
+      this.putStarRatingInState(rating);
+    }
+    else {
+      // The rating was already set, just update the exisiting
+      const ind = this.findWineIdInState(wineId);
+    }
+
+  }
+
+  // == Helper functions for starStateGetter == //
+
+  // Look in winesRated state for a wine id.
+  // Return the index or -1 if not found
+  findWineIdInState = id => {
+    let found = this.state.winesRated.find((wineId, i) => {
+      return wineId === id;
+    });
+    if (!found) {
+      return -1;
+    }
+    else {
+      return this.state.winesRated.indexOf(found);
+    }
+  }
+  // Put a wine ID into state and return index where it is
+  putWineIdInState = id => {
+    this.setState({
+      winesRated: [...this.state.winesRated, id]
+    }, function () {
+      return findWineIdInState(id);
+    });
+  }
+
+  // Put the star rating into state
+
   render() {
     const { classes } = this.props;
 
@@ -198,13 +241,13 @@ class Tasting extends Component {
               this.state.selected.length > 7 && !this.state.finished && <div id="num-selected" className="done" onClick={this.startTasting}>Start Tasting!</div>
             }
             {/* End hero unit */}
-  
-            <Grid xs={12}  
-                  container
-                  direction="column"
-                  justify="center"
-                  alignItems="center"
-                >
+
+            <Grid xs={12}
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid >
@@ -217,7 +260,6 @@ class Tasting extends Component {
                         numClicked={this.state.selected.length}
                         finished={this.state.finished}
                         stars={this.state.starRatings}
-                        identifier={i}
                         starStateGetter={this.starStateGetter}
                       />
                     </Grid>
