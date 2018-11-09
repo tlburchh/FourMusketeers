@@ -5,16 +5,9 @@ const db = require("../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/wino", { useNewUrlParser: true });
 
-// let userId;
 let wineIds = [];
 let keywordIds = [];
-// let ratingIds = [];
 
-
-// Save all the IDs in arrays
-db.User.find({}).then(users => {
-    userId = users[0].id;
-});
 
 // Get the wines, save em. Then Get the keywords and push a random wine into its array
 // Then push a keyword to each wine...
@@ -22,14 +15,13 @@ db.Wines.find({}).then(wines => {
     wines.forEach(wine => {
         wineIds.push(wine.id);
     });
-    console.log(wineIds);
+    console.log("Got wine IDs");
     db.Keywords.find({}).then(keywords => {
         keywords.forEach(keyword => {
             keywordIds.push(keyword.id);
         });
-        console.log(keywordIds);
+        console.log("Got keyword IDs");
         assKeys();
-        addWineFlavors();
     });
 });
 
@@ -44,28 +36,40 @@ getRandomKw = () => {
     return keywordIds[rand];
 }
 
+getManyKws = () => {
+    let arr = [];
+    for (let i = 0; i < 6; i++) {
+        arr.push(getRandomKw());
+    }
+    console.log(`Keywords: ${arr}`, arr);
+    return arr;
+}
+
 assKeys = () => {
     keywordIds.forEach(keyword => {
-        db.Keywords.findByIdAndUpdate(keyword,
+        db.Keywords.findOneAndUpdate({ _id: keyword },
             {
                 $push: {
                     wines: getRandomWine()
                 }
             }
         ).then(result => {
+            console.log("Added the wines to keyword");
+            addWineFlavors();
         }).catch((err) => { console.log(err); })
     });
 }
 // Put keywords in each wine's 'keywords' array
 addWineFlavors = () => {
     wineIds.forEach(wine => {
-        db.Wines.findByIdAndUpdate(wine,
+        db.Wines.findOneAndUpdate({ _id: wine },
             {
                 $push: {
                     keywords: getRandomKw()
                 }
             }
         ).then(result => {
+            console.log("Added keywords to wines");
             process.exit(0);
         }).catch((err) => { console.log(err); })
     });

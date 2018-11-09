@@ -97,7 +97,7 @@ class WineCard extends Component {
                 {
                   // Only display the stars and comments button when the user has finalized their 8 choices and clicked start
                   this.props.finished && <React.Fragment><StarRating id={wine.name} />
-                    {/* <CommentPopover keys={wine.keywords} /> */}
+                    <CommentPopover keys={wine.keywords} />
                     </React.Fragment>
                 }
               </Grid>
