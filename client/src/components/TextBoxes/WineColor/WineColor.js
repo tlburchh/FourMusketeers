@@ -21,42 +21,43 @@ const styles = theme => ({
 });
 
 class WineColor extends React.Component {
-    state = {
-      color: '',
-    };
-  
-  
-    handleChange = event => {
-      this.setState({ [event.target.name]: event.target.value });
-    };
-  
-    render() {
-      const { classes } = this.props;
-  
-      return (
-        <form className={classes.root} autoComplete="off">
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="color-simple">Color</InputLabel>
-            <Select
-              value={this.state.color}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'color',
-                id: 'color-simple',
-              }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={'green'}>Green</MenuItem>
-              <MenuItem value={'red'}>Red</MenuItem>
-              <MenuItem value={'blue'}>Blue</MenuItem>
-            </Select>
-          </FormControl>
+  state = {
+    choices: ["green", "red", "blue", "purple", "chartreuse", "mahogany"],
+    currColor: ""
+  };
+
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <form className={classes.root} autoComplete="off">
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="color-simple">Color</InputLabel>
+          <Select
+            value={this.props.color}
+            onChange={this.props.handleColorChange}
+            inputProps={{
+              name: 'color',
+              id: 'color-simple',
+            }}
+          >
+            {
+              this.state.choices.map(color => (
+                <MenuItem value={color}>{color}</MenuItem>
+
+              ))
+            }
+          </Select>
+        </FormControl>
       </form>
-      );
-    }
+    );
   }
+}
 WineColor.propTypes = {
   classes: PropTypes.object.isRequired,
 };
