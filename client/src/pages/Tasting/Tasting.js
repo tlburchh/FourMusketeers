@@ -172,11 +172,17 @@ class Tasting extends Component {
               this.state.selected.length > 7 && !this.state.finished && <div id="num-selected" className="done" onClick={this.startTasting}>Start Tasting!</div>
             }
             {/* End hero unit */}
-            <Grid container spacing={40}>
+  
+            <Grid xs={12}  
+                  container
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+>>
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
-                  <Grid container spacing={24}>
-                    <Grid item xs={12}>
+                  <Grid >
+                    <Grid >
                       <WineCard
                         wine={wineData}
                         key={i}

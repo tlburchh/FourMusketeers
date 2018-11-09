@@ -86,6 +86,7 @@ class WineCard extends Component {
                 </Typography>
                 <Typography
                   gutterBottom
+                  //Commented out truncate css. Can be added back at another time
                   // if the description is longer than 180, add the truncate class
                   className={wine.description.length > 180 ? 'truncate desc-text' : 'desc-text'}
                 >

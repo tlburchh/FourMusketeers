@@ -40,6 +40,7 @@ class App extends Component {
 
 	logout = (event) => {
 		event.preventDefault();
+		console.log("Logout firing");
 
 		if (this.state.user.email === "Guest") {
 			this.setState({
@@ -88,7 +89,24 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				{this.state.loggedIn && (
+				{/* MUST be an admin for this route block */}
+				{this.state.loggedIn && this.state.user.isAdmin && (
+					<Switch>
+						<Route exact path="/" component={() => <Admin user={this.state.user} logout={this.logout} />} />
+						<Route path="/tasting" component={() => (
+							<div>
+								<Nav user={this.state.user} logout={this.logout} />
+								<div className="main-view">
+									<Tasting user={this.state.user} />
+								</div>
+							</div>
+						)} />
+						<Route component={NoMatch} />
+					</Switch>
+				)}
+
+				{/* MUST be logged in and NOT an admin for this route block */}
+				{this.state.loggedIn && !this.state.user.isAdmin &&  (
 					<div>
 						<Nav user={this.state.user} logout={this.logout} />
 						<div className="main-view">
@@ -96,21 +114,17 @@ class App extends Component {
 								<Route exact path="/" component={() => <Tasting
 									user={this.state.user}
 								/>} />
-								<Route exact path="/tasting" component={() => <Tasting
-								// user={this.state.user}
-								/>} />
-								<Route exact path="/admin" component={() => <Admin user={this.state.user} />} />
 								<Route component={NoMatch} />
 							</Switch>
 						</div>
 					</div>
 				)}
-
+				{/* SCREW you, you hackers!! */}
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
 						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/tasting" component={() => <LoginForm user={this.login} />} />
-						<Route exact path="/admin" component={() => <LoginForm user={this.login} />} />
+						<Route exact path="/tasting" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
+						<Route exact path="/admin" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 						<Route exact path="/signup" component={SignupForm} />
 					</div>
 				)}
