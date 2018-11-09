@@ -86,7 +86,7 @@ class Tasting extends Component {
     // Check the selected array for the card's id
     else if (this.searchSelected(cardId) === -1) {
       // Check if we're at 8 already...
-      if (this.state.selected === 8) {
+      if (this.state.selected.length === 8) {
         // Yes, so cancel adding more
         return false;
       }
@@ -172,13 +172,13 @@ class Tasting extends Component {
               this.state.selected.length > 7 && !this.state.finished && <div id="num-selected" className="done" onClick={this.startTasting}>Start Tasting!</div>
             }
             {/* End hero unit */}
-  
-            <Grid xs={12}  
-                  container
-                  direction="column"
-                  justify="center"
-                  alignItems="center"
->>
+
+            <Grid xs={12}
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >>
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid >
