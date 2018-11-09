@@ -26,19 +26,20 @@ const styles = theme => ({
 
 class WineName extends React.Component {
   state = {
-    name: '',
+    value: '',
     // multiline: 'Controlled',
   };
-
+  
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     });
   };
-
+  
   render() {
     const { classes } = this.props;
-
+    console.log('Name State')
+    console.log(this.state);
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
@@ -50,6 +51,7 @@ class WineName extends React.Component {
           margin="normal"
         />
       </form>
+      
     );
   }
 }
