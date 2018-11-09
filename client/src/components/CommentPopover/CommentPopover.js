@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createMuiTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import Thumbs from "../Thumbs";
@@ -22,6 +22,7 @@ class CommentPopover extends React.Component {
 
     this.state = {
       anchorEl: null,
+      keywords: Array(this.props.keys.length).fill(null)
     };
   }
 
@@ -36,6 +37,33 @@ class CommentPopover extends React.Component {
       anchorEl: null,
     });
   };
+
+  thumbClickHandler = index => event => {
+    console.log(index);
+    let targ = event.target.parentNode;
+    // get thumb-box every time
+    if (targ.tagName === 'svg') {
+      targ = targ.parentNode;
+    }
+    const upDown = targ.getAttribute("data-val");
+    if (upDown === 'up') {
+      console.log(upDown);
+      const tmpArr = [...this.state.keywords.slice(0, index), true, ...this.state.keywords.slice(index + 1)];    
+      this.setState({
+        keywords: tmpArr
+      });
+    }
+    else if (upDown === 'down') {
+      console.log(upDown);
+      const tmpArr = [...this.state.keywords.slice(0, index), false, ...this.state.keywords.slice(index + 1)];
+      this.setState({
+        keywords: tmpArr
+      })
+    }
+    else {
+      console.log("Something went wrong");
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -70,9 +98,14 @@ class CommentPopover extends React.Component {
         >
           <div className={classes.typography} >
             {
-              keywds.map(k => {
+              keywds.map((k, i) => {
                 return (
-                  <Thumbs keyword={k.keyword} />
+                  <Thumbs
+                    keyword={k.keyword}
+                    key={i}
+                    goodBad={this.state.keywords[i]}
+                    thumbClickHandler={this.thumbClickHandler(i)}
+                  />
                 )
               })
             }

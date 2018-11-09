@@ -6,18 +6,7 @@ import "./Thumbs.css";
 
 class Thumbs extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            clicked: null,
-            up: "",
-            down: ""
-        };
-    }
-
-    // Workaround to deal with clicking on damn SVGs
-    thumb = event => {
+    backgroundToggler = event => {
         let targ = event.target.parentNode;
         // get thumb-box every time
         if (targ.tagName === 'svg') {
@@ -45,6 +34,10 @@ class Thumbs extends React.Component {
         }
     }
 
+    componentDidMount() {
+        console.log(`From parent ${this.props.goodBad}`);
+    }
+
     render() {
 
         return (
@@ -52,10 +45,16 @@ class Thumbs extends React.Component {
                 {this.props.keyword}
                 <div className="thumb-holder">
                     <div className='thumb-box' data-val="down">
-                        <ThumbDown className={`thumb down ${this.state.down}`} onClick={this.thumb} />
+                        <ThumbDown
+                            className={`thumb down ${!this.props.goodBad && this.props.goodBad !== null ? "downActive" : ""}`}
+                            onClick={this.props.thumbClickHandler}
+                        />
                     </div>
                     <div className='thumb-box' data-val="up">
-                        <ThumbUp className={`thumb up ${this.state.up}`} onClick={this.thumb} />
+                        <ThumbUp
+                            className={`thumb up ${this.props.goodBad ? "upActive" : ""}`}
+                            onClick={this.props.thumbClickHandler}
+                        />
                     </div>
                 </div>
             </div>
