@@ -142,7 +142,7 @@ class AdminDataInput extends Component {
         />
       </form>
       {/* Keywords */}
-      <div className={classes.root}>
+      {/* <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs>         
           </Grid>
@@ -152,7 +152,7 @@ class AdminDataInput extends Component {
           <Grid item xs>          
           </Grid>
         </Grid>
-      </div>
+      </div> */}
       
       <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
      {/* Wine Available */}
