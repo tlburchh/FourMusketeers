@@ -66,7 +66,7 @@ class WineCardAdmin extends Component {
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography variant="subtitle1" id="winePrice">{`$ ${this.formatPrice(wine.priceRegular)}`}</Typography>
+                <Typography variant="subtitle1" id="winePrice">{`$ ${wine.priceRegular}`}</Typography>
               </Grid>
             </Grid>
           </Grid>

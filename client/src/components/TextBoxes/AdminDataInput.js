@@ -76,8 +76,7 @@ class AdminDataInput extends Component {
     color: '',
     description: '',
     keywords: [],
-    available: true,
-
+    available: true
   };
 
   // name and price
@@ -131,7 +130,12 @@ class AdminDataInput extends Component {
           />
         </form>
         {/* Color    WORK IN PRORESS   */}
-        <WineColor />
+
+        <WineColor
+          color={this.state.color}
+          handleColorChange={this.handleColorChange}
+        />
+
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
             id="standard-textarea"
@@ -163,10 +167,12 @@ class AdminDataInput extends Component {
           <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
             {/* Wine Available */}
 
+
             <WineAvailable
               available={this.state.available}
               handleAvailableChange={this.handleAvailableChange}
             />
+
 
             {/* Save Button  */}
             <div>
