@@ -4,9 +4,12 @@ import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
+import Thumbs from "../Thumbs";
+
+import "./CommentPopover.css";
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-const theme = createMuiTheme ({
+const theme = createMuiTheme({
   typography: {
     margin: '2rem'
   }
@@ -65,13 +68,15 @@ class CommentPopover extends React.Component {
             horizontal: 'center',
           }}
         >
-          <Typography className={classes.typography} >
+          <div className={classes.typography} >
             {
               keywds.map(k => {
-                return k.keyword
+                return (
+                  <Thumbs keyword={k.keyword} />
+                )
               })
             }
-          </Typography>
+          </div>
         </Popover>
       </React.Fragment>
     );
