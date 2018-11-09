@@ -105,7 +105,10 @@ const AdminPage = (props) => {
         </Toolbar>
       </AppBar> */}
       <main>
-
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
         <AdminWineEdit />
       </main>
       {/* Footer */}
