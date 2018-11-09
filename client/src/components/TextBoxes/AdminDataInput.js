@@ -175,12 +175,13 @@ class AdminDataInput extends Component {
               <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
               Save
 
-        </Button>
+            </Button>
           </div>
         </Grid>
+      </Grid>
+    </div>
 
-
-      </div>
+      
     )
   }
 }
