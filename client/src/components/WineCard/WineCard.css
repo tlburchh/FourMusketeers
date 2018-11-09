@@ -1,7 +1,9 @@
 #root>div>div>div>main>div>div>div>div>div>div.active {
   box-shadow: 8px 8px 16px 0 rgba(230, 255, 3, 0.959), 0 6px 20px 0 rgba(230, 255, 3, 0.959);
 }
+
 /* 
+
 .truncate {
   max-width: 450px;
   overflow: hidden;
@@ -24,4 +26,8 @@
 
 .hidden {
   display: none;
+}
+
+h4 {
+  font-size: 23px;
 }
