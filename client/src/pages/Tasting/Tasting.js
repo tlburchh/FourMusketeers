@@ -216,6 +216,9 @@ class Tasting extends Component {
                         handleCardClick={this.handleCardClick}
                         numClicked={this.state.selected.length}
                         finished={this.state.finished}
+                        stars={this.state.starRatings}
+                        identifier={i}
+                        starStateGetter={this.starStateGetter}
                       />
                     </Grid>
                   </Grid>
