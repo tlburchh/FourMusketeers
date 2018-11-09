@@ -6,10 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import Switch from '@material-ui/core/Switch';
 import WineColor from './WineColor/WineColor'
@@ -98,6 +94,12 @@ class AdminDataInput extends Component {
     })
   }
 
+  handleAvailableChange = event => {
+    this.setState({
+      available: event.target.value
+    })
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -128,10 +130,12 @@ class AdminDataInput extends Component {
           />
         </form>
         {/* Color    WORK IN PRORESS   */}
+
         <WineColor
           color={this.state.color}
           handleColorChange={this.handleColorChange}
         />
+
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
             id="standard-textarea"
@@ -163,7 +167,12 @@ class AdminDataInput extends Component {
           <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
             {/* Wine Available */}
 
-            <WineAvailable />
+
+            <WineAvailable
+              available={this.state.available}
+              handleAvailableChange={this.handleAvailableChange}
+            />
+
 
             {/* Save Button  */}
             <div>
