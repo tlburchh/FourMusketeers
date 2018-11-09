@@ -144,6 +144,8 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
             <Typography variant="h5" color="inherit" noWrap>
               Admin Page
+
+              {/* test code for check boxes */}
               {/* <CheckboxLabels /> */}
               {/* testing checklabels */}
             </Typography>

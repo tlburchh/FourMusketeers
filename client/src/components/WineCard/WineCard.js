@@ -10,7 +10,7 @@ import CommentPopover from '../CommentPopover/CommentPopover';
 import './WineCard.css';
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
-const styles = createMuiTheme ({
+const styles = createMuiTheme({
   root: {
     flexGrow: 1,
     maxWidth: 600,
@@ -64,6 +64,7 @@ class WineCard extends Component {
   render() {
 
     const wine = this.props.wine;
+    console.log(this.props.finished, this.state.isActive);
 
     return (
       // If the finished prop comes down from Tasting and this card is inactive, hide it.
@@ -96,7 +97,8 @@ class WineCard extends Component {
                 {
                   // Only display the stars and comments button when the user has finalized their 8 choices and clicked start
                   this.props.finished && <React.Fragment><StarRating id={wine.name} />
-                    <CommentPopover keys={wine.keywords} /></React.Fragment>
+                    {/* <CommentPopover keys={wine.keywords} /> */}
+                    </React.Fragment>
                 }
               </Grid>
             </Grid>
