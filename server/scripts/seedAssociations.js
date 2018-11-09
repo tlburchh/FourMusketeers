@@ -46,7 +46,7 @@ getManyKws = () => {
 }
 
 assKeys = () => {
-    keywordIds.forEach(keyword => {
+    keywordIds.forEach((keyword, i) => {
         db.Keywords.findOneAndUpdate({ _id: keyword },
             {
                 $push: {
@@ -54,14 +54,23 @@ assKeys = () => {
                 }
             }
         ).then(result => {
-            console.log("Added the wines to keyword");
-            addWineFlavors();
+            if (i === keywordIds.length-1) {
+                console.log("DONE ADDING WINES");
+                for (let i = 0; i < 5; i++) {
+                    if (i === 4) {
+                        addWineFlavors(true);
+                    }
+                    else {
+                        addWineFlavors();
+                    }
+                }
+            }
         }).catch((err) => { console.log(err); })
     });
 }
 // Put keywords in each wine's 'keywords' array
-addWineFlavors = () => {
-    wineIds.forEach(wine => {
+addWineFlavors = done => {
+    wineIds.forEach((wine, i) => {
         db.Wines.findOneAndUpdate({ _id: wine },
             {
                 $push: {
@@ -69,8 +78,11 @@ addWineFlavors = () => {
                 }
             }
         ).then(result => {
-            console.log("Added keywords to wines");
-            process.exit(0);
+            if (i === wineIds.length-1 && done)  {
+                console.log("DONE ADDING KEYWORDS");
+                process.exit(0);
+            }
+            console.log("Added kw to wine");
         }).catch((err) => { console.log(err); })
     });
 }

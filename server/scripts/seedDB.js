@@ -46,15 +46,6 @@ const keywordsSeed = [
     keyword: "elegant"
   },
   {
-    keyword: "fat"
-  },
-  {
-    keyword: "flabby"
-  },
-  {
-    keyword: "fleshy"
-  },
-  {
     keyword: "jammy"
   },
   {
