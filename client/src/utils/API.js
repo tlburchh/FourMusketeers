@@ -6,4 +6,9 @@ export default {
     console.log("getCurrentMeads");
     return axios.get("/api/get/currentWines");
   },
+
+  addNewWine: function() {
+    console.log("addNewWine");
+    return axios.post("/api/post/addNewWine");
+  }
 }

@@ -13,7 +13,8 @@ const validateNoNumbers = str => {
 }
 
 const validatePassword = str => {
-    const passRegex = new RegExp('\^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+    // const passRegex = new RegExp('\^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+    const passRegex = new RegExp('\^(?=.*?[A-Z])(?=.*?[a-z])(?=.{4,}$');
     return passRegex.test(str);
 }
 
