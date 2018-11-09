@@ -258,13 +258,13 @@ const ratingsSeed = [
 // Seed initial data
 
 
-db.Keywords.remove({}).then(
+db.Keywords.deleteMany({}).then(
   db.Keywords.insertMany(keywordsSeed).then(resp => {
     console.log("Added keywords");
-    db.Wines.remove({}).then((res, err) => {
+    db.Wines.deleteMany({}).then((res, err) => {
       db.Wines.insertMany(winesSeed).then(resp => {
         console.log("Added wines");
-        db.Rating.remove({}).then(
+        db.Rating.deleteMany({}).then(
           db.Rating.insertMany(ratingsSeed).then(resp => {
             console.log("Added ratings");
             process.exit(0);
