@@ -143,7 +143,7 @@ class AdminWineEdit extends Component {
         <Grid container spacing={24}>
           <Grid item xs={6}>
           <br></br>
-            <Paper id='wineBG' className={classes.paper}><h3>Wine Data Input</h3><hr></hr>
+            <Paper className={classes.paper}><h3>Wine Data Input</h3><hr></hr>
             <AdminDataInput />
             </Paper>
           </Grid>
