@@ -85,6 +85,8 @@ class AdminDataInput extends Component {
 
   };
 
+
+
   componentDidMount() {
     // this.setState({
     //   color: 'color',
