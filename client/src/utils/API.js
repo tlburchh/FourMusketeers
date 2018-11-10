@@ -14,8 +14,22 @@ export default {
   //   console.log("Submitting rating (API.js)");
   //   return axios.post("/api/post/rating", ratingObj);
   // },
-  addNewWine: function () {
-    console.log("addNewWine");
-    return axios.post("/api/post/addNewWine");
+
+  addNewWine: function (newWine) {
+
+    const newWine2 = {
+      name: newWine.name,
+      color: newWine.color,
+      description: newWine.description,
+      priceRegular: newWine.price
+  };
+
+    console.log("addNewWine", newWine2);
+    return axios.post("/api/post/addNewWine", newWine2);
+  },
+  getColors: function () {
+    console.log("Getting the colors (API.js)");
+    return axios.get("/api/get/colors");
+
   }
 }

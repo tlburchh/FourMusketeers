@@ -55,6 +55,8 @@ class CommentPopover extends React.Component {
       const tmpArr = [...this.state.keywords.slice(0, index), true, ...this.state.keywords.slice(index + 1)];
       this.setState({
         keywords: tmpArr
+      }, () => {
+        this.props.keywordGetter(this.state.keywords, this.props.identifier);
       });
     }
     else if (upDown === 'down') {
@@ -62,7 +64,9 @@ class CommentPopover extends React.Component {
       const tmpArr = [...this.state.keywords.slice(0, index), false, ...this.state.keywords.slice(index + 1)];
       this.setState({
         keywords: tmpArr
-      })
+      }, () => {
+        this.props.keywordGetter(this.state.keywords, this.props.identifier);
+      });
     }
     else {
       console.log("Something went wrong");

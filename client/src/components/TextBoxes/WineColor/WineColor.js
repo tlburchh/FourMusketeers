@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import API from '../../../utils/API';
 
 const styles = theme => ({
   root: {
@@ -22,9 +23,22 @@ const styles = theme => ({
 
 class WineColor extends React.Component {
   state = {
-    choices: ["green", "red", "blue", "purple", "chartreuse", "mahogany"],
+    choices: ["Getting colors..."],
     currColor: ""
   };
+
+  componentDidMount() {
+    API.getColors().then(resp => {
+      console.log(`Got colors: ${resp.data}`, resp.data);
+      this.setState({
+        choices: [...resp.data.colors]
+      }, () => {
+        console.log("Set the colors in state");
+      });
+    }).catch((err) => {
+      console.log("Error getting colors");
+    });
+  }
 
 
   handleChange = event => {
