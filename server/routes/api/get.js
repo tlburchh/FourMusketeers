@@ -16,7 +16,7 @@ router.get("/ratings", getController.ratings);
 // Keyword stuff
 router.get("/keywords", getController.keywords);
 
-
+router.get("/colors", getController.colors);
 // etc...
 
 module.exports = router;
