@@ -69,25 +69,32 @@ const styles = theme => ({
 });
 
 class AdminDataInput extends Component {
+  constructor(props){
+  super(props);
+    this.state = {
+      name: '',
+      price: '',
+      color: '',
+      description: '',
+      keywords: [],
+      available: true,
+    }
+    console.log('props in state')
+    console.log(this.props.theChosenWine.name)
+  }
 
 
-  state = {
-    name: '',
-    price: '',
-    color: '',
-    description: '',
-    keywords: [],
-    available: true
-  };
+
 
   handleSave = () => {
-    console.log('STATE SENT TO BACK: ', this.state);
+    // console.log('STATE SENT TO BACK: ', this.state);
     API.addNewWine(this.state)
       .then(res => {
-        console.log("NEW WINE ADDED: ", res);
+        // console.log("NEW WINE ADDED: ", res);
       })
       .catch(err => console.log(err));
   };
+
 
   // name and price
   handleChange = name => event => {
@@ -113,6 +120,10 @@ class AdminDataInput extends Component {
 
   render() {
     const { classes } = this.props;
+    console.log(this.state)
+    console.log(this.props.theChosenWine.name)
+    // console.log('props')
+    // console.log(this.props.theChosenWine.name)
     return (
 
       <div>
@@ -120,10 +131,11 @@ class AdminDataInput extends Component {
         {/* Wine Name */}
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
+            // autoFocus
             id="standard-name"
             label="Wine Name"
             className={classes.textField}
-            value={this.state.name}
+            value={this.state.name || this.props.theChosenWine.name}
             onChange={this.handleChange('name')}
             margin="normal"
           />
@@ -131,10 +143,11 @@ class AdminDataInput extends Component {
         {/* Price */}
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
+            // autoFocus
             id="standard-name"
             label="Wine Price"
             className={classes.textField}
-            value={this.state.price}
+            value={this.state.price || this.props.theChosenWine.price}
             onChange={this.handleChange('price')}
             margin="normal"
           />
@@ -142,7 +155,7 @@ class AdminDataInput extends Component {
         {/* Color    WORK IN PRORESS   */}
 
         <WineColor
-          color={this.state.color}
+          color={this.state.color || this.props.theChosenWine.color}
           handleColorChange={this.handleColorChange}
         />
 
@@ -152,6 +165,7 @@ class AdminDataInput extends Component {
             label="Description"
             placeholder="Placeholder"
             multiline
+            value={this.props.theChosenWine.description}
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
@@ -179,7 +193,7 @@ class AdminDataInput extends Component {
 
 
             <WineAvailable
-              available={this.state.available}
+              available={this.state.available || this.props.theChosenWine.available}
               handleAvailableChange={this.handleAvailableChange}
             />
 
