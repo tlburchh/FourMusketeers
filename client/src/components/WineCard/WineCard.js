@@ -75,7 +75,7 @@ class WineCard extends Component {
             paddingBottom: '0px',
             paddingTop: '0px'
           }}>
-            <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "4px", marginRight: '5px' }}>
+            <Grid item xs={1} container style={{ backgroundColor: `${wine.color}`, borderRadius: "4px", marginRight: '5px' }}>
             </Grid>
             <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
               <Grid item xs>
@@ -97,12 +97,17 @@ class WineCard extends Component {
                   this.props.finished &&
                   <React.Fragment>
                     <StarRating
-                    id={wine.name}
-                    stars={this.props.stars}
-                    identifier={this.props.id}
-                    starStateGetter={this.props.starStateGetter}
-                      />
-                    <CommentPopover keys={wine.keywords} />
+                      id={wine.name}
+                      stars={this.props.stars}
+                      identifier={this.props.id}
+                      starStateGetter={this.props.starStateGetter}
+                    />
+                    <CommentPopover
+                      keys={wine.keywords}
+                      identifier={this.props.id}
+                      keywords={this.props.keywords}
+                      keywordGetter={this.props.keywordGetter}
+                    />
                   </React.Fragment>
                 }
               </Grid>

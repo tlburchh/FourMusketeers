@@ -7,7 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import EditButton from "../EditButton/EditButton";
+// import EditButton from "../EditButton/EditButton";
+import Button from '@material-ui/core/Button';
 import AdminDataInput from "../TextBoxes/AdminDataInput"
 import './AdminWine.css';
 
@@ -24,6 +25,12 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     // backgroundColor: 'rgba(119, 158, 209, 0)'
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
   },
 
 
@@ -74,7 +81,8 @@ class AdminWineEdit extends Component {
 
     this.state = {
       data: [],
-      result: []
+      result: [],
+      selectedWine: []
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -133,10 +141,21 @@ class AdminWineEdit extends Component {
     console.log('Clicked div');
     this.setState({})
   }
+
+  handleWineChange = (wine) => {
+    // console.log('target id')
+    // console.log('wine', wine)
+    this.setState({
+      selectedWine: wine
+    })
+  // wineData:this.event.target.find(id)
+  }
+
   render() {
 
     // const wine = this.state.wine;
     const { classes } = this.props;
+    console.log(this.state)
 
     return (
       <div>
@@ -144,7 +163,7 @@ class AdminWineEdit extends Component {
           <Grid item xs={6}>
           <br></br>
             <Paper className={classes.paper}><h3>Wine Data Input</h3><hr></hr>
-            <AdminDataInput />
+            <AdminDataInput theChosenWine = {this.state.selectedWine} />
             </Paper>
           </Grid>
           <Grid item xs={6}>
@@ -182,10 +201,11 @@ class AdminWineEdit extends Component {
                                       paddingTop: '0px',
                                       // maxWidth: '85%'
                                     }}>
-                                      <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "4px" }}>
+                                      <Grid item xs={1} container style={{ backgroundColor: `${wine.color}`, borderRadius: "4px" }}>
                                         {/* <Paper >
                                       </Paper> */}
                                           </Grid>
+                                          {/* <Grid style={{display:'none'}}>{`${wine._id}`}</Grid> */}
                                           <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
                                             <Grid item xs>
                                               <Typography gutterBottom variant="subtitle1">
@@ -194,7 +214,14 @@ class AdminWineEdit extends Component {
                                               {/* <Typography gutterBottom className="truncate">{`${wine.description}`}</Typography> */}
                                             </Grid>
                                             <Grid item style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                              <EditButton />
+                                              {/* <EditButton /> */}
+                                              <div>
+                                                <Button variant="outlined" id={wine._id} className={classes.button}
+                                                onClick={() => this.handleWineChange(wine)}
+                                                >
+                                                  Edit
+                                                </Button>
+                                              </div>
                                             </Grid>
                                           </Grid>
                                           <Grid item>
