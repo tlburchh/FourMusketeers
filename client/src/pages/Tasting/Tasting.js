@@ -281,7 +281,7 @@ class Tasting extends Component {
               this.state.selected.length < 8 && !this.state.finished && <div id="num-selected" className="not-done">Meads selected: {this.state.selected.length}</div>
             }
             {
-              this.state.selected.length > 7 && !this.state.finished && <div id="num-selected" className="done" onClick={this.startTasting}>Start Tasting!</div>
+              this.state.selected.length > 7 && !this.state.finished && <Button id="num-selected" className="done" onClick={this.startTasting}><b>Start Tasting!</b></Button>
             }
             {/* End hero unit */}
 
@@ -314,7 +314,17 @@ class Tasting extends Component {
                 </div>
               ))}
               {this.state.finished && (
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitRatedWines}>
+                <Button style={{ 
+                            display: 'flex',
+                            flexDirection: 'column',
+                            position: 'fixed',                         
+                            bottom: 0,
+                            width: '90%'
+                            }}
+                        variant="contained"  
+                        color="primary" 
+                        className={classes.button} 
+                        onClick={this.submitRatedWines}>
                   Submit Ratings!
                 </Button>
               )}
@@ -322,13 +332,14 @@ class Tasting extends Component {
           </div>
         </main>
         {/* Footer */}
-        <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom >
-            Footer
+        <footer style={{background: '#495f86',
+                    height: '30px',
+                                             
+                    paddingBottom: '65px'
+          }}className={classes.footer}>
+          <Typography align="left" gutterBottom >
+            <h6><b>Silenus</b></h6><p>by <br></br>Amalgam Innovations 2018</p> 
         </Typography>
-          <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            <a href="https://www.starrlightmead.com">Check Us Out!</a>
-          </Typography>
         </footer>
         {/* End footer */}
       </React.Fragment>

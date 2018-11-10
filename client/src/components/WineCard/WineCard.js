@@ -71,6 +71,7 @@ class WineCard extends Component {
         this.props.handleCardClick(this.props.id, event);
         this.toggleActive(this.props.numClicked, event);
       }}>
+
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
             paddingBottom: '0px',
