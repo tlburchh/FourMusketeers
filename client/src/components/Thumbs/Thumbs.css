@@ -1,0 +1,44 @@
+.keyword-row {
+    padding: 8px 4px;
+    border: 2px solid navy;
+    border-bottom: none;
+}
+
+.keyword-row:last-child {
+    border-bottom: 2px solid navy;
+}
+
+.thumb-holder {
+    float: right;
+    margin-left: 20px;
+}
+
+.thumb {
+    border-radius: 50%;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+.thumb:hover {
+    cursor: pointer;
+}
+
+.up:hover {
+    background-color: lightgreen;
+}
+
+.down:hover {
+    background-color: lightcoral;
+}
+
+.thumb-box {
+    float: right;
+}
+
+.upActive {
+    background-color: lightgreen;
+}
+
+.downActive {
+    background-color: lightcoral;
+}

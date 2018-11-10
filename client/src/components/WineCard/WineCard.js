@@ -62,9 +62,8 @@ class WineCard extends Component {
 
 
   render() {
-
     const wine = this.props.wine;
-    console.log(this.props.finished, this.state.isActive);
+    const color = wine.color.color;
 
     return (
       // If the finished prop comes down from Tasting and this card is inactive, hide it.
@@ -78,7 +77,7 @@ class WineCard extends Component {
             paddingBottom: '0px',
             paddingTop: '0px'
           }}>
-            <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "4px", marginRight: '5px' }}>
+            <Grid item xs={1} container style={{ backgroundColor: `${color}`, borderRadius: "4px", marginRight: '5px' }}>
             </Grid>
             <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
               <Grid item xs>
@@ -97,9 +96,21 @@ class WineCard extends Component {
               <Grid item style={{ display: 'flex', justifyContent: 'space-between' }}>
                 {
                   // Only display the stars and comments button when the user has finalized their 8 choices and clicked start
-                  this.props.finished && <React.Fragment><StarRating id={wine.name} />
-                    {/* <CommentPopover keys={wine.keywords} /> */}
-                    </React.Fragment>
+                  this.props.finished &&
+                  <React.Fragment>
+                    <StarRating
+                      id={wine.name}
+                      stars={this.props.stars}
+                      identifier={this.props.id}
+                      starStateGetter={this.props.starStateGetter}
+                    />
+                    <CommentPopover
+                      keys={wine.keywords}
+                      identifier={this.props.id}
+                      keywords={this.props.keywords}
+                      keywordGetter={this.props.keywordGetter}
+                    />
+                  </React.Fragment>
                 }
               </Grid>
             </Grid>

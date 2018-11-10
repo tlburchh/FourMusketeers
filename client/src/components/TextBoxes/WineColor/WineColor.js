@@ -5,6 +5,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import API from '../../../utils/API';
+import { colors } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -22,9 +24,29 @@ const styles = theme => ({
 
 class WineColor extends React.Component {
   state = {
-    choices: ["green", "red", "blue", "purple", "chartreuse", "mahogany"],
+    choices: ["Getting colors..."],
     currColor: ""
   };
+
+  componentDidMount() {
+    if (this.state.choices.length === 1) {
+      API.getColors().then(resp => {
+        console.log(resp.data.colors);
+        let colorsArray = [];
+        resp.data.colors.forEach(color => {
+          console.log(color);
+          colorsArray.push(color.color);
+        });
+        this.setState({
+          choices: colorsArray
+        }, () => {
+          console.log("Set the colors in state");
+        });
+      }).catch((err) => {
+        console.log("Error getting colors");
+      });
+    }
+  }
 
 
   handleChange = event => {
@@ -34,12 +56,14 @@ class WineColor extends React.Component {
   render() {
     const { classes } = this.props;
 
+
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="color-simple">Color</InputLabel>
           <Select
             value={this.props.color}
+            style={{ background: this.props.color }}
             onChange={this.props.handleColorChange}
             inputProps={{
               name: 'color',
@@ -48,13 +72,13 @@ class WineColor extends React.Component {
           >
             {
               this.state.choices.map(color => (
-                <MenuItem value={color}>{color}</MenuItem>
+                <MenuItem value={color} style={{ background: color }}></MenuItem>
 
               ))
             }
           </Select>
         </FormControl>
-      </form>
+      </form >
     );
   }
 }

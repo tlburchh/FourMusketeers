@@ -70,6 +70,10 @@ module.exports = {
                 path: "keywords",
                 select: "keyword -_id"
             })
+            .populate({
+                path: 'color',
+                select: "color -_id"
+            })
             .then(results => {
                 res.json(results);
             }).catch(err => {
@@ -86,6 +90,16 @@ module.exports = {
             })
             .then(keywords => {
                 res.json(keywords);
+            });
+    },
+    colors: (req, res) => {
+        console.log("Getting colors from the database");
+        db.Colors.find({})
+            .then(colors => {
+                console.log(`Got colors: ${colors}`);
+                res.json({ colors: colors });
+            }).catch(err => {
+                console.log("Error getting colors from DB");
             });
     }
 

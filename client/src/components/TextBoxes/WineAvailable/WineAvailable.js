@@ -21,41 +21,34 @@ const styles = theme => ({
 });
 
 class WineAvailable extends React.Component {
-    state = {
-      available: '',
-    };
-  
-  
-    handleChange = event => {
-      this.setState({ [event.target.name]: event.target.value });
-    };
-  
-    render() {
-      const { classes } = this.props;
-  
-      return (
-        <form className={classes.root} autoComplete="off">
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="color-simple">Availability</InputLabel>
-            <Select
-              value={this.state.available}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'available',
-                id: 'available-simple',
-              }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={false}>Not Available</MenuItem>
-              <MenuItem value={true}>Available</MenuItem>
-            </Select>
-          </FormControl>
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <form className={classes.root} autoComplete="off">
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="color-simple">Availability</InputLabel>
+          <Select
+            value={this.props.available}
+            onChange={this.props.handleAvailableChange}
+            inputProps={{
+              name: 'available',
+              id: 'available-simple',
+            }}
+          >
+            <MenuItem value={false}>Not Available</MenuItem>
+            <MenuItem value={true}>Available</MenuItem>
+          </Select>
+        </FormControl>
       </form>
-      );
-    }
+    );
   }
+}
 WineAvailable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
