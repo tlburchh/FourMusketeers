@@ -81,12 +81,12 @@ class AdminDataInput extends Component {
   };
 
   handleSave = () => {
-    console.log('STATE SENT TO BACK: ',state);
-    API.addNewWine(state)
-    .then(res => {
-      console.log("NEW WINE ADDED: ", res);
-    })
-    .catch(err => console.log(err));
+    console.log('STATE SENT TO BACK: ', this.state);
+    API.addNewWine(this.state)
+      .then(res => {
+        console.log("NEW WINE ADDED: ", res);
+      })
+      .catch(err => console.log(err));
   };
 
   // name and price

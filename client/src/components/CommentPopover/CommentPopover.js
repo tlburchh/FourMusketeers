@@ -49,10 +49,10 @@ class CommentPopover extends React.Component {
       targ = targ.parentNode;
     }
     const upDown = targ.getAttribute("data-val");
-    if (upDown === ======='up') {
+    if (upDown === 'up') {
 
       console.log(upDown);
-      const tmpArr = [...this.state.keywords.slice(0, index), true, ...this.state.keywords.slice(index + 1)];    
+      const tmpArr = [...this.state.keywords.slice(0, index), true, ...this.state.keywords.slice(index + 1)];
       this.setState({
         keywords: tmpArr
       });
