@@ -186,7 +186,7 @@ class AdminDataInput extends Component {
 
             {/* Save Button  */}
             <div>
-              <Button onClick={this.handleSave(this.state)} color="primary" variant="outlined" size="large" className={classes.button}>
+              <Button onClick={this.handleSave} color="primary" variant="outlined" size="large" className={classes.button}>
                 <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
 
