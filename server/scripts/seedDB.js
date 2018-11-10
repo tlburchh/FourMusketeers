@@ -10,28 +10,22 @@ const keywordsSeed = [
     keyword: "tart"
   },
   {
-    keyword: "flamboyant"
+    keyword: "dry"
   },
   {
-    keyword: "zesty"
+    keyword: "sweet"
   },
   {
-    keyword: "austere"
+    keyword: "fruity"
   },
   {
-    keyword: "barnyard"
+    keyword: "balanced"
   },
   {
-    keyword: "big"
+    keyword: "cloying"
   },
   {
     keyword: "bright"
-  },
-  {
-    keyword: "buttery"
-  },
-  {
-    keyword: "chewy tannins"
   },
   {
     keyword: "crisp"
@@ -40,10 +34,10 @@ const keywordsSeed = [
     keyword: "dense"
   },
   {
-    keyword: "earthy"
+    keyword: "herby"
   },
   {
-    keyword: "elegant"
+    keyword: "smooth"
   },
   {
     keyword: "jammy"
@@ -52,14 +46,8 @@ const keywordsSeed = [
     keyword: "juicy"
   },
   {
-    keyword: "oaked"
+    keyword: "oaky"
   },
-  {
-    keyword: "silky"
-  },
-  {
-    keyword: "unctuous"
-  }
 ];
 const winesSeed = [
   {
