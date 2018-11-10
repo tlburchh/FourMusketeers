@@ -38,6 +38,11 @@ const wineSchema = new Schema ({
         default: 0
     },
 
+    color:{
+        type: Schema.Types.ObjectId,
+        ref: 'Color'
+    },
+
     keywords: [{
         type: Schema.Types.ObjectId,
         ref: 'Keyword'

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const keywordSchema = new Schema ({
     keyword: {
         type: String,
-        required: true
+        required: false
     },
 
     isGood: {
