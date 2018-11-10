@@ -97,12 +97,17 @@ class WineCard extends Component {
                   this.props.finished &&
                   <React.Fragment>
                     <StarRating
-                    id={wine.name}
-                    stars={this.props.stars}
-                    identifier={this.props.id}
-                    starStateGetter={this.props.starStateGetter}
-                      />
-                    <CommentPopover keys={wine.keywords} />
+                      id={wine.name}
+                      stars={this.props.stars}
+                      identifier={this.props.id}
+                      starStateGetter={this.props.starStateGetter}
+                    />
+                    <CommentPopover
+                      keys={wine.keywords}
+                      identifier={this.props.id}
+                      keywords={this.props.keywords}
+                      keywordGetter={this.props.keywordGetter}
+                    />
                   </React.Fragment>
                 }
               </Grid>
