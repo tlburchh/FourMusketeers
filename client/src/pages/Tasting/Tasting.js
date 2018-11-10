@@ -189,12 +189,17 @@ class Tasting extends Component {
     // We need to find if this wineId has been set in state before
     if (this.findWineIdInState(wineId) === -1) {
       // If not, put it and the rating at next available index
-      this.putWineIdInState(wineId);
-      this.putStarRatingInState(rating);
+      this.putWineIdInState(wineId, 0);
+      this.putStarRatingInState(rating, 0);
     }
-    else {
+    else if (this.findWineIdInState(wineId) !== -1) {
       // The rating was already set, just update the exisiting
       const ind = this.findWineIdInState(wineId);
+      this.putWineIdInState(wineId, ind);
+      this.putStarRatingInState(rating, ind);
+    }
+    else {
+      console.log("Something world breaking just happened.");
     }
 
   }
@@ -215,15 +220,24 @@ class Tasting extends Component {
     }
   }
   // Put a wine ID into state and return index where it is
-  putWineIdInState = id => {
+  putWineIdInState = (id, index) => {
+    const tmpArr = [...this.state.winesRated.slice(0, index), id, ...this.state.winesRated.slice(index + 1)]
     this.setState({
-      winesRated: [...this.state.winesRated, id]
+      winesRated: tmpArr
     }, function () {
-      return findWineIdInState(id);
+      return this.findWineIdInState(id);
     });
   }
 
   // Put the star rating into state
+  putStarRatingInState = (rating, index) => {
+    const tmpArr = [...this.state.starRatings.slice(0, index), rating, ...this.state.starRatings.slice(index + 1)]
+    this.setState({
+      starRatings: tmpArr
+    }, function () {
+      return "Put star rating in state."
+    });
+  }
 
   render() {
     const { classes } = this.props;
