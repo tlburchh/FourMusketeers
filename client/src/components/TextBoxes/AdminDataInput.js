@@ -159,7 +159,6 @@ class AdminDataInput extends Component {
           </Grid>
         </Grid>
       </div> */}
-      
       <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
      {/* Wine Available */}
 
@@ -174,13 +173,12 @@ class AdminDataInput extends Component {
             <Button color="primary" variant="outlined" size="large" className={classes.button}>
               <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
               Save
-
         </Button>
           </div>
         </Grid>
+      </Grid>
+    </div>
 
-
-      </div>
     )
   }
 }
