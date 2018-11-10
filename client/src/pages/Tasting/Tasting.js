@@ -182,6 +182,24 @@ class Tasting extends Component {
     this.setState({})
   }
 
+  // This gets passed down to the comment popover to pull up the array of true/false (keywords good/bad)
+  keywordGetter = (keyWordArr, wineId) => {
+    //Same as for stars, see if it's been put in state ? update : createNew
+    if (this.findWineIdInState(wineId) === -1) {
+      const nextEmpty = this.state.winesRated.length;
+      this.putWineIdInState(wineId, nextEmpty);
+      this.putKwRatingInState(keyWordArr, nextEmpty);
+    }
+    else if (this.findWineIdInState(wineId) !== -1) {
+      const ind = this.findWineIdInState(wineId);
+      this.putWineIdInState(wineId, ind);
+      this.putKwRatingInState(keyWordArr, ind);
+    }
+    else {
+      console.log("Something world breaking happened. You were too drunk when you coded this.");
+    }
+  }
+
   // This gets passed all the way down to <StarRating />
   // It fires when a star is clicked and sets the appropriate state here
   starStateGetter = (rating, wineId) => {
@@ -232,12 +250,22 @@ class Tasting extends Component {
 
   // Put the star rating into state
   putStarRatingInState = (rating, index) => {
-    const tmpArr = [...this.state.starRatings.slice(0, index), rating, ...this.state.starRatings.slice(index + 1)]
+    const tmpArr = [...this.state.starRatings.slice(0, index), rating, ...this.state.starRatings.slice(index + 1)];
     this.setState({
       starRatings: tmpArr
     }, function () {
-      return "Put star rating in state."
+      return "Put star rating in state.";
     });
+  }
+
+  // put the keyword array into a slot in the state array
+  putKwRatingInState = (kws, index) => {
+    const tmpArr = [...this.state.keywordRatings.slice(0, index), kws, ...this.state.keywordRatings.slice(index + 1)];
+    this.setState({
+      keywordRatings: tmpArr
+    }), () => {
+      return "Put kw ratings in state";
+    };
   }
 
   render() {
@@ -278,6 +306,8 @@ class Tasting extends Component {
                         finished={this.state.finished}
                         stars={this.state.starRatings}
                         starStateGetter={this.starStateGetter}
+                        keywords={this.state.keywordRatings}
+                        keywordGetter={this.keywordGetter}
                       />
                     </Grid>
                   </Grid>
