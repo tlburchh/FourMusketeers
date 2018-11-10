@@ -94,14 +94,13 @@ module.exports = {
     },
     colors: (req, res) => {
         console.log("Getting colors from the database");
-        res.json({ colors: "it twerked" });
-        // db.Colors.find({})
-        //     .then(colors => {
-        //         console.log(`Got colors: ${colors}`);
-        //         res.json({ colors: colors });
-        //     }).catch(err => {
-        //         console.log("Error getting colors from DB");
-        //     });
+        db.Colors.find({})
+            .then(colors => {
+                console.log(`Got colors: ${colors}`);
+                res.json({ colors: colors });
+            }).catch(err => {
+                console.log("Error getting colors from DB");
+            });
     }
 
 };
