@@ -143,8 +143,8 @@ class AdminWineEdit extends Component {
   }
 
   handleWineChange = (wine) => {
-    console.log('target id')
-    console.log('wine', wine)
+    // console.log('target id')
+    // console.log('wine', wine)
     this.setState({
       selectedWine: wine
     })
