@@ -8,12 +8,6 @@ const wineSchema = new Schema ({
         required: "Name is required"
     },
 
-    color: [{
-        type: String,
-        trim: true,
-        required: "Color is required"
-    }],
-
     description: {
         type:  String,
         trim: true,
@@ -25,7 +19,7 @@ const wineSchema = new Schema ({
         trim: true,
         required: "Price is required"
     },
-    
+
     isAvailable: {
         type: Boolean,
         required: true,

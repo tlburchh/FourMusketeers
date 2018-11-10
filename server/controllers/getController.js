@@ -70,6 +70,10 @@ module.exports = {
                 path: "keywords",
                 select: "keyword -_id"
             })
+            .populate({
+                path: 'color',
+                select: "color -_id"
+            })
             .then(results => {
                 res.json(results);
             }).catch(err => {

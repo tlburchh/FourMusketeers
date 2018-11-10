@@ -95,9 +95,7 @@ addWineFlavors = done => {
                 wineIds.forEach((wine, i) => {
                     db.Wines.findOneAndUpdate({ _id: wine },
                         {
-                            $push: {
-                                color: getRandomColor()
-                            }
+                            color: getRandomColor()
                         }).then(res => {
                             console.log("DONE ADDING KEYWORDS + COLORS");
                             process.exit(0);
