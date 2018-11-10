@@ -13,11 +13,16 @@
 }
 
 #num-selected.not-done {
-    background-color: orange;
+    background-color: rgba(255, 255, 0, 0.863);
 }
 
 #num-selected.done {
-    background-color: lightgreen;
+    background-color: yellow;
+    box-shadow: 8px 8px 16px 0 rgba(230, 255, 3, 0.959), 0 6px 20px 0 rgba(230, 255, 3, 0.959);
+    padding: 20px 100px 20px 100px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* width: 65%; */
 }
 
 #num-selected.done:hover {
