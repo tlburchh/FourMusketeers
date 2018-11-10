@@ -257,12 +257,14 @@ class Tasting extends Component {
             }
             {/* End hero unit */}
 
+
             <Grid xs={12}
               container
               direction="column"
               justify="center"
               alignItems="center"
             >
+
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid >
