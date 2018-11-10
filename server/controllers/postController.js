@@ -34,13 +34,15 @@ module.exports = {
 
     rating: (req, res) => {
         const rating = req.body;
-        db.Rating.insert(rating).then(resp => {
-            console.log(`Inserted rating: ${resp}`);
-            res.json({ message: "Successfully saved rating." })
-        }).catch(err => {
-            console.log(`Error saving rating: ${err}`);
-            res.json({ message: `Error saving rating: ${err}` })
-        });
+        console.log(rating);
+        res.json({message: "rating received"});
+        // db.Rating.insert(rating).then(resp => {
+        //     console.log(`Inserted rating: ${resp}`);
+        //     res.json({ message: "Successfully saved rating." })
+        // }).catch(err => {
+        //     console.log(`Error saving rating: ${err}`);
+        //     res.json({ message: `Error saving rating: ${err}` })
+        // });
 
     },
     testRating: (req, res) => {
