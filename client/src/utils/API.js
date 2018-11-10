@@ -26,10 +26,6 @@ export default {
 
     console.log("addNewWine", newWine2);
     return axios.post("/api/post/addNewWine", newWine2);
-
-  addNewWine: function () {
-    console.log("addNewWine");
-    return axios.post("/api/post/addNewWine");
   },
   getColors: function () {
     console.log("Getting the colors (API.js)");
