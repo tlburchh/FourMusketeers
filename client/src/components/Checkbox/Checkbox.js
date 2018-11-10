@@ -3,8 +3,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles } from "@material-ui/core/styles";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+// import Favorite from "@material-ui/icons/Favorite";
+// import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import PropTypes from "prop-types";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
@@ -14,47 +14,35 @@ import cyan from "@material-ui/core/colors/cyan";
 
 
 const styles = {
-    root: {
+  root: {
     //   color: cyan[600],
-      "&$checked": {
-        color: cyan[300],
-      }
-    },
-    checked: {}
-  };
+    "&$checked": {
+      color: cyan[300],
+    }
+  },
+  checked: {}
+};
 
 
 
 class CheckboxLabels extends React.Component {
-    state = {
-      checkedD: false,
-      checkedU: false,
-      checkedH: false
-    };
-  
-    handleChange = name => event => {
-      this.setState({ [name]: event.target.checked });
-    };
-  
-    render() {
-      const { classes } = this.props;
-  
-      return (
-        <FormGroup row>
-<FormControlLabel
-          control={
-            <Checkbox
-              icon={<FavoriteBorder />}
-              checkedIcon={<Favorite />}
-              checked={this.state.checkedH}
-              onChange={this.handleChange("checkedH")}
-              value="checkedH"
-            />
-          }
-          label="Custom icon"
-        />
+  state = {
+    checkedD: false,
+    checkedU: false,
+    checkedH: false
+  };
 
-<FormControlLabel
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <FormGroup row>
+
+        <FormControlLabel
           control={
             <Checkbox
               icon={<ThumbUpIcon />}
@@ -68,10 +56,10 @@ class CheckboxLabels extends React.Component {
               }}
             />
           }
-          label="Skål!"
+          label="up"
         />
 
-<FormControlLabel
+        <FormControlLabel
           control={
             <Checkbox
               icon={<ThumbDownIcon />}
@@ -85,24 +73,17 @@ class CheckboxLabels extends React.Component {
               }}
             />
           }
-          label="Not my glass of Mead"
+          label="down"
         />
 
-
-
-
-
-
-
-
-        </FormGroup>
+      </FormGroup>
     );
   }
 }
 
 CheckboxLabels.propTypes = {
-    classes: PropTypes.object.isRequired
-  };
-  
-  export default withStyles(styles)(CheckboxLabels);
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(CheckboxLabels);
 

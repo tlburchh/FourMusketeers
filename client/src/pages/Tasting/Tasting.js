@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import WineCard from '../../components/WineCard';
 import API from "../../utils/API";
 import './Tasting.css';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   icon: {
@@ -72,10 +73,35 @@ class Tasting extends Component {
     super(props);
 
     this.state = {
+      user: this.props.user,
       data: [],
       selected: [],
-      finished: false
+      finished: false,
+      starRatings: Array(8).fill(0),
+      keywordRatings: Array(8).fill([]),
+      winesRated: []
     };
+  }
+
+  // User clicks submit rating button
+  submitRatedWines = () => {
+    // We have an array of 8 ratings (one per wine)
+    let ratingArr = [];
+    // for each one, push the corresponding index in an object into the array
+    for (let i = 0; i < 8; i++) {
+      const wineRating = {
+        numericalRating: this.state.starRatings[i],
+        keyWordRating: this.state.keywordRatings[i],
+        user: this.state.user,
+        wine: this.state.winesRated[i]
+      };
+      ratingArr.push(wineRating);
+    }
+    API.submitRating(ratingArr).then(resp => {
+      console.log(`Submitted wine ratings: ${resp}`, resp);
+    }).catch(err => {
+      console.log("Error submitting wine rating...");
+    });
   }
 
   handleCardClick = (cardId, event) => {
@@ -156,6 +182,64 @@ class Tasting extends Component {
     this.setState({})
   }
 
+  // This gets passed all the way down to <StarRating />
+  // It fires when a star is clicked and sets the appropriate state here
+  starStateGetter = (rating, wineId) => {
+    console.log(rating, wineId);
+    // We need to find if this wineId has been set in state before
+    if (this.findWineIdInState(wineId) === -1) {
+      const nextEmpty = this.state.winesRated.length;
+      // If not, put it and the rating at next available index
+      this.putWineIdInState(wineId, nextEmpty);
+      this.putStarRatingInState(rating, nextEmpty);
+    }
+    else if (this.findWineIdInState(wineId) !== -1) {
+      // The rating was already set, just update the exisiting
+      const ind = this.findWineIdInState(wineId);
+      this.putWineIdInState(wineId, ind);
+      this.putStarRatingInState(rating, ind);
+    }
+    else {
+      console.log("Something world breaking just happened.");
+    }
+
+  }
+
+  // == Helper functions for starStateGetter == //
+
+  // Look in winesRated state for a wine id.
+  // Return the index or -1 if not found
+  findWineIdInState = id => {
+    let found = this.state.winesRated.find((wineId, i) => {
+      return wineId === id;
+    });
+    if (!found) {
+      return -1;
+    }
+    else {
+      return this.state.winesRated.indexOf(found);
+    }
+  }
+  // Put a wine ID into state and return index where it is
+  putWineIdInState = (id, index) => {
+    const tmpArr = [...this.state.winesRated.slice(0, index), id, ...this.state.winesRated.slice(index + 1)]
+    this.setState({
+      winesRated: tmpArr
+    }, function () {
+      return this.findWineIdInState(id);
+    });
+  }
+
+  // Put the star rating into state
+  putStarRatingInState = (rating, index) => {
+    const tmpArr = [...this.state.starRatings.slice(0, index), rating, ...this.state.starRatings.slice(index + 1)]
+    this.setState({
+      starRatings: tmpArr
+    }, function () {
+      return "Put star rating in state."
+    });
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -172,13 +256,15 @@ class Tasting extends Component {
               this.state.selected.length > 7 && !this.state.finished && <div id="num-selected" className="done" onClick={this.startTasting}>Start Tasting!</div>
             }
             {/* End hero unit */}
-  
-            <Grid xs={12}  
-                  container
-                  direction="column"
-                  justify="center"
-                  alignItems="center"
-                >
+
+
+            <Grid xs={12}
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
+
               {this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid >
@@ -190,11 +276,18 @@ class Tasting extends Component {
                         handleCardClick={this.handleCardClick}
                         numClicked={this.state.selected.length}
                         finished={this.state.finished}
+                        stars={this.state.starRatings}
+                        starStateGetter={this.starStateGetter}
                       />
                     </Grid>
                   </Grid>
                 </div>
               ))}
+              {this.state.finished && (
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitRatedWines}>
+                  Submit Ratings!
+                </Button>
+              )}
             </Grid>
           </div>
         </main>
