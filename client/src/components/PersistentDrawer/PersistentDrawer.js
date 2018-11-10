@@ -26,9 +26,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 import TastingButton from '../../components/TastingButton/TastingButton';
-
-
-
 // import { generateKeyPairSync } from 'crypto';
 import './pDrawer.css';
 import CheckboxLabels from '../../components/Checkbox/Checkbox';

@@ -183,13 +183,12 @@ class AdminDataInput extends Component {
           </Grid>
         </Grid>
       </div> */}
+      <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
+     {/* Wine Available */}
+
 
         <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
           {/* Wine Available */}
-
-
-          <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
-            {/* Wine Available */}
 
 
             <WineAvailable
@@ -209,6 +208,7 @@ class AdminDataInput extends Component {
           </Grid>
         </Grid>
       </div>
+
 
 
     )

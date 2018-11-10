@@ -18,7 +18,7 @@ const Nav = (props) => {
   } else if (props.user.email) {
     greeting = (
       <Fragment>
-        Welcome back, <strong>{props.user.email} </strong>
+       <h3>Welcome back, <strong>{props.user.email} </strong></h3>
       </Fragment>
     )
   }
