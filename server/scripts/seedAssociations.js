@@ -7,6 +7,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/wino", { useNew
 
 let wineIds = [];
 let keywordIds = [];
+let colorIds = [];
 
 
 // Get the wines, save em. Then Get the keywords and push a random wine into its array
@@ -21,6 +22,12 @@ db.Wines.find({}).then(wines => {
             keywordIds.push(keyword.id);
         });
         console.log("Got keyword IDs");
+        db.Colors.find({}).then(colors => {
+            colors.forEach(color => {
+                colorIds.push(color.id);
+            });
+        });
+        console.log("Got colors");
         assKeys();
     });
 });
@@ -34,6 +41,12 @@ getRandomKw = () => {
     const len = keywordIds.length;
     const rand = Math.floor(Math.random() * len);
     return keywordIds[rand];
+}
+
+getRandomColor = () => {
+    const len = colorIds.length;
+    const rand = Math.floor(Math.random() * len);
+    return colorIds[rand];
 }
 
 getManyKws = () => {
@@ -54,7 +67,7 @@ assKeys = () => {
                 }
             }
         ).then(result => {
-            if (i === keywordIds.length-1) {
+            if (i === keywordIds.length - 1) {
                 console.log("DONE ADDING WINES");
                 for (let i = 0; i < 5; i++) {
                     if (i === 4) {
@@ -78,9 +91,18 @@ addWineFlavors = done => {
                 }
             }
         ).then(result => {
-            if (i === wineIds.length-1 && done)  {
-                console.log("DONE ADDING KEYWORDS");
-                process.exit(0);
+            if (i === wineIds.length - 1 && done) {
+                wineIds.forEach((wine, i) => {
+                    db.Wines.findOneAndUpdate({ _id: wine },
+                        {
+                            $push: {
+                                color: getRandomColor()
+                            }
+                        }).then(res => {
+                            console.log("DONE ADDING KEYWORDS + COLORS");
+                            process.exit(0);
+                        });
+                });
             }
             console.log("Added kw to wine");
         }).catch((err) => { console.log(err); })
