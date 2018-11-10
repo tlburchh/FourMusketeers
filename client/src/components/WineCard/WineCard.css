@@ -2,12 +2,14 @@
   box-shadow: 8px 8px 16px 0 rgba(230, 255, 3, 0.959), 0 6px 20px 0 rgba(230, 255, 3, 0.959);
 }
 
+/* 
+
 .truncate {
   max-width: 450px;
   overflow: hidden;
   position: relative;
   max-height: 4.8em;
-} */
+} 
 
 .truncate::after {
   content: '...';
@@ -20,7 +22,7 @@
 
 .desc-text {
   padding: 5px;
-}
+} */
 
 .hidden {
   display: none;

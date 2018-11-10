@@ -59,11 +59,11 @@ const styles = theme => ({
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
   },
-//Keywords
+  //Keywords
 
-// root: {
-//   flexGrow: 1,
-// },
+  // root: {
+  //   flexGrow: 1,
+  // },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
@@ -72,40 +72,46 @@ const styles = theme => ({
 });
 
 class AdminDataInput extends Component {
-  
 
-    state = {
-      name: '',
-      price: '',
-      color:'',
-      // multiline: 'Controlled',
-      description:'',
-      keywords: [],
-      available: true,
 
-    };
-    
-    componentDidMount() {
-      this.setState({
-        color: 'color',
-      });
-    }
-    // name and price
-    handleChange = name => event => {
-      this.setState({
-        
-        [name]: event.target.value
+  state = {
+    name: '',
+    price: '',
+    color: '',
+    // multiline: 'Controlled',
+    description: '',
+    keywords: [],
+    available: true,
 
-      });
-    };
-   
-    
-    render() {
-      const { classes } = this.props;
-      console.log(this.state)
+  };
+
+  componentDidMount() {
+    // this.setState({
+    //   color: 'color',
+    // });
+  }
+  // name and price
+  handleChange = name => event => {
+    this.setState({
+
+      [name]: event.target.value
+
+    });
+  };
+
+  handleColorChange = event => {
+    this.setState({
+      color: event.target.value
+    })
+  }
+
+
+  render() {
+    const { classes } = this.props;
     return (
 
       <div>
+      
       {/* Wine Name */}
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
@@ -142,7 +148,7 @@ class AdminDataInput extends Component {
         />
       </form>
       {/* Keywords */}
-      <div className={classes.root}>
+      {/* <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs>         
           </Grid>
@@ -152,22 +158,26 @@ class AdminDataInput extends Component {
           <Grid item xs>          
           </Grid>
         </Grid>
-      </div>
+      </div> */}
       
       <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
      {/* Wine Available */}
 
-      <WineAvailable />
 
-       {/* Save Button  */}
-      <div>
-        <Button color="primary" variant="outlined" size="large" className={classes.button}>
-          <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
-          Save
+        <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
+          {/* Wine Available */}
+
+          <WineAvailable />
+
+          {/* Save Button  */}
+          <div>
+            <Button color="primary" variant="outlined" size="large" className={classes.button}>
+              <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
+              Save
 
         </Button>
-      </div>
-      </Grid>
+          </div>
+        </Grid>
 
 
       </div>
