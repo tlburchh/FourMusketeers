@@ -9,5 +9,9 @@ export default {
   submitRating: function(ratingObj) {
     console.log("Submitting rating (API.js)");
     return axios.post("/api/post/rating", ratingObj);
+
+  addNewWine: function() {
+    console.log("addNewWine");
+    return axios.post("/api/post/addNewWine");
   }
 }
