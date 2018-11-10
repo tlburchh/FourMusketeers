@@ -62,9 +62,7 @@ class WineCard extends Component {
 
 
   render() {
-
     const wine = this.props.wine;
-    console.log(this.props.finished, this.state.isActive);
 
     return (
       // If the finished prop comes down from Tasting and this card is inactive, hide it.
