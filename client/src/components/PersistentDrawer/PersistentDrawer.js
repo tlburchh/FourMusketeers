@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -9,7 +10,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import MenuIcon from '@material-ui/icons/Menu';
 import PollIcon from '@material-ui/icons/Poll';
 import MoodIcon from '@material-ui/icons/Mood';
@@ -21,6 +24,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 // import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
+import TastingButton from '../../components/TastingButton/TastingButton';
+
+
+
 // import { generateKeyPairSync } from 'crypto';
 import './pDrawer.css';
 import CheckboxLabels from '../../components/Checkbox/Checkbox';
@@ -128,11 +136,15 @@ class PersistentDrawerLeft extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
+          style={{ backgroundColor: '#495f86' }}
           position="fixed"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
         >
+        <Grid container spacing={0}>
+          <Grid item xs={2} sm container style={{
+          }}>
           <Toolbar disableGutters={!open}>
             <IconButton
               color="inherit"
@@ -142,20 +154,44 @@ class PersistentDrawerLeft extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+
+
             <Typography variant="h5" color="inherit" noWrap>
               Admin Page
               {/* <CheckboxLabels /> */}
               {/* testing checklabels */}
             </Typography>
           </Toolbar>
+          </Grid>
+
+          <Grid item xs={8} sm container style={{
+          }}>
+            
+<h2 textAlign='center'>Starlight Meads</h2>
+          </Grid>
+
+          <Grid item xs={2} sm container style={{
+          }}>
           {/* Added by Karsten, greeting and logout to replace NAV */}
-          <div>
+          <div id = "userInfo">
             {this.props.greeting}&nbsp;
-            <a className="logout" href="/" onClick={this.props.logout}>
-              Logout
-          </a>&nbsp;
-          <a href="/tasting">Tasting page</a>
+
+                <TastingButton />
+
+                <Button 
+                variant="contained" 
+                color="secondary" 
+                className={('logout', classes.button)}
+                size="large"
+                href="/"
+                onClick={this.props.logout}>
+                Logout
+                <NoMeetingRoomIcon className={classes.rightIcon} />
+                </Button>&nbsp;
+
           </div>
+          </Grid>
+          </Grid>
         </AppBar>
         <Drawer
           className={classes.drawer}

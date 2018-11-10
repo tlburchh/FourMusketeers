@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from 'react-router-dom';
 import { Col } from '../Grid';
 import './Nav.css';
+import AdminButton from '../../components/AdminButton/AdminButton';
 
 const Nav = (props) => {
   let greeting;
@@ -26,6 +27,9 @@ const Nav = (props) => {
     <nav className="navbar navbar-expand-lg navbar-dark">
       <Col size="md-2">
         <Link to="/" className="navbar-brand">Starrlight Mead</Link>
+        {
+          props.user.isAdmin && <AdminButton />
+        }
       </Col>
       <Col size="md-7"></Col>
       <Col size="md-3">

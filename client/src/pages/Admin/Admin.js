@@ -124,7 +124,6 @@ const AdminPage = (props) => {
       <br></br>
       <br></br>
       <br></br>
-      <br></br>
         <AdminWineEdit />
       </main>
       {/* Footer */}
