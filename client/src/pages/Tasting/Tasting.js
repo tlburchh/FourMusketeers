@@ -188,9 +188,10 @@ class Tasting extends Component {
     console.log(rating, wineId);
     // We need to find if this wineId has been set in state before
     if (this.findWineIdInState(wineId) === -1) {
+      const nextEmpty = this.state.winesRated.length;
       // If not, put it and the rating at next available index
-      this.putWineIdInState(wineId, 0);
-      this.putStarRatingInState(rating, 0);
+      this.putWineIdInState(wineId, nextEmpty);
+      this.putStarRatingInState(rating, nextEmpty);
     }
     else if (this.findWineIdInState(wineId) !== -1) {
       // The rating was already set, just update the exisiting
