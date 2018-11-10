@@ -72,18 +72,20 @@ const styles = theme => ({
 });
 
 class AdminDataInput extends Component {
-
-
-  state = {
-    name: '',
-    price: '',
-    color: '',
-    // multiline: 'Controlled',
-    description: '',
-    keywords: [],
-    available: true,
-
-  };
+  constructor(props){
+  super(props);
+    this.state = {
+      name: '',
+      price: '',
+      color: '',
+      // multiline: 'Controlled',
+      description: '',
+      keywords: [],
+      available: true,
+    }
+    console.log('props in state')
+    console.log(this.props.theChosenWine.name)
+  }
 
 
 
@@ -92,6 +94,20 @@ class AdminDataInput extends Component {
     //   color: 'color',
     // });
   }
+
+  componentDidUpdate(prevProps) {
+    // console.log('trails')
+    // console.log(this.props.data);
+    if (this.props.data !== prevProps.data) {
+      this.setState({
+        price: this.state.theChosenWine.price,
+      })
+    }
+    // this.setState({trailData: this.props.data})
+    console.log('state')
+    console.log(this.state)
+  }
+
   // name and price
   handleChange = name => event => {
     this.setState({
@@ -110,6 +126,10 @@ class AdminDataInput extends Component {
 
   render() {
     const { classes } = this.props;
+    // console.log(this.state)
+    // console.log(this.props)
+    // console.log('props')
+    // console.log(this.props.theChosenWine.name)
     return (
 
       <div>

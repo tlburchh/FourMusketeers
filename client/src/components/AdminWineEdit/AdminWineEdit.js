@@ -81,7 +81,8 @@ class AdminWineEdit extends Component {
 
     this.state = {
       data: [],
-      result: []
+      result: [],
+      selectedWine: []
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -141,15 +142,20 @@ class AdminWineEdit extends Component {
     this.setState({})
   }
 
-  handleWineChange = event => {
+  handleWineChange = (wine) => {
     console.log('target id')
-  console.log(event.target.id)
+    console.log('wine', wine)
+    this.setState({
+      selectedWine: wine
+    })
+  // wineData:this.event.target.find(id)
   }
 
   render() {
 
     // const wine = this.state.wine;
     const { classes } = this.props;
+    console.log(this.state)
 
     return (
       <div>
@@ -157,7 +163,7 @@ class AdminWineEdit extends Component {
           <Grid item xs={6}>
           <br></br>
             <Paper className={classes.paper}><h3>Wine Data Input</h3><hr></hr>
-            <AdminDataInput />
+            <AdminDataInput theChosenWine = {this.state.selectedWine} />
             </Paper>
           </Grid>
           <Grid item xs={6}>
@@ -211,7 +217,8 @@ class AdminWineEdit extends Component {
                                               {/* <EditButton /> */}
                                               <div>
                                                 <Button variant="outlined" id={wine._id} className={classes.button}
-                                                onClick={this.props.handleWineChange}>
+                                                onClick={() => this.handleWineChange(wine)}
+                                                >
                                                   Edit
                                                 </Button>
                                               </div>
