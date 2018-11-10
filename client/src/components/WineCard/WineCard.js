@@ -63,6 +63,7 @@ class WineCard extends Component {
 
   render() {
     const wine = this.props.wine;
+    const color = wine.color.color;
 
     return (
       // If the finished prop comes down from Tasting and this card is inactive, hide it.
@@ -75,7 +76,7 @@ class WineCard extends Component {
             paddingBottom: '0px',
             paddingTop: '0px'
           }}>
-            <Grid item xs={1} container style={{ backgroundColor: `${wine.color}`, borderRadius: "4px", marginRight: '5px' }}>
+            <Grid item xs={1} container style={{ backgroundColor: `${color}`, borderRadius: "4px", marginRight: '5px' }}>
             </Grid>
             <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
               <Grid item xs>

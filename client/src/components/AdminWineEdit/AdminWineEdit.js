@@ -148,7 +148,7 @@ class AdminWineEdit extends Component {
     this.setState({
       selectedWine: wine
     })
-  // wineData:this.event.target.find(id)
+    // wineData:this.event.target.find(id)
   }
 
   render() {
@@ -157,52 +157,53 @@ class AdminWineEdit extends Component {
     const { classes } = this.props;
     console.log(this.state)
 
+
     return (
       <div>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-          <br></br>
+            <br></br>
             <Paper className={classes.paper}><h3>Wine Data Input</h3><hr></hr>
-            <AdminDataInput theChosenWine = {this.state.selectedWine} />
+              <AdminDataInput theChosenWine={this.state.selectedWine} />
             </Paper>
           </Grid>
           <Grid item xs={6}>
-          <br></br>
+            <br></br>
             <Paper id='wineBG' className={classes.paper}><h3>Wine Card</h3>
-            <hr></hr>
+              <hr></hr>
               <Grid container spacing={24}>
-                <Grid id='wineBGO'item xs={12}>
-                    <DragDropContext onDragEnd={this.onDragEnd}>
-                      <Droppable droppableId="droppable">
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}
-                          >
-                              {this.state.data.map((wine, index) => (
-                                <div className={classes.root}>
-                                <Draggable key={index} draggableId={wine._id} index={index}>
-                                  {(provided, snapshot) => (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      style={getItemStyle(
-                                        snapshot.isDragging,
-                                        provided.draggableProps.style
-                                      )}
-                                    >
+                <Grid id='wineBGO' item xs={12}>
+                  <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable droppableId="droppable">
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          style={getListStyle(snapshot.isDraggingOver)}
+                        >
+                          {this.state.data.map((wine, index) => (
+                            <div className={classes.root}>
+                              <Draggable key={index} draggableId={wine._id} index={index}>
+                                {(provided, snapshot) => (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    style={getItemStyle(
+                                      snapshot.isDragging,
+                                      provided.draggableProps.style
+                                    )}
+                                  >
 
-                                  {/* //AdminWineEdit */}
-                                  <Paper className={`${this.props.paper}`}>
-                                  <Grid container spacing={16}>
-                                    <Grid item xs={12} lg container style={{
-                                      paddingBottom: '0px',
-                                      paddingTop: '0px',
-                                      // maxWidth: '85%'
-                                    }}>
-                                      <Grid item xs={1} container style={{ backgroundColor: `${wine.color}`, borderRadius: "4px" }}>
-                                        {/* <Paper >
+                                    {/* //AdminWineEdit */}
+                                    <Paper className={`${this.props.paper}`}>
+                                      <Grid container spacing={16}>
+                                        <Grid item xs={12} lg container style={{
+                                          paddingBottom: '0px',
+                                          paddingTop: '0px',
+                                          // maxWidth: '85%'
+                                        }}>
+                                          <Grid item xs={1} container style={{ backgroundColor: `${wine.color.color}`, borderRadius: "4px" }}>
+                                            {/* <Paper >
                                       </Paper> */}
                                           </Grid>
                                           {/* <Grid style={{display:'none'}}>{`${wine._id}`}</Grid> */}
@@ -217,7 +218,7 @@ class AdminWineEdit extends Component {
                                               {/* <EditButton /> */}
                                               <div>
                                                 <Button variant="outlined" id={wine._id} className={classes.button}
-                                                onClick={() => this.handleWineChange(wine)}
+                                                  onClick={() => this.handleWineChange(wine)}
                                                 >
                                                   Edit
                                                 </Button>
