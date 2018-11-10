@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Switch from '@material-ui/core/Switch';
 import WineColor from './WineColor/WineColor'
 import WineAvailable from './WineAvailable/WineAvailable'
+import API from "../../utils/API";
 
 
 const styles = theme => ({
@@ -77,6 +78,15 @@ class AdminDataInput extends Component {
     description: '',
     keywords: [],
     available: true
+  };
+
+  handleSave = () => {
+    console.log('STATE SENT TO BACK: ',state);
+    API.addNewWine(state)
+    .then(res => {
+      console.log("NEW WINE ADDED: ", res);
+    })
+    .catch(err => console.log(err));
   };
 
   // name and price
@@ -176,7 +186,7 @@ class AdminDataInput extends Component {
 
             {/* Save Button  */}
             <div>
-              <Button color="primary" variant="outlined" size="large" className={classes.button}>
+              <Button onClick={this.handleSave(this.state)} color="primary" variant="outlined" size="large" className={classes.button}>
                 <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
 
