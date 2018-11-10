@@ -20,12 +20,7 @@ const styles = theme => ({
   },
 });
 
-class WineColor extends React.Component {
-  state = {
-    choices: ["green", "red", "blue", "purple", "chartreuse", "mahogany"],
-    currColor: ""
-  };
-
+class WineAvailable extends React.Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -37,29 +32,25 @@ class WineColor extends React.Component {
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="color-simple">Color</InputLabel>
+          <InputLabel htmlFor="color-simple">Availability</InputLabel>
           <Select
-            value={this.props.color}
-            onChange={this.props.handleColorChange}
+            value={this.props.available}
+            onChange={this.props.handleAvailableChange}
             inputProps={{
-              name: 'color',
-              id: 'color-simple',
+              name: 'available',
+              id: 'available-simple',
             }}
           >
-            {
-              this.state.choices.map(color => (
-                <MenuItem value={color}>{color}</MenuItem>
-
-              ))
-            }
+            <MenuItem value={false}>Not Available</MenuItem>
+            <MenuItem value={true}>Available</MenuItem>
           </Select>
         </FormControl>
       </form>
     );
   }
 }
-WineColor.propTypes = {
+WineAvailable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(WineColor);
+export default withStyles(styles)(WineAvailable);

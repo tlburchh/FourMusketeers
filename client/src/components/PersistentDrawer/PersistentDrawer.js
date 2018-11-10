@@ -61,7 +61,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: 'rgba(119, 158, 209, 0.85)',
+    backgroundColor: 'rgba(180, 203, 228, 0.95)',
   },
   drawerHeader: {
     display: 'flex',
@@ -142,9 +142,11 @@ class PersistentDrawerLeft extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography variant="h5" color="inherit" noWrap>
               Admin Page
-              <CheckboxLabels />
+
+              {/* test code for check boxes */}
+              {/* <CheckboxLabels /> */}
               {/* testing checklabels */}
             </Typography>
           </Toolbar>

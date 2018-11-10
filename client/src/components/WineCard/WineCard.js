@@ -10,7 +10,7 @@ import CommentPopover from '../CommentPopover/CommentPopover';
 import './WineCard.css';
 // import ButtonBase from '@material-ui/core/ButtonBase';
 
-const styles = createMuiTheme ({
+const styles = createMuiTheme({
   root: {
     flexGrow: 1,
     maxWidth: 600,
@@ -64,6 +64,7 @@ class WineCard extends Component {
   render() {
 
     const wine = this.props.wine;
+    console.log(this.props.finished, this.state.isActive);
 
     return (
       // If the finished prop comes down from Tasting and this card is inactive, hide it.
@@ -71,18 +72,17 @@ class WineCard extends Component {
         this.props.handleCardClick(this.props.id, event);
         this.toggleActive(this.props.numClicked, event);
       }}>
-
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
             paddingBottom: '0px',
             paddingTop: '0px'
           }}>
-            <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "5px" }}>
+            <Grid item xs={1} container style={{ backgroundColor: `${wine.color[1]}`, borderRadius: "4px", marginRight: '5px' }}>
             </Grid>
             <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
-                  {`${wine.name}`}
+                <Typography gutterBottom variant="subtitle1"><h4>
+                  {`${wine.name}`}</h4>
                 </Typography>
                 <Typography
                   gutterBottom
@@ -97,7 +97,8 @@ class WineCard extends Component {
                 {
                   // Only display the stars and comments button when the user has finalized their 8 choices and clicked start
                   this.props.finished && <React.Fragment><StarRating id={wine.name} />
-                    <CommentPopover keys={wine.keywords} /></React.Fragment>
+                    <CommentPopover keys={wine.keywords} />
+                    </React.Fragment>
                 }
               </Grid>
             </Grid>
