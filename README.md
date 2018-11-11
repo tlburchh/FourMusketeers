@@ -27,10 +27,14 @@ Once you have the NodeJS environment set up, clone the repository to your local 
 * [NPM](https://www.npmjs.com/) - Dependency Management
 * [yarn](https://yarnpkg.com) - Package management
 * [Express.js](https://expressjs.com/) - The Server
+* [Passport](https://www.npmjs.com/package/passport) - Authentication
+* [bcrypt](https://www.npmjs.com/package/bcrypt) - password hashing
 * [Mongoose.js](https://mongoosejs.com/) - Database management
 * [React.js](https://reactjs.org/) - Front end layout
 * [morgan](https://github.com/expressjs/morgan) - Request logger for development
 * [material-ui](https://material-ui.com/) - css framework
+* [React beautiful drag and drop](https://www.npmjs.com/package/react-beautiful-dnd) - List reordering
+* [star rating component](https://www.npmjs.com/package/react-star-rating-component) - Star ratings
 
 
 ## Contributors
