@@ -10,6 +10,7 @@ import WineCard from '../../components/WineCard';
 import API from "../../utils/API";
 import './Tasting.css';
 import Button from '@material-ui/core/Button';
+import ConfirmDialog from '../../components/ConfirmDialog';
 
 const styles = theme => ({
   icon: {
@@ -79,7 +80,10 @@ class Tasting extends Component {
       finished: false,
       starRatings: Array(8).fill(0),
       keywordRatings: Array(8).fill([]),
-      winesRated: []
+      winesRated: [],
+      submitButtonText: "Submit Ratings!",
+      ratingDone: false,
+      confirmDialog: false
     };
   }
 
@@ -98,11 +102,61 @@ class Tasting extends Component {
       ratingArr.push(wineRating);
     }
     API.submitRating(ratingArr).then(resp => {
+      this.buttonSubmitDone();
+      this.afterSubmit();
       console.log(`Submitted wine ratings: ${resp}`, resp);
+      // Can't access props inside the setTimeout method ->
+      const logout = this.props.logout;
+      setTimeout(function () {
+        logout();
+      }, 5000);
     }).catch(err => {
       console.log("Error submitting wine rating...");
     });
   }
+  // Helper functions for button styling and user feedback when submitting rating (above function)
+  confirmSubmitRating = () => {
+    console.log("Confirming submit...");
+    this.setState({
+      confirmDialog: true
+    });
+  }
+  buttonSubmit = () => {
+    this.setState({
+      submitButtonText: "Submitting..."
+    });
+  }
+  buttonSubmitDone = () => {
+    this.setState({
+      submitButtonText: "Done!"
+    });
+  }
+  afterSubmit = () => {
+    this.setState({
+      ratingDone: true
+    });
+  }
+
+  // Passed down to confirm dialog to open and close:
+  handleConfirmOpen = () => {
+    this.setState({ confirmDialog: true });
+  };
+
+  handleConfirmClose = event => {
+    // convert bool string to true boolean
+    const yn = (event.target.innerHTML === 'Yes');
+    if (yn) {
+      this.setState({
+        confirmDialog: false
+      });
+      this.submitRatedWines();
+    }
+    else {
+      this.setState({
+        confirmDialog: false
+      });
+    }
+  };
 
   handleCardClick = (cardId, event) => {
     // If tasting has started, abort
@@ -292,8 +346,13 @@ class Tasting extends Component {
               justify="center"
               alignItems="center"
             >
+              <ConfirmDialog
+                openState={this.state.confirmDialog}
+                open={this.handleConfirmOpen}
+                close={this.handleConfirmClose}
+              />
 
-              {this.state.data.map((wineData, i) => (
+              {!this.state.ratingDone && this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid >
                     <Grid >
@@ -313,33 +372,38 @@ class Tasting extends Component {
                   </Grid>
                 </div>
               ))}
-              {this.state.finished && (
-                <Button style={{ 
-                            display: 'flex',
-                            flexDirection: 'column',
-                            position: 'fixed',                         
-                            bottom: 0,
-                            width: '90%'
-                            }}
-                        variant="contained"  
-                        color="primary" 
-                        className={classes.button} 
-                        onClick={this.submitRatedWines}>
-                  Submit Ratings!
+              {
+                this.state.ratingDone && <div className="post-rating-message">
+                  <h3>Thank you for visiting! We hope you enjoyed yourself!</h3>
+                </div>
+              }
+              {this.state.finished && !this.state.ratingDone && (
+                <Button style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'fixed',
+                  bottom: 0,
+                  width: '90%'
+                }}
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={this.confirmSubmitRating}>
+                  {this.state.submitButtonText}
                 </Button>
               )}
             </Grid>
           </div>
         </main>
         {/* Footer */}
-        <footer style={{background: '#495f86',
-                    height: '30px',
-                                             
-                    paddingBottom: '65px'
-          }}className={classes.footer}>
+        <footer style={{
+          background: '#495f86',
+          height: '30px',
+          paddingBottom: '65px'
+        }} className={classes.footer}>
           <Typography align="left" gutterBottom >
-            <h6><b>Silenus</b></h6><p>by <br></br>Amalgam Innovations 2018</p> 
-        </Typography>
+            <h6><b>Silenus</b></h6><p>by <br></br>Amalgam Innovations 2018</p>
+          </Typography>
         </footer>
         {/* End footer */}
       </React.Fragment>
