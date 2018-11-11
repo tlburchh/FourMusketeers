@@ -9,10 +9,9 @@ const ratingSchema = new Schema ({
         required: true,
         default: null
     },
-
+// This will be an array of true/false which can be cross referenced with the wine's keywords
     keyWordRating:[{
-        type: Schema.Types.ObjectId,
-        ref: 'Keyword'
+        type: Boolean
     }],
 
     user: {

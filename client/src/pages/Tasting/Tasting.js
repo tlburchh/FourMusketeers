@@ -89,19 +89,19 @@ class Tasting extends Component {
 
   // User clicks submit rating button
   submitRatedWines = () => {
-    // We have an array of 8 ratings (one per wine)
+    // We have an array of ratings (only the ones actually rated)
     let ratingArr = [];
-    // for each one, push the corresponding index in an object into the array
-    for (let i = 0; i < 8; i++) {
+    // for each one rated, push the corresponding index in an object into the array
+    for (let i = 0; i < this.state.winesRated.length; i++) {
       const wineRating = {
         numericalRating: this.state.starRatings[i],
         keyWordRating: this.state.keywordRatings[i],
-        user: this.state.user,
+        user: this.state.user._id || null,
         wine: this.state.winesRated[i]
       };
       ratingArr.push(wineRating);
     }
-    API.submitRating(ratingArr).then(resp => {
+    API.submitRating({ ratings: ratingArr, selected: this.state.selected }).then(resp => {
       this.buttonSubmitDone();
       this.afterSubmit();
       console.log(`Submitted wine ratings: ${resp}`, resp);
