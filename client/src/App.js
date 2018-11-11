@@ -39,7 +39,10 @@ class App extends Component {
 	}
 
 	logout = (event) => {
-		event.preventDefault();
+		// Sometime there won't be event (When logout is triggered after submit ratings)
+		if (event) {
+			event.preventDefault();
+		}
 		console.log("Logout firing");
 
 		if (this.state.user.email === "Guest") {
@@ -97,7 +100,7 @@ class App extends Component {
 							<div>
 								<Nav user={this.state.user} logout={this.logout} />
 								<div className="main-view">
-									<Tasting user={this.state.user} />
+									<Tasting user={this.state.user} logout={this.logout} />
 								</div>
 							</div>
 						)} />
@@ -106,13 +109,14 @@ class App extends Component {
 				)}
 
 				{/* MUST be logged in and NOT an admin for this route block */}
-				{this.state.loggedIn && !this.state.user.isAdmin &&  (
+				{this.state.loggedIn && !this.state.user.isAdmin && (
 					<div>
 						<Nav user={this.state.user} logout={this.logout} />
 						<div className="main-view">
 							<Switch>
 								<Route exact path="/" component={() => <Tasting
 									user={this.state.user}
+									logout={this.logout}
 								/>} />
 								<Route component={NoMatch} />
 							</Switch>

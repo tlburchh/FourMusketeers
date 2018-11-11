@@ -10,10 +10,6 @@ export default {
     console.log("Submitting rating (API.js)");
     return axios.post("/api/post/rating", ratingObj);
   },
-  // submitRating: function (ratingObj) {
-  //   console.log("Submitting rating (API.js)");
-  //   return axios.post("/api/post/rating", ratingObj);
-  // },
 
   addNewWine: function (newWine) {
 
@@ -22,7 +18,7 @@ export default {
       color: newWine.color,
       description: newWine.description,
       priceRegular: newWine.price
-  };
+    };
 
     console.log("addNewWine", newWine2);
     return axios.post("/api/post/addNewWine", newWine2);
