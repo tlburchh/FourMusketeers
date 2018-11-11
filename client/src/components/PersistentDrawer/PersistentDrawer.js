@@ -28,7 +28,7 @@ import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 import TastingButton from '../../components/TastingButton/TastingButton';
 // import { generateKeyPairSync } from 'crypto';
 import './pDrawer.css';
-import CheckboxLabels from '../../components/Checkbox/Checkbox';
+// import CheckboxLabels from '../../components/Checkbox/Checkbox';
 
 
 const drawerWidth = 240;
@@ -140,57 +140,52 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
         <Grid container spacing={0}>
-          <Grid item xs={2} sm container style={{
-          }}>
-          <Toolbar disableGutters={!open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
+          <Grid item xs={2} sm container style={{}}>
+            <Toolbar disableGutters={!open}>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
 
 
-            <Typography variant="h5" color="inherit" noWrap>
-              Admin Page
+              <Typography variant="h5" color="inherit" noWrap>
+                Admin Page
 
-              {/* test code for check boxes */}
-              {/* <CheckboxLabels /> */}
-              {/* testing checklabels */}
-            </Typography>
-          </Toolbar>
+                {/* test code for check boxes */}
+                {/* <CheckboxLabels /> */}
+                {/* testing checklabels */}
+              </Typography>
+            </Toolbar>
           </Grid>
+          <Grid item xs={8} sm container style={{}}>          
+            <h2 textAlign='center'>Starrlight Meads</h2>
+            </Grid>
+              <Grid item xs={2} sm container >
+              {/* Added by Karsten, greeting and logout to replace NAV */}
+                <div id = "userInfo">
+                  {/* {this.props.greeting}&nbsp; */}
 
-          <Grid item xs={8} sm container style={{
-          }}>
-            
-<h2 textAlign='center'>Starlight Meads</h2>
-          </Grid>
+                    <TastingButton />
 
-          <Grid item xs={2} sm container style={{
-          }}>
-          {/* Added by Karsten, greeting and logout to replace NAV */}
-          <div id = "userInfo">
-            {this.props.greeting}&nbsp;
-
-                <TastingButton />
-
-                <Button 
-                variant="contained" 
-                color="secondary" 
-                className={('logout', classes.button)}
-                size="large"
-                href="/"
-                onClick={this.props.logout}>
-                Logout
-                <NoMeetingRoomIcon className={classes.rightIcon} />
-                </Button>&nbsp;
-
-          </div>
-          </Grid>
-          </Grid>
+                  {/* logout button */}
+                    <Button 
+                      style={{padding: '8px 48px' }}
+                      variant="contained" 
+                      color="secondary" 
+                      className={('logout', classes.button)}
+                      size="large"
+                      href="/"
+                      onClick={this.props.logout}>
+                      Logout
+                      <NoMeetingRoomIcon className={classes.rightIcon} />
+                    </Button>&nbsp;
+                </div>
+              </Grid>
+            </Grid>
         </AppBar>
         <Drawer
           className={classes.drawer}
@@ -207,17 +202,17 @@ class PersistentDrawerLeft extends React.Component {
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
-          <Divider />
-          <List id="list">
-            {['Wine'].map((text, index) => (
-              <ListItem button key={text}
-                onClick={this.WineEdit}>
-                <ListItemIcon> <AddToPhotosIcon /> </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
+            <Divider />
+              <List id="list">
+                {['Wine'].map((text, index) => (
+                  <ListItem button key={text}
+                    onClick={this.WineEdit}>
+                    <ListItemIcon> <AddToPhotosIcon /> </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+              </List>
+            <Divider />
           <List>
             {['Stats'].map((text, index) => (
               <ListItem button key={text}
