@@ -14,7 +14,6 @@ class Thumbs extends React.Component {
         }
         const upDown = targ.getAttribute("data-val");
         if (upDown === 'up') {
-            console.log(upDown);
             this.setState({
                 up: 'upActive',
                 down: "",
@@ -22,7 +21,6 @@ class Thumbs extends React.Component {
             });
         }
         else if (upDown === 'down') {
-            console.log(upDown);
             this.setState({
                 down: 'downActive',
                 up: "",
@@ -32,10 +30,6 @@ class Thumbs extends React.Component {
         else {
             console.log("Something wrong");
         }
-    }
-
-    componentDidMount() {
-        console.log(`From parent ${this.props.goodBad}`);
     }
 
     render() {

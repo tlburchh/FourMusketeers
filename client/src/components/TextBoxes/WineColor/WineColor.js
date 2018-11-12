@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import API from '../../../utils/API';
-import { colors } from '@material-ui/core';
+// import { colors } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -31,16 +31,13 @@ class WineColor extends React.Component {
   componentDidMount() {
     if (this.state.choices.length === 1) {
       API.getColors().then(resp => {
-        console.log(resp.data.colors);
         let colorsArray = [];
         resp.data.colors.forEach(color => {
-          console.log(color);
           colorsArray.push(color.color);
         });
         this.setState({
           choices: colorsArray
         }, () => {
-          console.log("Set the colors in state");
         });
       }).catch((err) => {
         console.log("Error getting colors");
@@ -71,8 +68,8 @@ class WineColor extends React.Component {
             }}
           >
             {
-              this.state.choices.map(color => (
-                <MenuItem value={color} style={{ background: color }}></MenuItem>
+              this.state.choices.map((color, i) => (
+                <MenuItem value={color} style={{ background: color }} key={i}></MenuItem>
 
               ))
             }

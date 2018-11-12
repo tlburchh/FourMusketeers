@@ -37,14 +37,6 @@ const styles = theme => ({
 });
 ////////////////////DRAG AND DROP/////////////////////////
 
-// fake data generator
-// const getItems = count =>
-//   Array.from({ length: count }, (v, k) => k).map(k => ({
-//     id: `item-${k}`,
-//     content: `item ${k}`,
-//   }));
-// console.log('k')
-// a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -98,9 +90,6 @@ class AdminWineEdit extends Component {
       result.source.index,
       result.destination.index
     );
-    console.log(this.state.data);
-    console.log(result.source.index);
-    console.log(result.destination.index);
 
     this.setState({
       data,
@@ -128,8 +117,6 @@ class AdminWineEdit extends Component {
   loadWines = () => {
     API.getCurrentWines()
       .then(res => {
-        // console.log("response data");
-        // console.log(res.data);
         this.setState({
           data: res.data
         })
@@ -138,24 +125,18 @@ class AdminWineEdit extends Component {
   };
 
   handleWineSelection = () => {
-    console.log('Clicked div');
     this.setState({})
   }
 
   handleWineChange = (wine) => {
-    // console.log('target id')
-    // console.log('wine', wine)
     this.setState({
       selectedWine: wine
     })
-    // wineData:this.event.target.find(id)
   }
 
   render() {
 
-    // const wine = this.state.wine;
     const { classes } = this.props;
-    console.log(this.state)
 
 
     return (
@@ -181,7 +162,7 @@ class AdminWineEdit extends Component {
                           style={getListStyle(snapshot.isDraggingOver)}
                         >
                           {this.state.data.map((wine, index) => (
-                            <div className={classes.root}>
+                            <div className={classes.root} key={index}>
                               <Draggable key={index} draggableId={wine._id} index={index}>
                                 {(provided, snapshot) => (
                                   <div

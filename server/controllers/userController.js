@@ -5,7 +5,6 @@ const path = require("path");
 module.exports = {
   getUser: (req, res, next) => {
     console.log('===== user!!======');
-    console.log(req.user);
     if (req.user) {
       return res.json({ user: req.user });
     } else {
@@ -47,8 +46,6 @@ module.exports = {
     next();
   },
   authenticate: (req, res) => {
-    console.log('POST to /login');
-    console.log(req.user);
     const user = JSON.parse(JSON.stringify(req.user)); // hack
     const cleanUser = Object.assign({}, user);
     if (cleanUser) {

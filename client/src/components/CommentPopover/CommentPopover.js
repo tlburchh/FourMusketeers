@@ -40,9 +40,6 @@ class CommentPopover extends React.Component {
 
   thumbClickHandler = index => event => {
 
-
-    console.log(index);
-
     let targ = event.target.parentNode;
     // get thumb-box every time
     if (targ.tagName === 'svg') {
@@ -51,7 +48,6 @@ class CommentPopover extends React.Component {
     const upDown = targ.getAttribute("data-val");
     if (upDown === 'up') {
 
-      console.log(upDown);
       const tmpArr = [...this.state.keywords.slice(0, index), true, ...this.state.keywords.slice(index + 1)];
       this.setState({
         keywords: tmpArr
@@ -60,7 +56,6 @@ class CommentPopover extends React.Component {
       });
     }
     else if (upDown === 'down') {
-      console.log(upDown);
       const tmpArr = [...this.state.keywords.slice(0, index), false, ...this.state.keywords.slice(index + 1)];
       this.setState({
         keywords: tmpArr

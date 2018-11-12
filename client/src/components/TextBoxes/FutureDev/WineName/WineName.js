@@ -38,8 +38,6 @@ class WineName extends React.Component {
   
   render() {
     const { classes } = this.props;
-    console.log('Name State')
-    console.log(this.state);
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField

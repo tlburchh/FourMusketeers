@@ -14,7 +14,6 @@ class StarRating extends React.Component {
     this.setState({
       rating: nextValue
     }, function () {
-      console.log("Star rating changed");
       this.props.starStateGetter(this.state.rating, this.props.identifier);
     });
   }
