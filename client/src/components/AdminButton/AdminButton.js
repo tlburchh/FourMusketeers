@@ -19,7 +19,7 @@ function AdminButton(props) {
   return (
         <Button 
         variant="contained" 
-        style={{ backgroundColor: 'rgba(119, 158, 209)', 
+        style={{ backgroundColor: 'rgba(119, 158, 209)',
         }}
         size="small" 
         className={classes.button}

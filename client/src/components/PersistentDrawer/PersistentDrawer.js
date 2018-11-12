@@ -124,7 +124,7 @@ class PersistentDrawerLeft extends React.Component {
 
 
 
-
+  
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -181,7 +181,7 @@ class PersistentDrawerLeft extends React.Component {
                 variant="contained" 
                 color="secondary" 
                 className={('logout', classes.button)}
-                size="large"
+                size="small"
                 href="/"
                 onClick={this.props.logout}>
                 Logout

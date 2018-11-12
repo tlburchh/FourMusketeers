@@ -21,7 +21,7 @@ function TastingButton(props) {
         variant="contained" 
         style={{ backgroundColor: 'rgba(119, 158, 209)', 
         }}
-        size="large" 
+        size="small" 
         className={classes.button}
         href="/tasting">
         Tasting Page

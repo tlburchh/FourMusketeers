@@ -332,13 +332,13 @@ class Tasting extends Component {
           </div>
         </main>
         {/* Footer */}
-        <footer style={{background: '#495f86',
+        <footer style={{background: '#6789c400',
                     height: '30px',
                                              
                     paddingBottom: '65px'
           }}className={classes.footer}>
-          <Typography align="left" gutterBottom >
-            <h6><b>Silenus</b></h6><p>by <br></br>Amalgam Innovations 2018</p> 
+          <Typography align="left" gutterBottom>
+            <h6><b>Silenus</b><p>by <br></br>Amalgam Innovations 2018</p></h6>
         </Typography>
         </footer>
         {/* End footer */}
