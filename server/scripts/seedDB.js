@@ -263,16 +263,12 @@ const ratingsSeed = [
 
 db.Colors.deleteMany({}).then(
   db.Colors.insertMany(colorsSeed).then(resp => {
-    console.log("Added colors: " + resp);
     db.Keywords.deleteMany({}).then(
       db.Keywords.insertMany(keywordsSeed).then(resp => {
-        console.log("Added keywords");
         db.Wines.deleteMany({}).then((res, err) => {
           db.Wines.insertMany(winesSeed).then(resp => {
-            console.log("Added wines");
             db.Rating.deleteMany({}).then(
               db.Rating.insertMany(ratingsSeed).then(resp => {
-                console.log("Added ratings");
                 process.exit(0);
               }).catch(err => {
                 console.log(`Error inserting ratings ${err}`);

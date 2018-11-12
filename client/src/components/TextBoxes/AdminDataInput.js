@@ -6,8 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Switch from '@material-ui/core/Switch';
+// import Paper from '@material-ui/core/Paper';
+// import Switch from '@material-ui/core/Switch';
 import WineColor from './WineColor/WineColor'
 import WineAvailable from './WineAvailable/WineAvailable'
 import API from "../../utils/API";
@@ -79,18 +79,14 @@ class AdminDataInput extends Component {
       keywords: [],
       available: true,
     }
-    console.log('props in state')
-    console.log(this.props.theChosenWine.name)
   }
 
 
 
 
   handleSave = () => {
-    // console.log('STATE SENT TO BACK: ', this.state);
     API.addNewWine(this.state)
       .then(res => {
-        // console.log("NEW WINE ADDED: ", res);
       })
       .catch(err => console.log(err));
   };
@@ -120,10 +116,6 @@ class AdminDataInput extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state)
-    console.log(this.props.theChosenWine.name)
-    // console.log('props')
-    // console.log(this.props.theChosenWine.name)
     return (
 
       <div>

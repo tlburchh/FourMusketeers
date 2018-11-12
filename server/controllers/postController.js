@@ -17,9 +17,7 @@ module.exports = {
         };
 
         db.Wines.insertMany(newWine).then(winesResp => {
-            console.log(`Inserted new wine: ${winesResp}`);
             db.Keywords.insertMany(newKeyword).then(keywordResp => {
-                console.log(`Inserted new keyword : ${keywordResp}.`)
                 res.json({ message: `New wine and keyword added.` });
             }).catch(keyWordErr => {
                 console.log(`Error adding keyword: ${keyWordErr}`);
@@ -97,13 +95,11 @@ module.exports = {
 // Helpers for insert ratings
 insertRatings = (ratings, selected, res) => {
     // Insert the ratings
-    console.log(ratings);
     // On callback, increment the wines selected for the tasting
 
     incrementTimesTasted(selected, res);
 }
 
 incrementTimesTasted = (selected, res) => {
-    console.log(selected);
     res.json({ message: "Submit ratings done!" });
 }

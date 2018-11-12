@@ -104,7 +104,6 @@ class Tasting extends Component {
     API.submitRating({ ratings: ratingArr, selected: this.state.selected }).then(resp => {
       this.buttonSubmitDone();
       this.afterSubmit();
-      console.log(`Submitted wine ratings: ${resp}`, resp);
       // Can't access props inside the setTimeout method ->
       const logout = this.props.logout;
       setTimeout(function () {
@@ -116,7 +115,6 @@ class Tasting extends Component {
   }
   // Helper functions for button styling and user feedback when submitting rating (above function)
   confirmSubmitRating = () => {
-    console.log("Confirming submit...");
     this.setState({
       confirmDialog: true
     });
@@ -215,8 +213,6 @@ class Tasting extends Component {
   loadWines = () => {
     API.getCurrentWines()
       .then(res => {
-        console.log("response data");
-        console.log(res.data);
         this.setState({
           data: res.data
         })
@@ -225,14 +221,12 @@ class Tasting extends Component {
   };
 
   startTasting = () => {
-    console.log("Begin tasting");
     this.setState({
       finished: true
     });
   }
 
   handleWineSelection = () => {
-    console.log('Clicked div');
     this.setState({})
   }
 
@@ -257,7 +251,6 @@ class Tasting extends Component {
   // This gets passed all the way down to <StarRating />
   // It fires when a star is clicked and sets the appropriate state here
   starStateGetter = (rating, wineId) => {
-    console.log(rating, wineId);
     // We need to find if this wineId has been set in state before
     if (this.findWineIdInState(wineId) === -1) {
       const nextEmpty = this.state.winesRated.length;
@@ -317,9 +310,9 @@ class Tasting extends Component {
     const tmpArr = [...this.state.keywordRatings.slice(0, index), kws, ...this.state.keywordRatings.slice(index + 1)];
     this.setState({
       keywordRatings: tmpArr
-    }), () => {
+    }, () => {
       return "Put kw ratings in state";
-    };
+    });
   }
 
   render() {
@@ -340,7 +333,7 @@ class Tasting extends Component {
             {/* End hero unit */}
 
 
-            <Grid xs={12}
+            <Grid
               container
               direction="column"
               justify="center"
@@ -401,8 +394,10 @@ class Tasting extends Component {
           height: '30px',
           paddingBottom: '65px'
         }} className={classes.footer}>
+          {/* Can't put any header tags in a <Typography/> (it's basically a <p> tag) */}
           <Typography align="left" gutterBottom >
-            <h6><b>Silenus</b></h6><p>by <br></br>Amalgam Innovations 2018</p>
+            <b>Silenus</b><br />
+            by Amalgam Innovations 2018
           </Typography>
         </footer>
         {/* End footer */}

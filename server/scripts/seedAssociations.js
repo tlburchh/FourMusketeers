@@ -16,18 +16,15 @@ db.Wines.find({}).then(wines => {
     wines.forEach(wine => {
         wineIds.push(wine.id);
     });
-    console.log("Got wine IDs");
     db.Keywords.find({}).then(keywords => {
         keywords.forEach(keyword => {
             keywordIds.push(keyword.id);
         });
-        console.log("Got keyword IDs");
         db.Colors.find({}).then(colors => {
             colors.forEach(color => {
                 colorIds.push(color.id);
             });
         });
-        console.log("Got colors");
         assKeys();
     });
 });
@@ -54,7 +51,6 @@ getManyKws = () => {
     for (let i = 0; i < 6; i++) {
         arr.push(getRandomKw());
     }
-    console.log(`Keywords: ${arr}`, arr);
     return arr;
 }
 
@@ -68,7 +64,6 @@ assKeys = () => {
             }
         ).then(result => {
             if (i === keywordIds.length - 1) {
-                console.log("DONE ADDING WINES");
                 for (let i = 0; i < 5; i++) {
                     if (i === 4) {
                         addWineFlavors(true);
@@ -97,12 +92,11 @@ addWineFlavors = done => {
                         {
                             color: getRandomColor()
                         }).then(res => {
-                            console.log("DONE ADDING KEYWORDS + COLORS");
+                            console.log("DONE ASSOCIATING KEYWORDS + COLORS");
                             process.exit(0);
                         });
                 });
             }
-            console.log("Added kw to wine");
         }).catch((err) => { console.log(err); })
     });
 }

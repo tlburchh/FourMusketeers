@@ -81,8 +81,8 @@ class WineCard extends Component {
             </Grid>
             <Grid item xs container style={{ maxWidth: '85%' }} direction="column" spacing={24}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1"><h4>
-                  {`${wine.name}`}</h4>
+                <Typography gutterBottom variant="subtitle1">
+                  {`${wine.name}`}
                 </Typography>
                 <Typography
                   gutterBottom

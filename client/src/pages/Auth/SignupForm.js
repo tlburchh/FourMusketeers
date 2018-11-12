@@ -43,7 +43,6 @@ class SignupForm extends Component {
       }
       else if (!response.data.error) {
         alert("Account created successfully");
-        console.log(response);
         this.setState({
           redirectTo: '/'
         });

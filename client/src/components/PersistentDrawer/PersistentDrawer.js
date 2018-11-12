@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+// import Icon from '@material-ui/core/Icon';
 import MenuIcon from '@material-ui/icons/Menu';
 import PollIcon from '@material-ui/icons/Poll';
 import MoodIcon from '@material-ui/icons/Mood';
@@ -161,7 +161,7 @@ class PersistentDrawerLeft extends React.Component {
               </Typography>
             </Toolbar>
           </Grid>
-          <Grid item xs={8} sm container style={{}}>          
+          <Grid item xs={8} sm container style={{}}>
             <h2 textAlign='center'>Starrlight Meads</h2>
             </Grid>
               <Grid item xs={2} sm container >
@@ -172,10 +172,10 @@ class PersistentDrawerLeft extends React.Component {
                     <TastingButton />
 
                   {/* logout button */}
-                    <Button 
+                    <Button
                       style={{padding: '8px 48px' }}
-                      variant="contained" 
-                      color="secondary" 
+                      variant="contained"
+                      color="secondary"
                       className={('logout', classes.button)}
                       size="large"
                       href="/"
