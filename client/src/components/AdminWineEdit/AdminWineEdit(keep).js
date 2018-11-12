@@ -48,8 +48,6 @@ class AdminWineEdit extends Component {
   loadWines = () => {
     API.getCurrentWines()
       .then(res => {
-        console.log("response data");
-        console.log(res.data);
         this.setState({
           data: res.data
         })
@@ -58,7 +56,6 @@ class AdminWineEdit extends Component {
   };
 
   handleWineSelection = () => {
-    console.log('Clicked div');
     this.setState({})
   }
   render() {

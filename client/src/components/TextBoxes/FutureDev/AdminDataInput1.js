@@ -45,7 +45,6 @@ class AdminDataInput extends Component {
       wineswitch: this.props.switch,
 
     };
-    console.log(this.state)
   }
   render() {
     const { classes } = this.props;

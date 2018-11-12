@@ -10,6 +10,7 @@ import WineCard from '../../components/WineCard';
 import API from "../../utils/API";
 import './Tasting.css';
 import Button from '@material-ui/core/Button';
+import ConfirmDialog from '../../components/ConfirmDialog';
 
 const styles = theme => ({
   icon: {
@@ -79,30 +80,81 @@ class Tasting extends Component {
       finished: false,
       starRatings: Array(8).fill(0),
       keywordRatings: Array(8).fill([]),
-      winesRated: []
+      winesRated: [],
+      submitButtonText: "Submit Ratings!",
+      ratingDone: false,
+      confirmDialog: false
     };
   }
 
   // User clicks submit rating button
   submitRatedWines = () => {
-    // We have an array of 8 ratings (one per wine)
+    // We have an array of ratings (only the ones actually rated)
     let ratingArr = [];
-    // for each one, push the corresponding index in an object into the array
-    for (let i = 0; i < 8; i++) {
+    // for each one rated, push the corresponding index in an object into the array
+    for (let i = 0; i < this.state.winesRated.length; i++) {
       const wineRating = {
         numericalRating: this.state.starRatings[i],
         keyWordRating: this.state.keywordRatings[i],
-        user: this.state.user,
+        user: this.state.user._id || null,
         wine: this.state.winesRated[i]
       };
       ratingArr.push(wineRating);
     }
-    API.submitRating(ratingArr).then(resp => {
-      console.log(`Submitted wine ratings: ${resp}`, resp);
+    API.submitRating({ ratings: ratingArr, selected: this.state.selected }).then(resp => {
+      this.buttonSubmitDone();
+      this.afterSubmit();
+      // Can't access props inside the setTimeout method ->
+      const logout = this.props.logout;
+      setTimeout(function () {
+        logout();
+      }, 5000);
     }).catch(err => {
       console.log("Error submitting wine rating...");
     });
   }
+  // Helper functions for button styling and user feedback when submitting rating (above function)
+  confirmSubmitRating = () => {
+    this.setState({
+      confirmDialog: true
+    });
+  }
+  buttonSubmit = () => {
+    this.setState({
+      submitButtonText: "Submitting..."
+    });
+  }
+  buttonSubmitDone = () => {
+    this.setState({
+      submitButtonText: "Done!"
+    });
+  }
+  afterSubmit = () => {
+    this.setState({
+      ratingDone: true
+    });
+  }
+
+  // Passed down to confirm dialog to open and close:
+  handleConfirmOpen = () => {
+    this.setState({ confirmDialog: true });
+  };
+
+  handleConfirmClose = event => {
+    // convert bool string to true boolean
+    const yn = (event.target.innerHTML === 'Yes');
+    if (yn) {
+      this.setState({
+        confirmDialog: false
+      });
+      this.submitRatedWines();
+    }
+    else {
+      this.setState({
+        confirmDialog: false
+      });
+    }
+  };
 
   handleCardClick = (cardId, event) => {
     // If tasting has started, abort
@@ -161,8 +213,6 @@ class Tasting extends Component {
   loadWines = () => {
     API.getCurrentWines()
       .then(res => {
-        console.log("response data");
-        console.log(res.data);
         this.setState({
           data: res.data
         })
@@ -171,14 +221,12 @@ class Tasting extends Component {
   };
 
   startTasting = () => {
-    console.log("Begin tasting");
     this.setState({
       finished: true
     });
   }
 
   handleWineSelection = () => {
-    console.log('Clicked div');
     this.setState({})
   }
 
@@ -203,7 +251,6 @@ class Tasting extends Component {
   // This gets passed all the way down to <StarRating />
   // It fires when a star is clicked and sets the appropriate state here
   starStateGetter = (rating, wineId) => {
-    console.log(rating, wineId);
     // We need to find if this wineId has been set in state before
     if (this.findWineIdInState(wineId) === -1) {
       const nextEmpty = this.state.winesRated.length;
@@ -263,9 +310,9 @@ class Tasting extends Component {
     const tmpArr = [...this.state.keywordRatings.slice(0, index), kws, ...this.state.keywordRatings.slice(index + 1)];
     this.setState({
       keywordRatings: tmpArr
-    }), () => {
+    }, () => {
       return "Put kw ratings in state";
-    };
+    });
   }
 
   render() {
@@ -286,14 +333,19 @@ class Tasting extends Component {
             {/* End hero unit */}
 
 
-            <Grid xs={12}
+            <Grid
               container
               direction="column"
               justify="center"
               alignItems="center"
             >
+              <ConfirmDialog
+                openState={this.state.confirmDialog}
+                open={this.handleConfirmOpen}
+                close={this.handleConfirmClose}
+              />
 
-              {this.state.data.map((wineData, i) => (
+              {!this.state.ratingDone && this.state.data.map((wineData, i) => (
                 <div key={i} className={classes.root}>
                   <Grid >
                     <Grid >
@@ -313,19 +365,24 @@ class Tasting extends Component {
                   </Grid>
                 </div>
               ))}
-              {this.state.finished && (
-                <Button style={{ 
-                            display: 'flex',
-                            flexDirection: 'column',
-                            position: 'fixed',                         
-                            bottom: 0,
-                            width: '90%'
-                            }}
-                        variant="contained"  
-                        color="primary" 
-                        className={classes.button} 
-                        onClick={this.submitRatedWines}>
-                  Submit Ratings!
+              {
+                this.state.ratingDone && <div className="post-rating-message">
+                  <h3>Thank you for visiting! We hope you enjoyed yourself!</h3>
+                </div>
+              }
+              {this.state.finished && !this.state.ratingDone && (
+                <Button style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'fixed',
+                  bottom: 0,
+                  width: '90%'
+                }}
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={this.confirmSubmitRating}>
+                  {this.state.submitButtonText}
                 </Button>
               )}
             </Grid>
@@ -333,8 +390,7 @@ class Tasting extends Component {
         </main>
         {/* Footer */}
         <footer style={{background: '#6789c400',
-                    height: '30px',
-                                             
+                    height: '30px',                
                     paddingBottom: '65px'
           }}className={classes.footer}>
           <Typography align="left" gutterBottom>

@@ -20,8 +20,8 @@ function TastingButton(props) {
         <Button 
         variant="contained" 
         style={{ backgroundColor: 'rgba(119, 158, 209)', 
-        }}
-        size="small" 
+        margin: '8px 0px 8px 0px'}}
+        size="large" 
         className={classes.button}
         href="/tasting">
         Tasting Page

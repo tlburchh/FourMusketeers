@@ -23,7 +23,6 @@ class App extends Component {
 
 	componentDidMount() {
 		AUTH.getUser().then(response => {
-			console.log(response.data);
 			if (response.data.user) {
 				this.setState({
 					loggedIn: true,
@@ -39,8 +38,10 @@ class App extends Component {
 	}
 
 	logout = (event) => {
-		event.preventDefault();
-		console.log("Logout firing");
+		// Sometime there won't be event (When logout is triggered after submit ratings)
+		if (event) {
+			event.preventDefault();
+		}
 
 		if (this.state.user.email === "Guest") {
 			this.setState({
@@ -50,7 +51,6 @@ class App extends Component {
 		}
 		else {
 			AUTH.logout().then(response => {
-				console.log(response.data);
 				if (response.status === 200) {
 					this.setState({
 						loggedIn: false,
@@ -64,7 +64,6 @@ class App extends Component {
 
 	login = (email, password) => {
 		AUTH.login(email, password).then(response => {
-			console.log(response);
 			if (response.status === 200) {
 				// update the state
 				this.setState({
@@ -97,7 +96,7 @@ class App extends Component {
 							<div>
 								<Nav user={this.state.user} logout={this.logout} />
 								<div className="main-view">
-									<Tasting user={this.state.user} />
+									<Tasting user={this.state.user} logout={this.logout} />
 								</div>
 							</div>
 						)} />
@@ -106,13 +105,14 @@ class App extends Component {
 				)}
 
 				{/* MUST be logged in and NOT an admin for this route block */}
-				{this.state.loggedIn && !this.state.user.isAdmin &&  (
+				{this.state.loggedIn && !this.state.user.isAdmin && (
 					<div>
 						<Nav user={this.state.user} logout={this.logout} />
 						<div className="main-view">
 							<Switch>
 								<Route exact path="/" component={() => <Tasting
 									user={this.state.user}
+									logout={this.logout}
 								/>} />
 								<Route component={NoMatch} />
 							</Switch>
@@ -122,10 +122,10 @@ class App extends Component {
 				{/* SCREW you, you hackers!! */}
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
-						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/tasting" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/admin" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/signup" component={SignupForm} />
+						<Switch>
+							<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
+							<Route component={NoMatch} />
+						</Switch>
 					</div>
 				)}
 			</div>
