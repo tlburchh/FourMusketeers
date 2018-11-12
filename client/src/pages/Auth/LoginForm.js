@@ -41,9 +41,6 @@ class LoginForm extends Component {
 	handleGuest = event => {
 		event.preventDefault();
 		this.props.setGuest();
-		this.setState({
-			redirectTo: "/guest"
-		});
 	}
 
 	render() {
@@ -75,7 +72,7 @@ class LoginForm extends Component {
 									<FormBtn onClick={this.handleSubmit}>Login</FormBtn>
 								</form>
 								<Link
-									to="/guest"
+									to="/"
 									onClick={this.handleGuest}
 								>Guest</Link>
 							</Card>
