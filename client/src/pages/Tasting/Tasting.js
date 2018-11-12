@@ -389,16 +389,13 @@ class Tasting extends Component {
           </div>
         </main>
         {/* Footer */}
-        <footer style={{
-          background: '#495f86',
-          height: '30px',
-          paddingBottom: '65px'
-        }} className={classes.footer}>
-          {/* Can't put any header tags in a <Typography/> (it's basically a <p> tag) */}
-          <Typography align="left" gutterBottom >
-            <b>Silenus</b><br />
-            by Amalgam Innovations 2018
-          </Typography>
+        <footer style={{background: '#6789c400',
+                    height: '30px',                
+                    paddingBottom: '65px'
+          }}className={classes.footer}>
+          <Typography align="left" gutterBottom>
+            <h6><b>Silenus</b><p>by <br></br>Amalgam Innovations 2018</p></h6>
+        </Typography>
         </footer>
         {/* End footer */}
       </React.Fragment>

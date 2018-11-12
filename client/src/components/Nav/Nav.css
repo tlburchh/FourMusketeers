@@ -1,8 +1,9 @@
 .logout {
-  color: #fff;
+  color: rgb(212, 106, 106);
 }
 .navbar {
-  background: #495f86;
+  background: #6789c400;
   /* margin-bottom: -30px;
   margin-top: -30px; */  
+  margin: 0 auto;
 }

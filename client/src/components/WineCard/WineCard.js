@@ -75,7 +75,7 @@ class WineCard extends Component {
         <Grid container spacing={16}>
           <Grid item xs={12} lg container style={{
             paddingBottom: '0px',
-            paddingTop: '0px'
+            paddingTop: '0px',
           }}>
             <Grid item xs={1} container style={{ backgroundColor: `${color}`, borderRadius: "4px", marginRight: '5px' }}>
             </Grid>
