@@ -126,10 +126,10 @@ class App extends Component {
 				{/* SCREW you, you hackers!! */}
 				{!this.state.loggedIn && (
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
-						<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/tasting" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/admin" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
-						<Route exact path="/signup" component={SignupForm} />
+						<Switch>
+							<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
+							<Route component={NoMatch} />
+						</Switch>
 					</div>
 				)}
 			</div>

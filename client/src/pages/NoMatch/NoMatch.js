@@ -13,6 +13,9 @@ const NoMatch = () => (
               🙄
             </span>
           </h1>
+          <h3>
+            <a href="/">Home</a>
+          </h3>
         </Jumbotron>
       </Col>
     </Row>
