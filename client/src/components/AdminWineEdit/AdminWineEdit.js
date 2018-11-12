@@ -162,7 +162,7 @@ class AdminWineEdit extends Component {
                           style={getListStyle(snapshot.isDraggingOver)}
                         >
                           {this.state.data.map((wine, index) => (
-                            <div className={classes.root}>
+                            <div className={classes.root} key={index}>
                               <Draggable key={index} draggableId={wine._id} index={index}>
                                 {(provided, snapshot) => (
                                   <div

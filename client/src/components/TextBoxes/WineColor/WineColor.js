@@ -68,8 +68,8 @@ class WineColor extends React.Component {
             }}
           >
             {
-              this.state.choices.map(color => (
-                <MenuItem value={color} style={{ background: color }}></MenuItem>
+              this.state.choices.map((color, i) => (
+                <MenuItem value={color} style={{ background: color }} key={i}></MenuItem>
 
               ))
             }

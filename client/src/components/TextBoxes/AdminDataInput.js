@@ -74,7 +74,7 @@ class AdminDataInput extends Component {
     this.state = {
       name: '',
       price: '',
-      color: '',
+      color: '#ffffff',
       description: '',
       keywords: [],
       available: true,
@@ -144,7 +144,6 @@ class AdminDataInput extends Component {
             margin="normal"
           />
         </form>
-        {/* Color    WORK IN PRORESS   */}
 
         <WineColor
           color={this.state.color || this.props.theChosenWine.color}
