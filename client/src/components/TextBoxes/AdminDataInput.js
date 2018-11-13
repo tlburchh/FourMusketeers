@@ -74,7 +74,7 @@ class AdminDataInput extends Component {
     this.state = {
       name: '',
       price: '',
-      color: '#ffffff',
+      color: '',
       description: '',
       keywords: [],
       available: true,
@@ -121,14 +121,15 @@ class AdminDataInput extends Component {
 
   render() {
     const { classes } = this.props;
+
     return (
 
       <div>
 
         {/* Wine Name */}
-        
+
         <form className={classes.container} noValidate autoComplete="off">
-         
+
           <input
             // autoFocus
             id="standard-name"
@@ -138,15 +139,15 @@ class AdminDataInput extends Component {
             value={this.state.name || this.props.theChosenWine.name}
             onChange={this.handleChange('name')}
             margin="normal"
-            style={{width:"100%"}}
+            style={{ width: "100%" }}
           ></input>
         </form>
         {/* Price */}
         <form className={classes.container} noValidate autoComplete="off">
-        
+
           <input
             // autoFocus
-            
+
             id="standard-name"
             label="Wine Price"
             placeholder="Wine Price"
@@ -154,20 +155,20 @@ class AdminDataInput extends Component {
             value={this.state.price || this.props.theChosenWine.priceRegular}
             onChange={this.handleChange('price')}
             margin="normal"
-            style={{marginTop:'25px', width:'100%'}}
+            style={{ marginTop: '25px', width: '100%' }}
           />
         </form>
 
         <WineColor
-          color={this.state.color || this.props.theChosenWine.color}
+          color={this.props.theChosenWine.color ? this.props.theChosenWine.color.color : "#ffffff"}
           handleColorChange={this.handleColorChange}
         />
 
         <form className={classes.container} noValidate autoComplete="off">
-        
+
           <textarea
-          rows="2"
-          cols="20"
+            rows="2"
+            cols="20"
             id="standard-textarea"
             label="Description"
             placeholder="Description"
@@ -176,7 +177,7 @@ class AdminDataInput extends Component {
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
-            style={{height: '200px', width: '100%'}}
+            style={{ height: '200px', width: '100%' }}
           />
         </form>
         {/* Keywords */}
