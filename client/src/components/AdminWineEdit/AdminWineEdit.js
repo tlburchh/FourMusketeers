@@ -74,7 +74,7 @@ class AdminWineEdit extends Component {
     this.state = {
       data: [],
       result: [],
-      selectedWine: []
+      selectedWine: {}
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -95,12 +95,7 @@ class AdminWineEdit extends Component {
       data,
     });
   }
-  /////////////////////////////////////////////////////////
-  formatPrice = price => {
-    const dotPos = price.length - 2;
-    return price.substring(0, dotPos) + "." + price.substring(dotPos, price.length);
-  }
-
+  ////////////////////////////////////////////////////////
 
   handleCardClick = (cardId) => {
     if (cardId === this.state.activeCard) {
@@ -124,14 +119,21 @@ class AdminWineEdit extends Component {
       .catch(err => console.log(err));
   };
 
-  handleWineSelection = () => {
-    this.setState({})
-  }
-
-  handleWineChange = (wine) => {
+  // When the edit button is clicked, search the array for that wine's id and put the wine in state
+  changeWine = event => {
+    const tName = event.target.tagName;
+    let id;
+    if (tName === "BUTTON") {
+      id = event.target.id;
+    }
+    else {
+      id = event.target.parentNode.id;
+    }
     this.setState({
-      selectedWine: wine
-    })
+      selectedWine: this.state.data.find(wine => {
+        return wine._id === id;
+      })
+    });
   }
 
   render() {
@@ -144,8 +146,8 @@ class AdminWineEdit extends Component {
         <Grid container spacing={24}>
           <Grid item xs={6}>
 
-            <Paper className={classes.paper} style={{position: 'fixed', width: '49%', height: '60%'}}><h3>Wine Data Input</h3><hr></hr>
-              <AdminDataInput theChosenWine={this.state.selectedWine}/>
+            <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '60%' }}><h3>Wine Data Input</h3><hr></hr>
+              <AdminDataInput wine={this.state.selectedWine} />
             </Paper>
           </Grid>
           <Grid item xs={6}>
@@ -198,7 +200,7 @@ class AdminWineEdit extends Component {
                                               {/* <EditButton /> */}
                                               <div>
                                                 <Button variant="outlined" id={wine._id} className={classes.button}
-                                                  onClick={() => this.handleWineChange(wine)}
+                                                  onClick={this.changeWine}
                                                 >
                                                   Edit
                                                 </Button>
