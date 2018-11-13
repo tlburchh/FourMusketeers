@@ -6,12 +6,10 @@ module.exports = {
     insert: (req, res) => {
         const wine = req.body;
         db.Colors.findOne({ color: wine.color }).then(resp => {
-            console.log(resp);
             wine.color = resp._id;
             wine.priceRegular = wine.price;
             wine.isAvailable = wine.available;
             db.Wines.create(wine).then(resp => {
-                console.log("Added new wine.");
                 res.json({ message: "Added new wine.", resp: resp });
             }).catch(err => {
                 console.log(err);

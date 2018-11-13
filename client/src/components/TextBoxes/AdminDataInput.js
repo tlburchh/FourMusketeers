@@ -6,9 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearAll from '@material-ui/icons/ClearAll';
 import Grid from '@material-ui/core/Grid';
-// import TextField from '@material-ui/core/TextField';
-// import Paper from '@material-ui/core/Paper';
-// import Switch from '@material-ui/core/Switch';
 import WineColor from './WineColor/WineColor'
 import WineAvailable from './WineAvailable/WineAvailable'
 import API from "../../utils/API";
@@ -204,7 +201,6 @@ class AdminDataInput extends Component {
             id="standard-textarea"
             label="Description"
             placeholder="Description"
-            multiline
             value={this.props.wine.description ? this.props.wine.description : this.state.description}
             onChange={this.handleChange('description')}
             className={classes.textField}
