@@ -1,32 +1,36 @@
 const db = require("../models");
 
-// Define methods for GETTING various data from the Users, Wines, etc collections
+// Define methods for SETTING various data from the Users, Wines, etc collections
 module.exports = {
 
     insert: (req, res) => {
-        const newWine = {
-            name: req.body.name,
-            color: req.body.color,
-            description: req.body.description,
-            priceRegular: req.body.priceRegular
-        };
-
-        const newKeyword = {
-            keyword: req.body.keyword,
-            isGood: req.body.isGood
-        };
-
-        db.Wines.insertMany(newWine).then(winesResp => {
-            db.Keywords.insertMany(newKeyword).then(keywordResp => {
-                res.json({ message: `New wine and keyword added.` });
-            }).catch(keyWordErr => {
-                console.log(`Error adding keyword: ${keyWordErr}`);
+        const wine = req.body;
+        db.Colors.findOne({ color: wine.color }).then(resp => {
+            console.log(resp);
+            wine.color = resp._id;
+            wine.priceRegular = wine.price;
+            wine.isAvailable = wine.available;
+            db.Wines.create(wine).then(resp => {
+                console.log("Added new wine.");
+                res.json({ message: "Added new wine.", resp: resp });
+            }).catch(err => {
+                console.log(err);
+                res.json({ message: "Error adding new wine." });
             });
-
         }).catch(err => {
-            console.log(`Error adding new wine: ${err}`);
-            res.json({ message: `Error adding new wine` });
+            console.log("Error getting color");
         });
+
+        // db.Wines.insertOne(wine).then(winesResp => {
+        //     db.Keywords.insertMany(newKeyword).then(keywordResp => {
+        //         res.json({ message: `New wine and keyword added.` });
+        //     }).catch(keyWordErr => {
+        //         console.log(`Error adding keyword: ${keyWordErr}`);
+        //     });
+        // }).catch(err => {
+        //     console.log(`Error adding new wine: ${err}`);
+        //     res.json({ message: `Error adding new wine` });
+        // });
     },
 
 

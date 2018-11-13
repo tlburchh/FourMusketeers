@@ -133,6 +133,11 @@ class AdminWineEdit extends Component {
       selectedWine: this.state.data.find(wine => {
         return wine._id === id;
       })
+    }, () => {
+      // We HAVE to clear out the state now so that the fields are editable (ie. the props aren't constantly overwriting the input data)
+      this.setState({
+        selectedWine: {}
+      });
     });
   }
 
@@ -147,7 +152,7 @@ class AdminWineEdit extends Component {
           <Grid item xs={6}>
 
             <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '60%' }}><h3>Wine Data Input</h3><hr></hr>
-              <AdminDataInput wine={this.state.selectedWine} />
+              <AdminDataInput wine={this.state.selectedWine} getWines={this.loadWines} />
             </Paper>
           </Grid>
           <Grid item xs={6}>

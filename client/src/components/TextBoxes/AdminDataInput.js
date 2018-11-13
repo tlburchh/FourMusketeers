@@ -78,19 +78,34 @@ class AdminDataInput extends Component {
       description: '',
       keywords: [],
       available: true,
-    }
+      id: ''
+    };
   }
 
   handleSave = () => {
-    API.addNewWine(this.state)
-      .then(res => {
-      })
-      .catch(err => console.log(err));
+    console.log("Saving / updating wine.");
+    API.addNewWine(this.state).then(res => {
+      console.log(res);
+      if (res.status === 200 && res.data.message === "Added new wine.") {
+        alert(`${res.data.resp.name} saved successfully!`);
+        this.props.getWines();
+      }
+      else if (res.status === 200 && res.data.message === "Updated wine.") {
+        alert(`${res.data.resp.name} updated successfully!`);
+        this.props.getWines();
+      }
+      else {
+        alert("Something went wrong. Please contact your friendly neighborhood sysadmin.");
+      }
+    }).catch(err => {
+      console.log(err);
+    });
   };
 
 
   // name and price
   handleChange = name => event => {
+    console.log(name, event.target.value);
     this.setState({
       [name]: event.target.value
 
@@ -109,10 +124,24 @@ class AdminDataInput extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.props.wine.name && (this.state.name !== this.props.wine.name)) {
+      const w = this.props.wine;
+      this.setState({
+        name: w.name,
+        price: w.priceRegular,
+        color: w.color.color,
+        description: w.description,
+        keywords: w.keywords,
+        available: w.isAvailable,
+        id: w._id
+      });
+    }
+  }
+
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.wine);
 
     return (
 
@@ -203,7 +232,6 @@ class AdminDataInput extends Component {
               <Button onClick={this.handleSave} color="primary" variant="outlined" size="large" className={classes.button}>
                 <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
-
             </Button>
             </div>
           </Grid>
