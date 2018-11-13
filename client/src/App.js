@@ -124,6 +124,7 @@ class App extends Component {
 					<div className="auth-wrapper" style={{ paddingTop: 40 }}>
 						<Switch>
 							<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
+							<Route exact path="/signup" component={SignupForm} />
 							<Route component={NoMatch} />
 						</Switch>
 					</div>

@@ -69,8 +69,8 @@ const styles = theme => ({
 });
 
 class AdminDataInput extends Component {
-  constructor(props){
-  super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       price: '',
@@ -81,7 +81,9 @@ class AdminDataInput extends Component {
     }
   }
 
-
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
 
 
   handleSave = () => {
@@ -108,9 +110,12 @@ class AdminDataInput extends Component {
   }
 
   handleAvailableChange = event => {
+    console.log(`Firing avail change: ${event.target.value}`, event.target.value);
     this.setState({
       available: event.target.value
-    })
+    }, () => {
+      // console.log(this.state.available);
+    });
   }
 
 
@@ -121,27 +126,35 @@ class AdminDataInput extends Component {
       <div>
 
         {/* Wine Name */}
+        
         <form className={classes.container} noValidate autoComplete="off">
-          <TextField
+         
+          <input
             // autoFocus
             id="standard-name"
-            label="Wine Name"
+            label='Wine Name'
+            placeholder="Wine Name"
             className={classes.textField}
             value={this.state.name || this.props.theChosenWine.name}
             onChange={this.handleChange('name')}
             margin="normal"
-          />
+            style={{width:"100%"}}
+          ></input>
         </form>
         {/* Price */}
         <form className={classes.container} noValidate autoComplete="off">
-          <TextField
+        
+          <input
             // autoFocus
+            
             id="standard-name"
             label="Wine Price"
+            placeholder="Wine Price"
             className={classes.textField}
-            value={this.state.price || this.props.theChosenWine.price}
+            value={this.state.price || this.props.theChosenWine.priceRegular}
             onChange={this.handleChange('price')}
             margin="normal"
+            style={{marginTop:'25px', width:'100%'}}
           />
         </form>
 
@@ -151,15 +164,19 @@ class AdminDataInput extends Component {
         />
 
         <form className={classes.container} noValidate autoComplete="off">
-          <TextField
+        
+          <textarea
+          rows="2"
+          cols="20"
             id="standard-textarea"
             label="Description"
-            placeholder="Placeholder"
+            placeholder="Description"
             multiline
             value={this.props.theChosenWine.description}
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
+            style={{height: '200px', width: '100%'}}
           />
         </form>
         {/* Keywords */}
@@ -174,16 +191,15 @@ class AdminDataInput extends Component {
           </Grid>
         </Grid>
       </div> */}
-      <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
-     {/* Wine Available */}
-
-
         <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
           {/* Wine Available */}
 
 
+          <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
+            {/* Wine Available */}
+
             <WineAvailable
-              available={this.state.available || this.props.theChosenWine.available}
+              available={this.state.available || this.props.theChosenWine.isAvailable}
               handleAvailableChange={this.handleAvailableChange}
             />
 

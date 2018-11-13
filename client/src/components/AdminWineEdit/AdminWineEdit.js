@@ -115,7 +115,7 @@ class AdminWineEdit extends Component {
   }
 
   loadWines = () => {
-    API.getCurrentWines()
+    API.getAllWines()
       .then(res => {
         this.setState({
           data: res.data
