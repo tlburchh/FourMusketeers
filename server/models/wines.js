@@ -45,7 +45,12 @@ const wineSchema = new Schema ({
     ratings: [{
         type: Schema.Types.ObjectId,
         ref: 'Rating'
-    }]
+    }],
+
+    order: {
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
+    }
 
 })
 

@@ -8,26 +8,43 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/wino", { useNew
 let wineIds = [];
 let keywordIds = [];
 let colorIds = [];
+let orderIds = [];
 
 
 // Get the wines, save em. Then Get the keywords and push a random wine into its array
 // Then push a keyword to each wine...
-db.Wines.find({}).then(wines => {
-    wines.forEach(wine => {
-        wineIds.push(wine.id);
-    });
-    db.Keywords.find({}).then(keywords => {
-        keywords.forEach(keyword => {
-            keywordIds.push(keyword.id);
+module.exports = function () {
+    console.log("Beginning seed association");
+    db.Wines.find({}).then(wines => {
+        wines.forEach(wine => {
+            wineIds.push(wine.id);
         });
-        db.Colors.find({}).then(colors => {
-            colors.forEach(color => {
-                colorIds.push(color.id);
+        db.Keywords.find({}).then(keywords => {
+            keywords.forEach(keyword => {
+                keywordIds.push(keyword.id);
             });
+            db.Colors.find({}).then(colors => {
+                colors.forEach(color => {
+                    colorIds.push(color.id);
+                });
+                db.Order.find({}).then(ord => {
+                    ord.forEach(o => {
+                        orderIds.push(o.id);
+                    });
+                    assKeys();
+                }).catch(err => {
+                    console.log(`Error fetching wine order: ${err}`);
+                });
+            }).catch(err => {
+                console.log(`Error fetching colors: ${err}`);
+            });
+        }).catch(err => {
+            console.log(`Error fetching keywords: ${err}`);
         });
-        assKeys();
+    }).catch(err => {
+        console.log(`Error fetching wines: ${err}`);
     });
-});
+}
 
 getRandomWine = () => {
     const len = wineIds.length;
@@ -92,7 +109,7 @@ addWineFlavors = done => {
                         {
                             color: getRandomColor()
                         }).then(res => {
-                            console.log("DONE ASSOCIATING KEYWORDS + COLORS");
+                            setWineOrder();
                         });
                 });
             }
@@ -100,25 +117,14 @@ addWineFlavors = done => {
     });
 }
 
-function doItAll() {
-    // Get the wines, save em. Then Get the keywords and push a random wine into its array
-    // Then push a keyword to each wine...
-    db.Wines.find({}).then(wines => {
-        wines.forEach(wine => {
-            wineIds.push(wine.id);
-        });
-        console.log(wineIds);
-        db.Keywords.find({}).then(keywords => {
-            keywords.forEach(keyword => {
-                keywordIds.push(keyword.id);
+setWineOrder = () => {
+    wineIds.forEach((wine, i) => {
+        db.Wines.findOneAndUpdate({ _id: wine },
+            {
+                order: orderIds[i]
+            }).then(res => {
+                console.log(`All done! ${res}`);
+                // process.exit(0);
             });
-            console.log(keywordIds);
-            assKeys();
-            addWineFlavors();
-        });
     });
-}
-
-module.exports = {
-    doItAll: doItAll
 }

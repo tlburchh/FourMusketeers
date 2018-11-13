@@ -24,6 +24,10 @@ module.exports = {
                 path: 'color',
                 select: "color -_id"
             })
+            .populate({
+                path: 'order',
+                select: "orderNumber -_id"
+            })
             .then(wines => {
                 res.json(wines);
             }).catch(err => {
