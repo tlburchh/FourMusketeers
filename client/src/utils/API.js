@@ -26,5 +26,10 @@ export default {
   getColors: function () {
     return axios.get("/api/get/colors");
 
+  },
+  saveWineOrder: function (wineList) {
+    console.log(wineList);
+    return axios.post("/api/post/wineOrder", wineList);
   }
+  
 }

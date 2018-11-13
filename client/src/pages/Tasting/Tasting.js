@@ -215,7 +215,7 @@ class Tasting extends Component {
       .then(res => {
         this.setState({
           data: res.data
-        })
+        });
       })
       .catch(err => console.log(err));
   };
@@ -389,13 +389,14 @@ class Tasting extends Component {
           </div>
         </main>
         {/* Footer */}
-        <footer style={{background: '#6789c400',
-                    height: '30px',                
-                    paddingBottom: '65px'
-          }}className={classes.footer}>
+        <footer style={{
+          background: '#6789c400',
+          height: '30px',
+          paddingBottom: '65px'
+        }} className={classes.footer}>
           <Typography align="left" gutterBottom>
             <h6><b>Silenus</b><p>by <br></br>Amalgam Innovations 2018</p></h6>
-        </Typography>
+          </Typography>
         </footer>
         {/* End footer */}
       </React.Fragment>

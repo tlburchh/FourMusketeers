@@ -250,6 +250,10 @@ class AdminDataInput extends Component {
                 <ClearAll className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Clear
               </Button>
+              <Button onClick={this.props.saveOrder} color="primary" variant="outlined" size="large" className={classes.button}>
+                <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
+                Order
+              </Button>
             </div>
           </Grid>
         </Grid>

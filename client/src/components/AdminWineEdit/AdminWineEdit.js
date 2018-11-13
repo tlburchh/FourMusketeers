@@ -112,7 +112,7 @@ class AdminWineEdit extends Component {
       .then(res => {
         this.setState({
           data: res.data
-        })
+        });
       })
       .catch(err => console.log(err));
   };
@@ -138,6 +138,21 @@ class AdminWineEdit extends Component {
       });
     });
   }
+  // Function passed down to data input to save a new wine order
+  saveOrder = () => {
+    console.log("Saving new order");
+    API.saveWineOrder(this.state.data).then(resp => {
+      console.log(resp);
+      if (resp.status === 200 && resp.data.message === "Wine order saved") {
+        alert("New wine order saved");
+      }
+      else {
+        alert("Something went wrong");
+      }
+    }).catch(err => {
+      console.log("Error saving wine order");
+    });
+  }
 
   render() {
 
@@ -150,7 +165,7 @@ class AdminWineEdit extends Component {
           <Grid item xs={6}>
 
             <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '80%' }}><h3>Wine Data Input</h3><hr></hr>
-              <AdminDataInput wine={this.state.selectedWine} getWines={this.loadWines} />
+              <AdminDataInput wine={this.state.selectedWine} getWines={this.loadWines} saveOrder={this.saveOrder} />
             </Paper>
           </Grid>
           <Grid item xs={6}>
