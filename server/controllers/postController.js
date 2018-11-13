@@ -18,77 +18,36 @@ module.exports = {
         }).catch(err => {
             console.log("Error getting color");
         });
-
-        // db.Wines.insertOne(wine).then(winesResp => {
-        //     db.Keywords.insertMany(newKeyword).then(keywordResp => {
-        //         res.json({ message: `New wine and keyword added.` });
-        //     }).catch(keyWordErr => {
-        //         console.log(`Error adding keyword: ${keyWordErr}`);
-        //     });
-        // }).catch(err => {
-        //     console.log(`Error adding new wine: ${err}`);
-        //     res.json({ message: `Error adding new wine` });
-        // });
     },
-
 
     rating: (req, res) => {
         const ratings = req.body.ratings;
         const selected = req.body.selected;
         insertRatings(ratings, selected, res);
     },
-    testRating: (req, res) => {
-        const rating = {
-            numericalRating: 3,
-            keyWordRating: ["5bd29883900ee5754ffa2d8e", "5bd29883900ee5754ffa2d8e"],
-            user: "5bd29883900ee5754ffa2d8e",
-            wine: "5bd29883900ee5754ffa2d8e"
-        };
-        db.Rating.create(rating).then(resp => {
-            res.json({ message: `Inserted test rating: ${resp}` });
-        }).catch(err => {
-            res.json({ message: `Error inserting test rating: ${err}` });
-        });
-    },
 
-    testWine: (req, res) => {
-        const wines = [
-            {
-                name: "Off dry ass",
-                color: ["blue", "#ffee1a"],
-                description: "This is the best mead",
-                price: 14,
-                isAvailable: true,
-                keywords: ["5bd29f5a8f53e80822b007d6", "5bd29f5a8f53e80822b007d8"],
-                ratings: ["5bd29d8d7fab1503b446cd15"]
-            }
-        ];
-        db.Wines.insertMany(wines).then(resp => {
-            res.json({ message: " inserted the wine" });
+    wineOrder: (req, res) => {
+        const wines = req.body;
+        let orderIds = [];
+        db.Order.find({}).then(order => {
+            order.forEach(ord => {
+                orderIds.push(ord._id);
+            });
+            wines.forEach((wine, i) => {
+                db.Wines.findOneAndUpdate({ _id: wine._id },
+                    {
+                        order: orderIds[i]
+                    }).then(resp => {
+                        console.log(`Wine order changed`);
+                        if (i === wines.length - 1) {
+                            res.json({ message: "Wine order saved" });
+                        }
+                    }).catch(err => {
+                        console.log(`Error saving new wine order`);
+                    });
+            });
         }).catch(err => {
-            res.json({ message: `Error: ${err}` });
-        });
-    },
-
-    testKeyword: (req, res) => {
-        const keywords = [
-            {
-                keyword: "badSour"
-            },
-            {
-                keyword: "goodOaky"
-            },
-            {
-                keyword: "badMoldy"
-            },
-            {
-                keyword: "badHombres"
-            }
-        ];
-        db.Keywords.insertMany(keywords).then(resp => {
-            res.json({ message: "Inserted the flavours..." });
-        }).catch(err => {
-            res.json({ message: `Error: ${err}` });
+            console.log(`Error getting order`);
         });
     }
 
