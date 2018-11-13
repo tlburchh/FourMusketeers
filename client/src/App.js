@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
 import Admin from './pages/Admin/Admin';
@@ -125,6 +125,8 @@ class App extends Component {
 						<Switch>
 							<Route exact path="/" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 							<Route exact path="/signup" component={SignupForm} />
+							<Route exact path="/tasting" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
+							<Route exact path="/admin" component={() => <LoginForm login={this.login} setGuest={this.setGuest} />} />
 							<Route component={NoMatch} />
 						</Switch>
 					</div>
