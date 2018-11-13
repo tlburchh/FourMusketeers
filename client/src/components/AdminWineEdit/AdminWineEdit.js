@@ -144,7 +144,7 @@ class AdminWineEdit extends Component {
         <Grid container spacing={24}>
           <Grid item xs={6}>
 
-            <Paper className={classes.paper} style={{position: 'fixed', width: '49%'}}><h3>Wine Data Input</h3><hr></hr>
+            <Paper className={classes.paper} style={{position: 'fixed', width: '49%', height: '60%'}}><h3>Wine Data Input</h3><hr></hr>
               <AdminDataInput theChosenWine={this.state.selectedWine}/>
             </Paper>
           </Grid>
