@@ -9,6 +9,7 @@ module.exports = {
             console.log(resp);
             wine.color = resp._id;
             wine.priceRegular = wine.price;
+            wine.isAvailable = wine.available;
             db.Wines.create(wine).then(resp => {
                 console.log("Added new wine.");
                 res.json({ message: "Added new wine.", resp: resp });

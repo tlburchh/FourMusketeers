@@ -11,9 +11,10 @@ module.exports = {
                 name: req.body.name,
                 description: req.body.description,
                 priceRegular: req.body.price,
-                isAvailable: req.body.isAvailable,
+                isAvailable: req.body.available,
                 color: resp._id
             }
+            console.log(req.body.id, req.params.id);
             db.Wines.findOneAndUpdate({ _id: req.params.id }, wine).then(resp => {
                 console.log("Updated wine.");
                 res.json({ message: "Updated wine.", resp: resp });

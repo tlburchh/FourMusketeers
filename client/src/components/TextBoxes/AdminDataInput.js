@@ -105,6 +105,7 @@ class AdminDataInput extends Component {
 
   // name and price
   handleChange = name => event => {
+    console.log(name, event.target.value);
     this.setState({
       [name]: event.target.value
 
