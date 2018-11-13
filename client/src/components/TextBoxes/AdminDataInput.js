@@ -6,9 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearAll from '@material-ui/icons/ClearAll';
 import Grid from '@material-ui/core/Grid';
-// import TextField from '@material-ui/core/TextField';
-// import Paper from '@material-ui/core/Paper';
-// import Switch from '@material-ui/core/Switch';
 import WineColor from './WineColor/WineColor'
 import WineAvailable from './WineAvailable/WineAvailable'
 import API from "../../utils/API";
@@ -96,9 +93,7 @@ class AdminDataInput extends Component {
   }
 
   handleSave = () => {
-    console.log("Saving / updating wine.");
     API.addNewWine(this.state).then(res => {
-      console.log(res);
       if (res.status === 200 && res.data.message === "Added new wine.") {
         alert(`${res.data.resp.name} saved successfully!`);
         this.props.getWines();
@@ -118,7 +113,6 @@ class AdminDataInput extends Component {
 
   // name and price
   handleChange = name => event => {
-    console.log(name, event.target.value);
     this.setState({
       [name]: event.target.value
 
@@ -207,12 +201,11 @@ class AdminDataInput extends Component {
             id="standard-textarea"
             label="Description"
             placeholder="Description"
-            multiline
             value={this.props.wine.description ? this.props.wine.description : this.state.description}
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
-            style={{ height: '200px', width: '100%' }}
+            style={{ height: '120px', width: '100%' }}
           />
         </form>
         {/* Keywords */}

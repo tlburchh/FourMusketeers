@@ -12,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-// import Icon from '@material-ui/core/Icon';
 import MenuIcon from '@material-ui/icons/Menu';
 import PollIcon from '@material-ui/icons/Poll';
 import MoodIcon from '@material-ui/icons/Mood';
@@ -22,13 +21,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 import TastingButton from '../../components/TastingButton/TastingButton';
-// import { generateKeyPairSync } from 'crypto';
 import './pDrawer.css';
-// import CheckboxLabels from '../../components/Checkbox/Checkbox';
 
 
 const drawerWidth = 240;
@@ -40,8 +36,9 @@ const styles = theme => ({
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-      width: '100%'
+      duration: theme.transitions.duration.leavingScreen
+      // React was complaining
+      // width: '100%'
     }),
   },
   appBarShift: {
@@ -125,7 +122,7 @@ class PersistentDrawerLeft extends React.Component {
 
 
 
-  
+
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -162,7 +159,7 @@ class PersistentDrawerLeft extends React.Component {
               </Toolbar>
             </Grid>
             <Grid item xs={8} sm container style={{}}>
-              <h2>Starrlight Meads</h2>
+              <h2>Starrlight Meadery</h2>
             </Grid>
             <Grid item xs={2} sm container >
               {/* Added by Karsten, greeting and logout to replace NAV */}
