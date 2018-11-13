@@ -5,7 +5,6 @@ module.exports = {
 
     insert: (req, res) => {
         const wine = req.body;
-        let colorId;
         db.Colors.findOne({ color: wine.color }).then(resp => {
             console.log(resp);
             wine.color = resp._id;

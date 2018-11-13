@@ -110,7 +110,6 @@ class AdminWineEdit extends Component {
   }
 
   loadWines = () => {
-    console.log("Fetching all wines");
     API.getAllWines()
       .then(res => {
         this.setState({

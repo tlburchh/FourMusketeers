@@ -87,7 +87,15 @@ class AdminDataInput extends Component {
     API.addNewWine(this.state).then(res => {
       console.log(res);
       if (res.status === 200 && res.data.message === "Added new wine.") {
+        alert(`${res.data.resp.name} saved successfully!`);
         this.props.getWines();
+      }
+      else if (res.status === 200 && res.data.message === "Updated wine.") {
+        alert(`${res.data.resp.name} updated successfully!`);
+        this.props.getWines();
+      }
+      else {
+        alert("Something went wrong. Please contact your friendly neighborhood sysadmin.");
       }
     }).catch(err => {
       console.log(err);
@@ -116,9 +124,7 @@ class AdminDataInput extends Component {
   }
 
   componentDidUpdate() {
-    console.log("Component updated");
     if (this.props.wine.name && (this.state.name !== this.props.wine.name)) {
-      console.log("Received data from an edit click");
       const w = this.props.wine;
       this.setState({
         name: w.name,
@@ -128,8 +134,6 @@ class AdminDataInput extends Component {
         keywords: w.keywords,
         available: w.isAvailable,
         id: w._id
-      }, () => {
-        console.log("State updated", this.state);
       });
     }
   }

@@ -13,6 +13,7 @@ export default {
   },
 
   addNewWine: function (newWine) {
+    console.log(newWine.id);
     if (newWine.id) {
       // Existing wine, update it
       return axios.put("/api/put/wine/" + newWine.id, newWine);
