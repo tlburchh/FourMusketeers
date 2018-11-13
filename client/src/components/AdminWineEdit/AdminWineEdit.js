@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +6,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-// import EditButton from "../EditButton/EditButton";
 import Button from '@material-ui/core/Button';
 import AdminDataInput from "../TextBoxes/AdminDataInput"
 import './AdminWine.css';
@@ -167,7 +165,7 @@ class AdminWineEdit extends Component {
                           ref={provided.innerRef}
                           style={getListStyle(snapshot.isDraggingOver)}
                         >
-                          {this.state.data.map((wine, index) => (
+                          {this.state.data.length > 0 ? this.state.data.map((wine, index) => (
                             <div className={classes.root} key={index}>
                               <Draggable key={index} draggableId={wine._id} index={index}>
                                 {(provided, snapshot) => (
@@ -226,7 +224,11 @@ class AdminWineEdit extends Component {
 
                               {provided.placeholder}
                             </div>
-                          ))}
+                          )) : (
+                              <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '80%' }}>
+                                <h3>No Wines available</h3>
+                              </Paper>
+                            )}
                         </div>
                       )}
                     </Droppable>
