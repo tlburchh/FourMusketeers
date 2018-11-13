@@ -212,7 +212,7 @@ class AdminDataInput extends Component {
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
-            style={{ height: '200px', width: '100%' }}
+            style={{ height: '120px', width: '100%' }}
           />
         </form>
         {/* Keywords */}
