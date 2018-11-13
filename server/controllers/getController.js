@@ -19,6 +19,10 @@ module.exports = {
                 path: "ratings",
                 select: "numericalRating -_id"
             })
+            .populate({
+                path: 'color',
+                select: "color -_id"
+            })
             .then(wines => {
                 res.json(wines);
             }).catch(err => {

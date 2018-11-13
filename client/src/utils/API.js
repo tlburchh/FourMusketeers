@@ -5,6 +5,9 @@ export default {
   getCurrentWines: function () {
     return axios.get("/api/get/currentWines");
   },
+  getAllWines: function() {
+    return axios.get("/api/get/allWines");
+  },
   submitRating: function (ratingObj) {
     return axios.post("/api/post/rating", ratingObj);
   },
