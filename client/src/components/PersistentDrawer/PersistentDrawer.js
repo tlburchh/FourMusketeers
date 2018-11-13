@@ -134,7 +134,7 @@ class PersistentDrawerLeft extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-          style={{ backgroundColor: '#495f86' }}
+          style={{ backgroundColor: 'rgba(26, 65, 134, 0.5)' }}
           position="fixed"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
@@ -162,7 +162,6 @@ class PersistentDrawerLeft extends React.Component {
               </Toolbar>
             </Grid>
             <Grid item xs={8} sm container style={{}}>
-              <h2>Starrlight Meads</h2>
             </Grid>
             <Grid item xs={2} sm container >
               {/* Added by Karsten, greeting and logout to replace NAV */}
