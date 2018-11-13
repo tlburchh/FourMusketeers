@@ -8,16 +8,15 @@
     "start:prod": "node server/server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "seed": "node server/scripts/seedDB.js && node server/scripts/seedAssociations.js",
-    "seed2": "node server/scripts/seedAssociations.js",
+    "seed": "node server/scripts/seedDB.js",
     "install": "cd client && yarn install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
-    "node": "8.9.4",
-    "npm": "5.6.x",
-    "yarn": "1.4.0"
+    "node": "10.13.0",
+    "npm": "6.4.1",
+    "yarn": "1.12.3"
   },
   "author": "",
   "license": "ISC",

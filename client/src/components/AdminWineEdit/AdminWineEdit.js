@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +6,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import API from "../../utils/API";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-// import EditButton from "../EditButton/EditButton";
 import Button from '@material-ui/core/Button';
 import AdminDataInput from "../TextBoxes/AdminDataInput"
 import './AdminWine.css';
@@ -74,7 +72,7 @@ class AdminWineEdit extends Component {
     this.state = {
       data: [],
       result: [],
-      selectedWine: []
+      selectedWine: {}
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -95,12 +93,7 @@ class AdminWineEdit extends Component {
       data,
     });
   }
-  /////////////////////////////////////////////////////////
-  formatPrice = price => {
-    const dotPos = price.length - 2;
-    return price.substring(0, dotPos) + "." + price.substring(dotPos, price.length);
-  }
-
+  ////////////////////////////////////////////////////////
 
   handleCardClick = (cardId) => {
     if (cardId === this.state.activeCard) {
@@ -119,19 +112,44 @@ class AdminWineEdit extends Component {
       .then(res => {
         this.setState({
           data: res.data
-        })
+        });
       })
       .catch(err => console.log(err));
   };
 
-  handleWineSelection = () => {
-    this.setState({})
-  }
-
-  handleWineChange = (wine) => {
+  // When the edit button is clicked, search the array for that wine's id and put the wine in state
+  changeWine = event => {
+    const tName = event.target.tagName;
+    let id;
+    if (tName === "BUTTON") {
+      id = event.target.id;
+    }
+    else {
+      id = event.target.parentNode.id;
+    }
     this.setState({
-      selectedWine: wine
-    })
+      selectedWine: this.state.data.find(wine => {
+        return wine._id === id;
+      })
+    }, () => {
+      // We HAVE to clear out the state now so that the fields are editable (ie. the props aren't constantly overwriting the input data)
+      this.setState({
+        selectedWine: {}
+      });
+    });
+  }
+  // Function passed down to data input to save a new wine order
+  saveOrder = () => {
+    API.saveWineOrder(this.state.data).then(resp => {
+      if (resp.status === 200 && resp.data.message === "Wine order saved") {
+        alert("New wine order saved");
+      }
+      else {
+        alert("Something went wrong");
+      }
+    }).catch(err => {
+      console.log("Error saving wine order");
+    });
   }
 
   render() {
@@ -143,12 +161,12 @@ class AdminWineEdit extends Component {
       <div>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <Paper className={classes.paper} style={{position: 'fixed', width: '49%'}}><h3>Wine Data Input</h3><hr></hr>
-              <AdminDataInput theChosenWine={this.state.selectedWine} />
+            <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '80%' }}><h3>Wine Data Input</h3><hr></hr>
+              <AdminDataInput wine={this.state.selectedWine} getWines={this.loadWines} saveOrder={this.saveOrder} />
             </Paper>
           </Grid>
           <Grid item xs={6}>
-            <Paper id='wineBG' className={classes.paper}><h3>Wine Card</h3>
+            <Paper id='wineBG' className={classes.paper}><h3>Wine List</h3>
               <hr></hr>
               <Grid container spacing={24}>
                 <Grid id='wineBGO' item xs={12}>
@@ -159,7 +177,7 @@ class AdminWineEdit extends Component {
                           ref={provided.innerRef}
                           style={getListStyle(snapshot.isDraggingOver)}
                         >
-                          {this.state.data.map((wine, index) => (
+                          {this.state.data.length > 0 ? this.state.data.map((wine, index) => (
                             <div className={classes.root} key={index}>
                               <Draggable key={index} draggableId={wine._id} index={index}>
                                 {(provided, snapshot) => (
@@ -197,7 +215,7 @@ class AdminWineEdit extends Component {
                                               {/* <EditButton /> */}
                                               <div>
                                                 <Button variant="outlined" id={wine._id} className={classes.button}
-                                                  onClick={() => this.handleWineChange(wine)}
+                                                  onClick={this.changeWine}
                                                 >
                                                   Edit
                                                 </Button>
@@ -218,7 +236,11 @@ class AdminWineEdit extends Component {
 
                               {provided.placeholder}
                             </div>
-                          ))}
+                          )) : (
+                              <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '80%' }}>
+                                <h3>No Wines available</h3>
+                              </Paper>
+                            )}
                         </div>
                       )}
                     </Droppable>

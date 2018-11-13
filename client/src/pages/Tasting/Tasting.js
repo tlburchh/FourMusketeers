@@ -55,6 +55,9 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 6,
   },
+  footerBrand: {
+    color: theme.palette.text.secondary
+  },
   root: {
     flexGrow: 1,
     maxWidth: 600,
@@ -64,8 +67,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-  },
-
+  }
 });
 
 
@@ -215,7 +217,7 @@ class Tasting extends Component {
       .then(res => {
         this.setState({
           data: res.data
-        })
+        });
       })
       .catch(err => console.log(err));
   };
@@ -389,13 +391,23 @@ class Tasting extends Component {
           </div>
         </main>
         {/* Footer */}
-        <footer style={{background: '#6789c400',
-                    height: '30px',                
-                    paddingBottom: '65px'
-          }}className={classes.footer}>
-          <Typography align="left" gutterBottom>
-            <h6><b>Silenus</b><p>by <br></br>Amalgam Innovations 2018</p></h6>
-        </Typography>
+
+        <footer
+          style={{
+            background: '#6789c400',
+            height: '30px',
+            paddingBottom: '65px'
+          }}
+          className={classes.footer}
+        >
+          {/* Wrapped this Typography with a Div cause React was complaining about nested <p>s */}
+          <div align="left" className="footer-brand" >
+            <Typography>
+              <b>Silenus</b> <br />
+              by <br />
+              Amalgam Innovations 2018
+            </Typography>
+          </div>
         </footer>
         {/* End footer */}
       </React.Fragment>
