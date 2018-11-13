@@ -4,8 +4,9 @@ import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
+import ClearAll from '@material-ui/icons/ClearAll';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 // import Paper from '@material-ui/core/Paper';
 // import Switch from '@material-ui/core/Switch';
 import WineColor from './WineColor/WineColor'
@@ -78,26 +79,47 @@ class AdminDataInput extends Component {
       description: '',
       keywords: [],
       available: true,
-    }
+      id: ''
+    };
   }
 
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
+  clearInputs = () => {
+    this.setState({
+      name: '',
+      price: '',
+      color: '',
+      description: '',
+      keywords: [],
+      available: true,
+      id: ''
+    });
   }
-
 
   handleSave = () => {
-    API.addNewWine(this.state)
-      .then(res => {
-      })
-      .catch(err => console.log(err));
+    console.log("Saving / updating wine.");
+    API.addNewWine(this.state).then(res => {
+      console.log(res);
+      if (res.status === 200 && res.data.message === "Added new wine.") {
+        alert(`${res.data.resp.name} saved successfully!`);
+        this.props.getWines();
+      }
+      else if (res.status === 200 && res.data.message === "Updated wine.") {
+        alert(`${res.data.resp.name} updated successfully!`);
+        this.props.getWines();
+      }
+      else {
+        alert("Something went wrong. Please contact your friendly neighborhood sysadmin.");
+      }
+    }).catch(err => {
+      console.log(err);
+    });
   };
 
 
   // name and price
   handleChange = name => event => {
+    console.log(name, event.target.value);
     this.setState({
-
       [name]: event.target.value
 
     });
@@ -110,12 +132,24 @@ class AdminDataInput extends Component {
   }
 
   handleAvailableChange = event => {
-    console.log(`Firing avail change: ${event.target.value}`, event.target.value);
     this.setState({
       available: event.target.value
-    }, () => {
-      // console.log(this.state.available);
     });
+  }
+
+  componentDidUpdate() {
+    if (this.props.wine.name && (this.state.name !== this.props.wine.name)) {
+      const w = this.props.wine;
+      this.setState({
+        name: w.name,
+        price: w.priceRegular,
+        color: w.color.color,
+        description: w.description,
+        keywords: w.keywords,
+        available: w.isAvailable,
+        id: w._id
+      });
+    }
   }
 
 
@@ -136,7 +170,7 @@ class AdminDataInput extends Component {
             label='Wine Name'
             placeholder="Wine Name"
             className={classes.textField}
-            value={this.state.name || this.props.theChosenWine.name}
+            value={this.props.wine.name ? this.props.wine.name : this.state.name}
             onChange={this.handleChange('name')}
             margin="normal"
             style={{ width: "100%" }}
@@ -152,7 +186,7 @@ class AdminDataInput extends Component {
             label="Wine Price"
             placeholder="Wine Price"
             className={classes.textField}
-            value={this.state.price || this.props.theChosenWine.priceRegular}
+            value={this.props.wine.priceRegular ? this.props.wine.priceRegular : this.state.price}
             onChange={this.handleChange('price')}
             margin="normal"
             style={{ marginTop: '25px', width: '100%' }}
@@ -160,7 +194,8 @@ class AdminDataInput extends Component {
         </form>
 
         <WineColor
-          color={this.props.theChosenWine.color ? this.props.theChosenWine.color.color : "#ffffff"}
+          // If receiving props, use them (edit button clicked) else use this component's state
+          color={this.props.wine.color ? this.props.wine.color.color : this.state.color}
           handleColorChange={this.handleColorChange}
         />
 
@@ -173,7 +208,7 @@ class AdminDataInput extends Component {
             label="Description"
             placeholder="Description"
             multiline
-            value={this.props.theChosenWine.description}
+            value={this.props.wine.description ? this.props.wine.description : this.state.description}
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
@@ -200,7 +235,7 @@ class AdminDataInput extends Component {
             {/* Wine Available */}
 
             <WineAvailable
-              available={this.state.available || this.props.theChosenWine.isAvailable}
+              available={this.props.wine.isAvailable ? this.props.wine.isAvailable : this.state.available}
               handleAvailableChange={this.handleAvailableChange}
             />
 
@@ -210,8 +245,11 @@ class AdminDataInput extends Component {
               <Button onClick={this.handleSave} color="primary" variant="outlined" size="large" className={classes.button}>
                 <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
-
             </Button>
+              <Button onClick={this.clearInputs} color="primary" variant="outlined" size="large" className={classes.button}>
+                <ClearAll className={classNames(classes.leftIcon, classes.iconSmall)} />
+                Clear
+              </Button>
             </div>
           </Grid>
         </Grid>
