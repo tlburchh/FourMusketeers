@@ -53,14 +53,13 @@ class WineColor extends React.Component {
   render() {
     const { classes } = this.props;
 
-
     return (
-      <form style={{width:'100%'}} className={classes.root} autoComplete="off">
-        <FormControl style={{width:'100%'}}className={classes.formControl}>
+      <form style={{ width: '100%' }} className={classes.root} autoComplete="off">
+        <FormControl style={{ width: '100%' }} className={classes.formControl}>
           <InputLabel htmlFor="color-simple">Color</InputLabel>
           <Select
             value={this.props.color}
-            style={{ background: this.props.color}}
+            style={{ background: this.props.color }}
             onChange={this.props.handleColorChange}
             inputProps={{
               name: 'color',
