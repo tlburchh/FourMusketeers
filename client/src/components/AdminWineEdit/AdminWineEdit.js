@@ -161,7 +161,6 @@ class AdminWineEdit extends Component {
       <div>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-
             <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '80%' }}><h3>Wine Data Input</h3><hr></hr>
               <AdminDataInput wine={this.state.selectedWine} getWines={this.loadWines} saveOrder={this.saveOrder} />
             </Paper>
