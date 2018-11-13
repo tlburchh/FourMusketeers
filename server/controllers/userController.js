@@ -20,16 +20,19 @@ module.exports = {
           error: `Sorry, there is already a user with the email: ${email}`
         });
       }
-      const newUser = new db.User({
-        'firstName': firstName,
-        'lastName': lastName,
-        'email': email,
-        'password': password
-      });
-      newUser.save((err, savedUser) => {
-        if (err) return res.json(err);
-        return res.json(savedUser);
-      });
+      else {
+        console.log("New user");
+        const newUser = new db.User({
+          'firstName': firstName,
+          'lastName': lastName,
+          'email': email,
+          'password': password
+        });
+        newUser.save((err, savedUser) => {
+          if (err) return res.json(err);
+          return res.json(savedUser);
+        });
+      }
     });
   },
   logout: (req, res) => {
