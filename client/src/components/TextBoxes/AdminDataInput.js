@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
+import ClearAll from '@material-ui/icons/ClearAll';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 // import Paper from '@material-ui/core/Paper';
@@ -80,6 +81,18 @@ class AdminDataInput extends Component {
       available: true,
       id: ''
     };
+  }
+
+  clearInputs = () => {
+    this.setState({
+      name: '',
+      price: '',
+      color: '',
+      description: '',
+      keywords: [],
+      available: true,
+      id: ''
+    });
   }
 
   handleSave = () => {
@@ -233,6 +246,10 @@ class AdminDataInput extends Component {
                 <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
             </Button>
+              <Button onClick={this.clearInputs} color="primary" variant="outlined" size="large" className={classes.button}>
+                <ClearAll className={classNames(classes.leftIcon, classes.iconSmall)} />
+                Clear
+              </Button>
             </div>
           </Grid>
         </Grid>
