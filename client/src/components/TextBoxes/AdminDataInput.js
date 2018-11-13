@@ -133,6 +133,7 @@ class AdminDataInput extends Component {
             value={this.state.name || this.props.theChosenWine.name}
             onChange={this.handleChange('name')}
             margin="normal"
+            style={{width:"100%"}}
           ></input>
         </form>
         {/* Price */}
@@ -140,15 +141,15 @@ class AdminDataInput extends Component {
         
           <input
             // autoFocus
-
+            
             id="standard-name"
             label="Wine Price"
             placeholder="Wine Price"
             className={classes.textField}
-            value={this.state.price || this.props.theChosenWine.price}
+            value={this.state.price || this.props.theChosenWine.priceRegular}
             onChange={this.handleChange('price')}
             margin="normal"
-            // style={{padding:'5px'}}
+            style={{marginTop:'25px', width:'100%'}}
           />
         </form>
 
@@ -170,7 +171,7 @@ class AdminDataInput extends Component {
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
-            style={{height: '200px'}}
+            style={{height: '200px', width: '100%'}}
           />
         </form>
         {/* Keywords */}
