@@ -6,12 +6,7 @@ const orderSchema =  new Schema ({
         type: Number,
         required: true,
         unique: true
-    },
-
-    wines: {
-        type: Schema.Types.ObjectId,
-        ref: 'Wine'
     }
 })
 
-module.exports = mongoose.model('tastingOrder', orderSchema);
+module.exports = mongoose.model('Order', orderSchema);

@@ -3,5 +3,6 @@ module.exports = {
   User: require('./user.js'),
   Wines: require('./wines.js'),
   Keywords: require('./keywords.js'),
-  Colors: require('./color')
+  Colors: require('./color'),
+  Order: require('./tastingOrder')
 };
