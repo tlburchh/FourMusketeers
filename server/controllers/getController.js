@@ -28,6 +28,9 @@ module.exports = {
                 path: 'order',
                 select: "orderNumber -_id"
             })
+            .sort({
+                order: 1
+            })
             .then(wines => {
                 res.json(wines);
             }).catch(err => {
@@ -61,6 +64,13 @@ module.exports = {
             .populate({
                 path: 'color',
                 select: "color -_id"
+            })
+            .populate({
+                path: 'order',
+                select: "orderNumber -_id"
+            })
+            .sort({
+                order: 1
             })
             .then(results => {
                 res.json(results);
