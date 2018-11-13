@@ -5,7 +5,7 @@ export default {
   getCurrentWines: function () {
     return axios.get("/api/get/currentWines");
   },
-  getAllWines: function() {
+  getAllWines: function () {
     return axios.get("/api/get/allWines");
   },
   submitRating: function (ratingObj) {
@@ -13,18 +13,21 @@ export default {
   },
 
   addNewWine: function (newWine) {
-
-    const newWine2 = {
-      name: newWine.name,
-      color: newWine.color,
-      description: newWine.description,
-      priceRegular: newWine.price
-    };
-
-    return axios.post("/api/post/addNewWine", newWine2);
+    if (newWine.id) {
+      // Existing wine, update it
+      return axios.put("/api/put/wine/" + newWine.id, newWine);
+    }
+    else {
+      // New wine, insert it
+      return axios.post("/api/post/addNewWine", newWine);
+    }
   },
   getColors: function () {
     return axios.get("/api/get/colors");
 
+  },
+  saveWineOrder: function (wineList) {
+    return axios.post("/api/post/wineOrder", wineList);
   }
+
 }

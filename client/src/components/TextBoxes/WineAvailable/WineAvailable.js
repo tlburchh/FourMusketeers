@@ -27,7 +27,6 @@ class WineAvailable extends React.Component {
   };
 
   render() {
-    console.log(this.props.available);
     const { classes } = this.props;
 
     return (

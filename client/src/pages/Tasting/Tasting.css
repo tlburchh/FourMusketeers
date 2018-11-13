@@ -28,13 +28,14 @@
     cursor: pointer;
 }
 
-h6 {
+.footer-brand p {
     color: white;
+    padding-bottom: 15px;
 }
 
 .float-right {
     color: white;
-} 
+}
 
 .post-rating-message {
     background-color: yellow;

@@ -12,24 +12,35 @@ module.exports = {
     }
   },
   register: (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
-    // ADD VALIDATION
-    db.User.findOne({ 'email': email }, (err, userMatch) => {
-      if (userMatch) {
-        return res.json({
-          error: `Sorry, there is already a user with the email: ${email}`
+    console.log(req.body);
+    db.User.findOne({ 'email': req.body.email }).then(resp => {
+      console.log(`Finding email: ${resp}`);
+      if (resp === null) {
+        console.log("New user");
+        db.User.create(req.body).then(resp => {
+          console.log("User saved: " + resp);
+          let cleanUser = resp;
+          cleanUser.password = "";
+          res.json({ message: "User saved!", user: cleanUser });
+        }).catch(err => {
+          console.log("Error saving user " + err);
+          res.json({ error: `Error saving user: ${err}` });
         });
       }
-      const newUser = new db.User({
-        'firstName': firstName,
-        'lastName': lastName,
-        'email': email,
-        'password': password
-      });
-      newUser.save((err, savedUser) => {
-        if (err) return res.json(err);
-        return res.json(savedUser);
-      });
+      else if (resp.email) {
+        // User matched...
+        res.json({
+          error: `Sorry, there is already a user with the email: ${resp.email}`
+        });
+      }
+      else {
+        console.log("Something reallly odd happened.");
+        res.json({ message: "Super weird error" });
+      }
+    }).catch(err => {
+      console.log(err);
+      res.json(err);
+
     });
   },
   logout: (req, res) => {

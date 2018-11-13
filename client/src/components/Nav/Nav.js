@@ -26,7 +26,7 @@ const Nav = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <Col size="md-2">
-        <Link to="/" className="navbar-brand"><h1>Starrlight Mead</h1></Link>
+        <Link to="/" className="navbar-brand"><h4>Starrlight Mead</h4></Link>
         {
           props.user.isAdmin && <AdminButton />
         }
