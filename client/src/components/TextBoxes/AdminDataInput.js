@@ -69,8 +69,8 @@ const styles = theme => ({
 });
 
 class AdminDataInput extends Component {
-  constructor(props){
-  super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       price: '',
@@ -81,7 +81,9 @@ class AdminDataInput extends Component {
     }
   }
 
-
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
 
 
   handleSave = () => {
@@ -108,9 +110,12 @@ class AdminDataInput extends Component {
   }
 
   handleAvailableChange = event => {
+    console.log(`Firing avail change: ${event.target.value}`, event.target.value);
     this.setState({
       available: event.target.value
-    })
+    }, () => {
+      // console.log(this.state.available);
+    });
   }
 
 
@@ -186,16 +191,15 @@ class AdminDataInput extends Component {
           </Grid>
         </Grid>
       </div> */}
-      <Grid style={{display: 'flex', justifyContent: 'space-around'}}>
-     {/* Wine Available */}
-
-
         <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
           {/* Wine Available */}
 
 
+          <Grid style={{ display: 'flex', justifyContent: 'space-around' }}>
+            {/* Wine Available */}
+
             <WineAvailable
-              available={this.state.available || this.props.theChosenWine.available}
+              available={this.state.available || this.props.theChosenWine.isAvailable}
               handleAvailableChange={this.handleAvailableChange}
             />
 
