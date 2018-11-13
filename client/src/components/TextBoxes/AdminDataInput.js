@@ -81,11 +81,6 @@ class AdminDataInput extends Component {
     }
   }
 
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
-  }
-
-
   handleSave = () => {
     API.addNewWine(this.state)
       .then(res => {
@@ -97,7 +92,6 @@ class AdminDataInput extends Component {
   // name and price
   handleChange = name => event => {
     this.setState({
-
       [name]: event.target.value
 
     });
@@ -110,17 +104,15 @@ class AdminDataInput extends Component {
   }
 
   handleAvailableChange = event => {
-    console.log(`Firing avail change: ${event.target.value}`, event.target.value);
     this.setState({
       available: event.target.value
-    }, () => {
-      // console.log(this.state.available);
     });
   }
 
 
   render() {
     const { classes } = this.props;
+    console.log(this.props.wine);
 
     return (
 
@@ -136,7 +128,7 @@ class AdminDataInput extends Component {
             label='Wine Name'
             placeholder="Wine Name"
             className={classes.textField}
-            value={this.state.name || this.props.theChosenWine.name}
+            value={this.props.wine.name ? this.props.wine.name : this.state.name}
             onChange={this.handleChange('name')}
             margin="normal"
             style={{ width: "100%" }}
@@ -152,7 +144,7 @@ class AdminDataInput extends Component {
             label="Wine Price"
             placeholder="Wine Price"
             className={classes.textField}
-            value={this.state.price || this.props.theChosenWine.priceRegular}
+            value={this.props.wine.priceRegular ? this.props.wine.priceRegular : this.state.price}
             onChange={this.handleChange('price')}
             margin="normal"
             style={{ marginTop: '25px', width: '100%' }}
@@ -160,7 +152,8 @@ class AdminDataInput extends Component {
         </form>
 
         <WineColor
-          color={this.props.theChosenWine.color ? this.props.theChosenWine.color.color : "#ffffff"}
+          // If receiving props, use them (edit button clicked) else use this component's state
+          color={this.props.wine.color ? this.props.wine.color.color : this.state.color}
           handleColorChange={this.handleColorChange}
         />
 
@@ -173,7 +166,7 @@ class AdminDataInput extends Component {
             label="Description"
             placeholder="Description"
             multiline
-            value={this.props.theChosenWine.description}
+            value={this.props.wine.description ? this.props.wine.description : this.state.description}
             onChange={this.handleChange('description')}
             className={classes.textField}
             margin="normal"
@@ -200,7 +193,7 @@ class AdminDataInput extends Component {
             {/* Wine Available */}
 
             <WineAvailable
-              available={this.state.available || this.props.theChosenWine.isAvailable}
+              available={this.props.wine.isAvailable ? this.props.wine.isAvailable : this.state.available}
               handleAvailableChange={this.handleAvailableChange}
             />
 
