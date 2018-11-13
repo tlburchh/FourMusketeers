@@ -13,8 +13,11 @@ const validateNoNumbers = str => {
 }
 
 const validatePassword = str => {
-    const passRegex = new RegExp('\^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
-    return passRegex.test(str);
+    // const passRegex = new RegExp('\^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+    // const passRegex = new RegExp('\^(?=.*?[A-Z])(?=.*?[a-z])(?=.{4,}$');
+    // return passRegex.test(str);
+    // For now, just make sure it's at least 4 characters long:
+    return str.length >= 4;
 }
 
 const User = new Schema({
@@ -49,7 +52,8 @@ const User = new Schema({
         type: String,
         trim: true,
         required: "Password is required",
-        validate: [validatePassword, "Password must contain one upper and one lower case letter, one special character, one number, and be at least 8 long"]
+        validate: [validatePassword, "Password must be at least 4 characters long."]
+        // validate: [validatePassword, "Password must contain one upper and one lower case letter, one special character, one number, and be at least 8 long"]
     },
 
     isMember: {

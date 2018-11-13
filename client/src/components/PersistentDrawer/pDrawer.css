@@ -9,3 +9,14 @@
 #drawerrr {
     background-color:rgba(119, 158, 209, 0.85);
 };
+
+/* #userInfo {
+    display: flex;
+    align-items: center;
+    flex-direction: flex-end;
+    justify-content: flex-end;
+} */
+
+h2 {
+    text-align: center;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -9,7 +10,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+// import Icon from '@material-ui/core/Icon';
 import MenuIcon from '@material-ui/icons/Menu';
 import PollIcon from '@material-ui/icons/Poll';
 import MoodIcon from '@material-ui/icons/Mood';
@@ -21,9 +24,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 // import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
+import TastingButton from '../../components/TastingButton/TastingButton';
 // import { generateKeyPairSync } from 'crypto';
 import './pDrawer.css';
-import CheckboxLabels from '../../components/Checkbox/Checkbox';
+// import CheckboxLabels from '../../components/Checkbox/Checkbox';
 
 
 const drawerWidth = 240;
@@ -61,7 +66,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: 'rgba(119, 158, 209, 0.85)',
+    backgroundColor: 'rgba(180, 203, 228, 0.95)',
   },
   drawerHeader: {
     display: 'flex',
@@ -119,7 +124,7 @@ class PersistentDrawerLeft extends React.Component {
 
 
 
-
+  
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -128,34 +133,58 @@ class PersistentDrawerLeft extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
+          style={{ backgroundColor: '#495f86' }}
           position="fixed"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
         >
-          <Toolbar disableGutters={!open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              Admin Page
-              <CheckboxLabels />
-              {/* testing checklabels */}
-            </Typography>
-          </Toolbar>
-          {/* Added by Karsten, greeting and logout to replace NAV */}
-          <div>
-            {this.props.greeting}&nbsp;
-            <a className="logout" href="/" onClick={this.props.logout}>
-              Logout
-          </a>&nbsp;
-          <a href="/tasting">Tasting page</a>
-          </div>
+          <Grid container spacing={0}>
+            <Grid item xs={2} sm container style={{}}>
+              <Toolbar disableGutters={!open}>
+                <IconButton
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerOpen}
+                  className={classNames(classes.menuButton, open && classes.hide)}
+                >
+                  <MenuIcon />
+                </IconButton>
+
+
+                <Typography variant="h5" color="inherit" noWrap>
+                  Admin Page
+
+                {/* test code for check boxes */}
+                  {/* <CheckboxLabels /> */}
+                  {/* testing checklabels */}
+                </Typography>
+              </Toolbar>
+            </Grid>
+            <Grid item xs={8} sm container style={{}}>
+              <h2>Starrlight Meads</h2>
+            </Grid>
+            <Grid item xs={2} sm container >
+              {/* Added by Karsten, greeting and logout to replace NAV */}
+              <div id="userInfo">
+                {/* {this.props.greeting}&nbsp; */}
+
+                <TastingButton />
+                {/* logout button */}
+                <Button
+                  style={{ padding: '8px 48px' }}
+                  variant="contained"
+                  color="secondary"
+                  className={('logout', classes.button)}
+                  size="large"
+                  href="/"
+                  onClick={this.props.logout}>
+                  Logout
+                      <NoMeetingRoomIcon className={classes.rightIcon} />
+                </Button>&nbsp;
+                </div>
+            </Grid>
+          </Grid>
         </AppBar>
         <Drawer
           className={classes.drawer}
@@ -177,7 +206,9 @@ class PersistentDrawerLeft extends React.Component {
             {['Wine'].map((text, index) => (
               <ListItem button key={text}
                 onClick={this.WineEdit}>
-                <ListItemIcon> <AddToPhotosIcon /> </ListItemIcon>
+                <ListItemIcon>
+                  <AddToPhotosIcon />
+                </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
@@ -187,7 +218,9 @@ class PersistentDrawerLeft extends React.Component {
             {['Stats'].map((text, index) => (
               <ListItem button key={text}
                 onClick={this.statsPage}>
-                <ListItemIcon> <PollIcon /> </ListItemIcon>
+                <ListItemIcon>
+                  <PollIcon />
+                </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
@@ -197,7 +230,9 @@ class PersistentDrawerLeft extends React.Component {
             {['Emails'].map((text, index) => (
               <ListItem button key={text}
                 onClick={this.emailPage}>
-                <ListItemIcon> <MailIcon /> </ListItemIcon>
+                <ListItemIcon>
+                  <MailIcon />
+                </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
@@ -207,7 +242,9 @@ class PersistentDrawerLeft extends React.Component {
             {[':)'].map((text, index) => (
               <ListItem button key={text}
                 onClick={this.smilePage}>
-                <ListItemIcon> <MoodIcon /> </ListItemIcon>
+                <ListItemIcon>
+                  <MoodIcon />
+                </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}

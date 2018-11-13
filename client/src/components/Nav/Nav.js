@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Col } from '../Grid';
 import './Nav.css';
 import API from '../../utils/API';
+import AdminButton from '../../components/AdminButton/AdminButton';
 
 class Nav extends React.Component {
 
@@ -17,20 +18,18 @@ class Nav extends React.Component {
 
   render() {
 
-    let greeting;
-
-    if (this.props.user === null) {
+    if (props.user === null) {
       greeting = <p>Hello guest</p>
-    } else if (this.props.user.firstName) {
+    } else if (props.user.firstName) {
       greeting = (
         <Fragment>
-          Welcome back, <strong>{this.props.user.firstName}</strong>
+          Welcome back, <strong>{props.user.firstName}</strong>
         </Fragment>
       )
-    } else if (this.props.user.email) {
+    } else if (props.user.email) {
       greeting = (
         <Fragment>
-          Welcome back, <strong>{this.props.user.email} </strong>
+          <h3>Welcome back, <strong>{props.user.email} </strong></h3>
         </Fragment>
       )
     }
@@ -38,20 +37,20 @@ class Nav extends React.Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark">
         <Col size="md-2">
-          <Link to="/" className="navbar-brand">Starrlight Mead</Link>
+          <Link to="/" className="navbar-brand"><h1>Starrlight Mead</h1></Link>
+          {
+            props.user.isAdmin && <AdminButton />
+          }
         </Col>
         <Col size="md-7"></Col>
         <Col size="md-3">
           <div className="float-right">
-            {
-              this.props.user.email === 'karstenrabe91@gmail.com' && <div onClick={this.seedDB}>Seed DB</div>
-            }
-            {greeting} - <Link to="/" className="logout" onClick={this.props.logout}>Logout</Link>
+            {greeting} - <Link to="/" className="logout" onClick={props.logout}>Logout</Link>
           </div>
         </Col>
       </nav>
     )
-  }
-};
+  };
 
+}
 export default Nav;

@@ -19,6 +19,7 @@ router.get("/keywords", getController.keywords);
 router.get("/seed", getController.seed);
 
 
+router.get("/colors", getController.colors);
 // etc...
 
 module.exports = router;

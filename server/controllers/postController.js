@@ -17,31 +17,23 @@ module.exports = {
         };
 
         db.Wines.insertMany(newWine).then(winesResp => {
-            console.log(`Inserted new wine: ${winesResp}`);
             db.Keywords.insertMany(newKeyword).then(keywordResp => {
-                console.log(`Inserted new keyword : ${keywordResp}.`)
-                res.json({message: `New wine and keyword added.`});
+                res.json({ message: `New wine and keyword added.` });
             }).catch(keyWordErr => {
                 console.log(`Error adding keyword: ${keyWordErr}`);
             });
-            
+
         }).catch(err => {
             console.log(`Error adding new wine: ${err}`);
-            res.json({message: `Error adding new wine`});
+            res.json({ message: `Error adding new wine` });
         });
     },
 
 
     rating: (req, res) => {
-        const rating = req.body;
-        db.Rating.insert(rating).then(resp => {
-            console.log(`Inserted rating: ${resp}`);
-            res.json({ message: "Successfully saved rating." })
-        }).catch(err => {
-            console.log(`Error saving rating: ${err}`);
-            res.json({ message: `Error saving rating: ${err}` })
-        });
-
+        const ratings = req.body.ratings;
+        const selected = req.body.selected;
+        insertRatings(ratings, selected, res);
     },
     testRating: (req, res) => {
         const rating = {
@@ -98,4 +90,16 @@ module.exports = {
         });
     }
 
+}
+
+// Helpers for insert ratings
+insertRatings = (ratings, selected, res) => {
+    // Insert the ratings
+    // On callback, increment the wines selected for the tasting
+
+    incrementTimesTasted(selected, res);
+}
+
+incrementTimesTasted = (selected, res) => {
+    res.json({ message: "Submit ratings done!" });
 }

@@ -10,7 +10,6 @@ module.exports = {
             { _id: id },
             newData
         ).then(resp => {
-            console.log(`Updated rating: ${resp}`);
             res.json(resp);
         }).catch(err => {
             console.log(err);

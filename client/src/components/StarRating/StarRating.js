@@ -11,7 +11,11 @@ class StarRating extends React.Component {
   }
 
   onStarClick = nextValue => {
-    this.setState({ rating: nextValue });
+    this.setState({
+      rating: nextValue
+    }, function () {
+      this.props.starStateGetter(this.state.rating, this.props.identifier);
+    });
   }
 
   render() {
@@ -24,6 +28,7 @@ class StarRating extends React.Component {
           starCount={5}
           value={rating}
           onStarClick={this.onStarClick.bind(this)}
+          identifier={this.props.identifier}
         />
       </div>
     );

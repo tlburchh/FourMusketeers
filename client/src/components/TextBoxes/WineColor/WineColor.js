@@ -1,15 +1,12 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import Input from '@material-ui/core/Input';
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import API from '../../../utils/API';
+// import { colors } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -27,16 +24,27 @@ const styles = theme => ({
 
 class WineColor extends React.Component {
   state = {
-
-    color: '',
-
+    choices: ["Getting colors..."],
+    currColor: ""
   };
 
   componentDidMount() {
-    this.setState({
-      color: 'color',
-    });
+    if (this.state.choices.length === 1) {
+      API.getColors().then(resp => {
+        let colorsArray = [];
+        resp.data.colors.forEach(color => {
+          colorsArray.push(color.color);
+        });
+        this.setState({
+          choices: colorsArray
+        }, () => {
+        });
+      }).catch((err) => {
+        console.log("Error getting colors");
+      });
+    }
   }
+
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -46,30 +54,30 @@ class WineColor extends React.Component {
     const { classes } = this.props;
 
     return (
-      <form className={classes.root} autoComplete="off">
-        <FormControl className={classes.formControl}>
+      <form style={{ width: '100%' }} className={classes.root} autoComplete="off">
+        <FormControl style={{ width: '100%' }} className={classes.formControl}>
           <InputLabel htmlFor="color-simple">Color</InputLabel>
           <Select
-            value={this.state.age}
-            onChange={this.handleChange}
+            value={this.props.color}
+            style={{ background: this.props.color }}
+            onChange={this.props.handleColorChange}
             inputProps={{
-              color: 'color',
+              name: 'color',
               id: 'color-simple',
             }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Red</MenuItem>
-            <MenuItem value={20}>Green</MenuItem>
-            <MenuItem value={30}>Blue</MenuItem>
+            {
+              this.state.choices.map((color, i) => (
+                <MenuItem value={color} style={{ background: color }} key={i}></MenuItem>
+
+              ))
+            }
           </Select>
         </FormControl>
-      </form>
+      </form >
     );
   }
 }
-
 WineColor.propTypes = {
   classes: PropTypes.object.isRequired,
 };
