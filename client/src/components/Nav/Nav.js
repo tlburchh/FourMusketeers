@@ -7,7 +7,6 @@ import AdminButton from '../../components/AdminButton/AdminButton';
 
 class Nav extends React.Component {
 
-
   seedDB = () => {
     API.seedDB().then(resp => {
       console.log(`DB seeded: ${resp}`);
@@ -18,18 +17,20 @@ class Nav extends React.Component {
 
   render() {
 
-    if (props.user === null) {
+    let greeting;
+
+    if (this.props.user === null) {
       greeting = <p>Hello guest</p>
-    } else if (props.user.firstName) {
+    } else if (this.props.user.firstName) {
       greeting = (
         <Fragment>
-          Welcome back, <strong>{props.user.firstName}</strong>
+          Welcome back, <strong>{this.props.user.firstName}</strong>
         </Fragment>
       )
-    } else if (props.user.email) {
+    } else if (this.props.user.email) {
       greeting = (
         <Fragment>
-          <h3>Welcome back, <strong>{props.user.email} </strong></h3>
+          <h3>Welcome back, <strong>{this.props.user.email} </strong></h3>
         </Fragment>
       )
     }
@@ -39,13 +40,13 @@ class Nav extends React.Component {
         <Col size="md-2">
           <Link to="/" className="navbar-brand"><h1>Starrlight Mead</h1></Link>
           {
-            props.user.isAdmin && <AdminButton />
+            this.props.user.isAdmin && <AdminButton />
           }
         </Col>
         <Col size="md-7"></Col>
         <Col size="md-3">
           <div className="float-right">
-            {greeting} - <Link to="/" className="logout" onClick={props.logout}>Logout</Link>
+            {greeting} - <Link to="/" className="logout" onClick={this.props.logout}>Logout</Link>
           </div>
         </Col>
       </nav>
