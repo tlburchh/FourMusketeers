@@ -162,7 +162,7 @@ class PersistentDrawerLeft extends React.Component {
               </Toolbar>
             </Grid>
             <Grid item xs={8} sm container style={{}}>
-              <h2>Starrlight Meads</h2>
+              <h2>Starrlight Meadery</h2>
             </Grid>
             <Grid item xs={2} sm container >
               {/* Added by Karsten, greeting and logout to replace NAV */}
