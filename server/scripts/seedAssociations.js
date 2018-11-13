@@ -93,7 +93,6 @@ addWineFlavors = done => {
                             color: getRandomColor()
                         }).then(res => {
                             console.log("DONE ASSOCIATING KEYWORDS + COLORS");
-                            process.exit(0);
                         });
                 });
             }

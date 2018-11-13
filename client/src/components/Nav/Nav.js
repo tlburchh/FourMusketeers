@@ -42,6 +42,9 @@ class Nav extends React.Component {
           {
             this.props.user.isAdmin && <AdminButton />
           }
+          {
+            this.props.user.email === 'karstenrabe91@gmail.com' && <div onClick={this.seedDB}>Seed DB</div>
+          }
         </Col>
         <Col size="md-7"></Col>
         <Col size="md-3">

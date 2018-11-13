@@ -50,7 +50,6 @@ const keywordsSeed = [
     keyword: "oaky"
   },
 ];
-
 const colorsSeed = [
   {
     color: "#0000FF"
@@ -74,7 +73,6 @@ const colorsSeed = [
     color: "#650a11"
   }
 ];
-
 const winesSeed = [
   {
     name: "Traditional Mead - Off Dry",
@@ -262,29 +260,31 @@ const ratingsSeed = [
 
 // Seed initial data
 
-db.Colors.deleteMany({}).then(
-  db.Colors.insertMany(colorsSeed).then(resp => {
-    db.Keywords.deleteMany({}).then(
-      db.Keywords.insertMany(keywordsSeed).then(resp => {
-        db.Wines.deleteMany({}).then((res, err) => {
-          db.Wines.insertMany(winesSeed).then(resp => {
-            db.Rating.deleteMany({}).then(
-              db.Rating.insertMany(ratingsSeed).then(resp => {
-                process.exit(0);
-              }).catch(err => {
-                console.log(`Error inserting ratings ${err}`);
-              })
-            );
-          }).catch(err => {
-            console.log(`Error inserting wines ${err}`);
+module.exports = function seed(respObj) {
+  db.Colors.deleteMany({}).then(
+    db.Colors.insertMany(colorsSeed).then(resp => {
+      db.Keywords.deleteMany({}).then(
+        db.Keywords.insertMany(keywordsSeed).then(resp => {
+          db.Wines.deleteMany({}).then((res, err) => {
+            db.Wines.insertMany(winesSeed).then(resp => {
+              db.Rating.deleteMany({}).then(
+                db.Rating.insertMany(ratingsSeed).then(resp => {
+                  associator.doItAll(respObj);
+                }).catch(err => {
+                  console.log(`Error inserting ratings ${err}`);
+                })
+              );
+            }).catch(err => {
+              console.log(`Error inserting wines ${err}`);
+            });
           });
-        });
-      }).catch(err => {
-        console.log(`Error inserting keywords ${err}`);
-      })
-    );
-  })
-).catch(err => {
-  console.log("Error inserting colors");
-});
+        }).catch(err => {
+          console.log(`Error inserting keywords ${err}`);
+        })
+      );
+    })
+  ).catch(err => {
+    console.log("Error inserting colors");
+  });
+}
 
