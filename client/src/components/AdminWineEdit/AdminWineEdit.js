@@ -151,12 +151,12 @@ class AdminWineEdit extends Component {
         <Grid container spacing={24}>
           <Grid item xs={6}>
 
-            <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '60%' }}><h3>Wine Data Input</h3><hr></hr>
+            <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '80%' }}><h3>Wine Data Input</h3><hr></hr>
               <AdminDataInput wine={this.state.selectedWine} getWines={this.loadWines} />
             </Paper>
           </Grid>
           <Grid item xs={6}>
-            <Paper id='wineBG' className={classes.paper}><h3>Wine Card</h3>
+            <Paper id='wineBG' className={classes.paper}><h3>Wine List</h3>
               <hr></hr>
               <Grid container spacing={24}>
                 <Grid id='wineBGO' item xs={12}>
