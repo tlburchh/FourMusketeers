@@ -96,9 +96,7 @@ class AdminDataInput extends Component {
   }
 
   handleSave = () => {
-    console.log("Saving / updating wine.");
     API.addNewWine(this.state).then(res => {
-      console.log(res);
       if (res.status === 200 && res.data.message === "Added new wine.") {
         alert(`${res.data.resp.name} saved successfully!`);
         this.props.getWines();
@@ -118,7 +116,6 @@ class AdminDataInput extends Component {
 
   // name and price
   handleChange = name => event => {
-    console.log(name, event.target.value);
     this.setState({
       [name]: event.target.value
 

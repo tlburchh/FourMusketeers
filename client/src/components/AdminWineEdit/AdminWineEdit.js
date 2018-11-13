@@ -140,9 +140,7 @@ class AdminWineEdit extends Component {
   }
   // Function passed down to data input to save a new wine order
   saveOrder = () => {
-    console.log("Saving new order");
     API.saveWineOrder(this.state.data).then(resp => {
-      console.log(resp);
       if (resp.status === 200 && resp.data.message === "Wine order saved") {
         alert("New wine order saved");
       }

@@ -13,7 +13,6 @@ export default {
   },
 
   addNewWine: function (newWine) {
-    console.log(newWine.id);
     if (newWine.id) {
       // Existing wine, update it
       return axios.put("/api/put/wine/" + newWine.id, newWine);
@@ -28,8 +27,7 @@ export default {
 
   },
   saveWineOrder: function (wineList) {
-    console.log(wineList);
     return axios.post("/api/post/wineOrder", wineList);
   }
-  
+
 }
