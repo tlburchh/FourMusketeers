@@ -115,7 +115,7 @@ class WineCard extends Component {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">{`$ ${wine.priceRegular}`}</Typography>
+              <Typography variant="subtitle1">{`$${wine.priceRegular}`}</Typography>
             </Grid>
           </Grid>
         </Grid>
