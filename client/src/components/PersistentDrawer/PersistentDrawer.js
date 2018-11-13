@@ -41,6 +41,7 @@ const styles = theme => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+      width: '100%'
     }),
   },
   appBarShift: {
@@ -154,7 +155,6 @@ class PersistentDrawerLeft extends React.Component {
 
                 <Typography variant="h5" color="inherit" noWrap>
                   Admin Page
-
                 {/* test code for check boxes */}
                   {/* <CheckboxLabels /> */}
                   {/* testing checklabels */}

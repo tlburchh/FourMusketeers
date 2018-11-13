@@ -92,7 +92,7 @@ const AdminPage = (props) => {
     <React.Fragment>
       <CssBaseline />
       <PersistentDrawerLeft greeting={greeting} logout={props.logout} />
-
+      <br></br>
       {/* <AppBar position="static" className={classes.appBar}>
       <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">

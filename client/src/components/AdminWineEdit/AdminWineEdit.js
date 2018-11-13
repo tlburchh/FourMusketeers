@@ -143,13 +143,12 @@ class AdminWineEdit extends Component {
       <div>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <br></br>
-            <Paper className={classes.paper}><h3>Wine Data Input</h3><hr></hr>
-              <AdminDataInput theChosenWine={this.state.selectedWine} />
+
+            <Paper className={classes.paper} style={{position: 'fixed', width: '49%', height: '60%'}}><h3>Wine Data Input</h3><hr></hr>
+              <AdminDataInput theChosenWine={this.state.selectedWine}/>
             </Paper>
           </Grid>
           <Grid item xs={6}>
-            <br></br>
             <Paper id='wineBG' className={classes.paper}><h3>Wine Card</h3>
               <hr></hr>
               <Grid container spacing={24}>
@@ -207,7 +206,7 @@ class AdminWineEdit extends Component {
                                             </Grid>
                                           </Grid>
                                           <Grid item>
-                                            <Typography variant="subtitle1">{`$ ${wine.priceRegular}`}</Typography>
+                                            <Typography variant="subtitle1">{`$${wine.priceRegular}`}</Typography>
                                           </Grid>
                                         </Grid>
                                       </Grid>
