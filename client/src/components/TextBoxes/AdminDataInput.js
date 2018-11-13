@@ -74,7 +74,7 @@ class AdminDataInput extends Component {
     this.state = {
       name: '',
       price: '',
-      color: '#ffffff',
+      color: '#ffffff00',
       description: '',
       keywords: [],
       available: true,
