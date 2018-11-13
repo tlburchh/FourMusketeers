@@ -110,6 +110,7 @@ class AdminWineEdit extends Component {
   }
 
   loadWines = () => {
+    console.log("Fetching all wines");
     API.getAllWines()
       .then(res => {
         this.setState({
@@ -147,7 +148,7 @@ class AdminWineEdit extends Component {
           <Grid item xs={6}>
 
             <Paper className={classes.paper} style={{ position: 'fixed', width: '49%', height: '60%' }}><h3>Wine Data Input</h3><hr></hr>
-              <AdminDataInput wine={this.state.selectedWine} />
+              <AdminDataInput wine={this.state.selectedWine} getWines={this.loadWines} />
             </Paper>
           </Grid>
           <Grid item xs={6}>

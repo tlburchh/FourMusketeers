@@ -78,14 +78,20 @@ class AdminDataInput extends Component {
       description: '',
       keywords: [],
       available: true,
-    }
+      id: ''
+    };
   }
 
   handleSave = () => {
-    API.addNewWine(this.state)
-      .then(res => {
-      })
-      .catch(err => console.log(err));
+    console.log("Saving / updating wine.");
+    API.addNewWine(this.state).then(res => {
+      console.log(res);
+      if (res.status === 200 && res.data.message === "Added new wine.") {
+        this.props.getWines();
+      }
+    }).catch(err => {
+      console.log(err);
+    });
   };
 
 
@@ -109,10 +115,28 @@ class AdminDataInput extends Component {
     });
   }
 
+  componentDidUpdate() {
+    console.log("Component updated");
+    if (this.props.wine.name && (this.state.name !== this.props.wine.name)) {
+      console.log("Received data from an edit click");
+      const w = this.props.wine;
+      this.setState({
+        name: w.name,
+        price: w.priceRegular,
+        color: w.color.color,
+        description: w.description,
+        keywords: w.keywords,
+        available: w.isAvailable,
+        id: w._id
+      }, () => {
+        console.log("State updated", this.state);
+      });
+    }
+  }
+
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.wine);
 
     return (
 
@@ -203,7 +227,6 @@ class AdminDataInput extends Component {
               <Button onClick={this.handleSave} color="primary" variant="outlined" size="large" className={classes.button}>
                 <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
-
             </Button>
             </div>
           </Grid>
